@@ -527,7 +527,9 @@
 
             th, td {
                 padding: 4px;
-                word-break: break-word;
+                word-break: normal;
+                overflow-wrap: break-word;
+                word-spacing: 9999px;
             }
 
             th:first-child, td:first-child,
@@ -537,30 +539,19 @@
                 white-space: nowrap;
             }
 
-            td:nth-child(3), th:nth-child(3) {
-                white-space: normal !important;
-                word-break: normal !important;
-                overflow-wrap: break-word !important;
-            }
-
             th:nth-child(1), td:nth-child(1) {
-                width: 50px !important;
-                min-width: 50px !important;
-                max-width: 50px !important;
+                width: 40px !important;
+                min-width: 40px !important;
+                max-width: 40px !important;
             }
 
             th:nth-child(5), td:nth-child(5) {
-                width: 80px !important;
-                min-width: 80px !important;
-                max-width: 80px !important;
+                width: 60px !important;
+                min-width: 60px !important;
+                max-width: 60px !important;
             }
 
             table img.headshot {
-                width: 30px;
-                height: 30px;
-            }
-
-            table img.logo {
                 width: 30px;
                 height: 30px;
             }
@@ -572,6 +563,7 @@
             }
 
             td:nth-child(2), th:nth-child(2),
+            td:nth-child(6), th:nth-child(6),
             td:nth-child(7), th:nth-child(7),
             td:nth-child(8), th:nth-child(8),
             td:nth-child(9), th:nth-child(9),
@@ -605,9 +597,8 @@
                 font-size: 12px;
             }
 
-            .player-logo img {
-                width: 50px;
-                height: 50px;
+            .player-logo {
+                display: none;
             }
 
             .stats-title {
