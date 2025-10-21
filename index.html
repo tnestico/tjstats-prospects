@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJStats Top 100 Prospects</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .header {
+            margin-bottom: 24px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: #222;
+        }
+
+        .header-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            max-height: 75vh;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 18px;
+        }
+
+        thead {
+            background-color: #f8f9fa;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 16px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 2px solid #dee2e6;
+            color: #333;
+            white-space: nowrap;
+            font-size: 18px;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #dee2e6;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .img-cell {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .img-cell img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            width: 80px;
+            height: 80px;
+        }
+
+        .team-logo-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .logo-cell {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-cell img {
+            max-width: 50px;
+            max-height: 50px;
+            object-fit: contain;
+            border-radius: 0;
+        }
+
+        .name-cell {
+            text-align: left;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .rank-cell {
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .position-badge {
+            display: inline-block;
+            min-width: 50px;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .error-msg {
+            color: #d32f2f;
+            padding: 20px;
+            font-size: 18px;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .player-card {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            position: relative;
+            align-self: center;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+            z-index: 10;
+        }
+
+        .modal-close-btn:hover {
+            color: #000;
+        }
+
+        .player-info {
+            display: grid;
+            grid-template-columns: 80px 1fr 80px;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #eee;
+            text-align: center;
+        }
+
+        .player-headshot {
+            text-align: center;
+        }
+
+        .player-headshot img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .player-bio {
+            text-align: center;
+            width: 100%;
+        }
+
+        .player-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .player-details {
+            font-size: 13px;
+            color: #666;
+            margin: 2px 0;
+            line-height: 1.3;
+        }
+
+        .player-logo {
+            text-align: center;
+        }
+
+        .player-logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .stats-section {
+            margin: 16px 0;
+        }
+
+        .stats-title {
+            text-align: center;
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .table-wrapper-card {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            max-height: none;  /* Remove any height constraint */
+            height: auto;      /* Let it size naturally */
+        }
+
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+        }
+
+        .stats-table th {
+            background-color: #f8f8f8;
+            padding: 10px 8px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
+            font-size: 12px;
+        }
+
+        .stats-table td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            font-size: 12px;
+        }
+
+        .scouting-section {
+            margin: 20px 0;
+        }
+
+        .scouting-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            color: #333;
+        }
+
+        .grades-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .grade-item {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .grade-item-label {
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        .grade-item-values {
+            font-size: 14px;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .grade-badge {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 12px;
+            min-width: 45px;
+            text-align: center;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 12px;
+            border-top: 2px solid #eee;
+            font-size: 11px;
+            color: #666;
+            margin-top: 12px;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .card-footer>div {
+            flex: 1;
+        }
+
+        .card-loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+
+            th:nth-child(7),
+            td:nth-child(7),
+            th:nth-child(8),
+            td:nth-child(8) {
+                display: none;
+            }
+
+            .player-card {
+                max-width: 95vw;
+            }
+
+            .player-info {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .player-headshot img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .player-name {
+                font-size: 18px;
+            }
+
+            .player-logo img {
+                width: 70px;
+                height: 70px;
+            }
+
+            .card-footer {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .grades-row {
+                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+                gap: 8px;
+            }
+
+            .grade-item {
+                padding: 8px;
+            }
+
+            .grade-item-label {
+                font-size: 11px;
+            }
+
+            .grade-item-values {
+                font-size: 13px;
+            }
+
+            .stats-table {
+                min-width: 450px;
+                font-size: 11px;
+            }
+
+            .stats-table th,
+            .stats-table td {
+                padding: 8px 5px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>TJStats Top 100 Prospects</h1>
+            <div class="header-info">
+                <div><strong>By:</strong> Thomas Nestico (<a href="https://twitter.com/TJStats"
+                        target="_blank">@TJStats</a>)</div>
+                <div><strong>Data:</strong> MLB</div>
+                <div><strong>Images:</strong> MLB</div>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput"
+                placeholder="Search by player name, team, or abbreviation...">
+        </div>
+
+        <div class="table-wrapper">
+            <table id="prospectsTable">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th></th>
+                        <th style="text-align: left;">Name</th>
+                        <th>Position</th>
+                        <th>Team</th>
+                        <th>Age</th>
+                        <th>Height</th>
+                        <th>Weight</th>
+                        <th>B/T</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="9" class="loading">Loading prospects data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Player Card Modal -->
+    <div class="modal-overlay" id="playerModal">
+        <div class="player-card" id="playerCard">
+            <button class="modal-close-btn" onclick="closePlayerModal()">&times;</button>
+            <div class="card-loading">Loading player details...</div>
+        </div>
+    </div>
+
+    <script>
+        const RANKINGS_CSV = 'https://huggingface.co/datasets/TJStatsApps/scouting_reports/resolve/main/top_100_rankings_app.csv';
+        const PLAYER_DATA_CSV = 'https://huggingface.co/datasets/TJStatsApps/scouting_reports/resolve/main/top_100_bio.csv';
+        const SCOUT_BATTERS_CSV = 'https://huggingface.co/datasets/TJStatsApps/scouting_reports/resolve/main/scouting_reports_batters.csv';
+        const SCOUT_PITCHERS_CSV = 'https://huggingface.co/datasets/TJStatsApps/scouting_reports/resolve/main/scouting_reports.csv';
+        const MLB_API = 'https://statsapi.mlb.com/api/v1/people';
+
+        let allProspectsData = [];
+        let filteredProspectsData = [];
+        let scoutData = {};
+
+        const positionColors = {
+            'C': '#785EF0', '1B': '#DC267F', '2B': '#FE6100', '3B': '#41AC99',
+            'SS': '#FFB000', 'LF': '#D5E472', 'CF': '#222DA1', 'RF': '#39540F',
+            'OF': '#222DA1', 'DH': '#3F518A', 'P': '#648FFF', 'IF': '#a12222'
+        };
+
+        async function loadProspectsData() {
+            try {
+                console.log('Loading CSVs...');
+
+                const [rankingsRes, playerDataRes, scoutBattersRes, scoutPitchersRes] = await Promise.all([
+                    fetch(RANKINGS_CSV),
+                    fetch(PLAYER_DATA_CSV),
+                    fetch(SCOUT_BATTERS_CSV),
+                    fetch(SCOUT_PITCHERS_CSV)
+                ]);
+
+                const [rankingsText, playerDataText, scoutBattersText, scoutPitchersText] = await Promise.all([
+                    rankingsRes.text(),
+                    playerDataRes.text(),
+                    scoutBattersRes.text(),
+                    scoutPitchersRes.text()
+                ]);
+
+                Papa.parse(rankingsText, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: function (rankingsResults) {
+                        Papa.parse(playerDataText, {
+                            header: true,
+                            skipEmptyLines: true,
+                            complete: function (playerDataResults) {
+                                Papa.parse(scoutBattersText, {
+                                    header: true,
+                                    skipEmptyLines: true,
+                                    complete: function (scoutBattersResults) {
+                                        Papa.parse(scoutPitchersText, {
+                                            header: true,
+                                            skipEmptyLines: true,
+                                            complete: function (scoutPitchersResults) {
+                                                const allScout = [...scoutBattersResults.data, ...scoutPitchersResults.data];
+                                                allScout.forEach(scout => {
+                                                    scoutData[scout.player_id] = scout;
+                                                });
+                                                mergeData(rankingsResults.data, playerDataResults.data);
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            } catch (error) {
+                showError('Error loading CSVs: ' + error.message);
+            }
+        }
+
+        function mergeData(rankingsData, playerDataArray) {
+            console.log('Merging data...');
+
+            const playerDataMap = {};
+            playerDataArray.forEach(player => {
+                playerDataMap[player.player_id] = player;
+            });
+
+            allProspectsData = rankingsData
+                .filter(row => {
+                    const rank = parseInt(row.rank);
+                    return row.player_id && row.player_id.toString().trim() && rank <= 100;
+                })
+                .map((row) => {
+                    const playerData = playerDataMap[row.player_id];
+
+                    if (!playerData) {
+                        console.warn(`No player data found for player_id: ${row.player_id}`);
+                        return null;
+                    }
+
+                    const batThrow = `${playerData.bat_side || 'N/A'}/${playerData.throw_side || 'N/A'}`;
+
+                    return {
+                        rank: parseInt(row.rank),
+                        player_id: row.player_id,
+                        name: playerData.name || 'Unknown',
+                        position: playerData.position || 'N/A',
+                        team: playerData.team || 'N/A',
+                        franchise: playerData.franchise || 'N/A',
+                        abbreviation: playerData.abbreviation || 'N/A',
+                        age: playerData.age || 'N/A',
+                        height: playerData.height || 'N/A',
+                        weight: playerData.weight || 'N/A',
+                        batThrow: batThrow,
+                        parent_org_id: playerData.parent_org_id || '',
+                        bat_side: playerData.bat_side || 'N/A',
+                        throw_side: playerData.throw_side || 'N/A'
+                    };
+                })
+                .filter(p => p !== null)
+                .sort((a, b) => a.rank - b.rank);
+
+            console.log('Loaded prospects:', allProspectsData.length);
+            filteredProspectsData = [...allProspectsData];
+            renderTable();
+        }
+
+        function showError(msg) {
+            document.getElementById('tableBody').innerHTML = `<tr><td colspan="9" class="error-msg">${msg}</td></tr>`;
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+
+            if (filteredProspectsData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filteredProspectsData.map(prospect => {
+                const posColor = positionColors[prospect.position] || '#e9ecef';
+                const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${prospect.player_id}/headshot/milb/current.png`;
+                const teamLogoUrl = prospect.parent_org_id ? `https://www.mlbstatic.com/team-logos/${prospect.parent_org_id}.svg` : '';
+
+                return `
+                <tr onclick="openPlayerModal('${prospect.player_id}', '${prospect.rank}', '${prospect.name}', '${prospect.position}')">
+                    <td class="rank-cell">${prospect.rank}</td>
+                    <td class="img-cell">
+                        <img src="${headshotUrl}" alt="${prospect.name}" 
+                            onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
+                    </td>
+                    <td class="name-cell">${prospect.name}</td>
+                    <td>
+                        <span class="position-badge" style="background-color: ${posColor};">
+                            ${prospect.position}
+                        </span>
+                    </td>
+                    <td class="team-logo-cell">
+                        ${teamLogoUrl ? `<div class="logo-cell"><img src="${teamLogoUrl}" alt="team logo" onerror="this.style.display='none'"></div>` : ''}
+                    </td>
+                    <td>${prospect.age}</td>
+                    <td>${prospect.height}</td>
+                    <td>${prospect.weight}</td>
+                    <td>${prospect.batThrow}</td>
+                </tr>
+            `;
+            }).join('');
+        }
+
+        function openPlayerModal(playerId, rank, name, position) {
+            const modal = document.getElementById('playerModal');
+            const card = document.getElementById('playerCard');
+
+            card.innerHTML = `
+                <button class="modal-close-btn" onclick="closePlayerModal()">&times;</button>
+                <div class="card-loading">Loading player details...</div>
+            `;
+
+            modal.classList.add('active');
+            loadPlayerDetails(playerId, rank, name, position);
+        }
+
+        function closePlayerModal() {
+            document.getElementById('playerModal').classList.remove('active');
+        }
+
+        async function loadPlayerDetails(playerId, rank, name, position) {
+            try {
+                const response = await fetch(`${MLB_API}/${playerId}?hydrate=draft,currentTeam,stats(type=[yearByYear,yearByYearAdvanced],leagueListId=mlb_milb)&appContext=minorLeague`);
+                const data = await response.json();
+
+                if (!data.people || data.people.length === 0) {
+                    throw new Error('Player not found');
+                }
+
+                const person = data.people[0];
+                const scoutInfo = scoutData[playerId] || {};
+                renderPlayerCard(person, rank, position, scoutInfo);
+            } catch (error) {
+                console.error('Error loading player details:', error);
+                const card = document.getElementById('playerCard');
+                card.innerHTML = `
+                    <button class="modal-close-btn" onclick="closePlayerModal()">&times;</button>
+                    <div style="text-align: center; padding: 40px; color: #d32f2f;">
+                        Error loading player details. Please try again.
+                    </div>
+                `;
+            }
+        }
+
+        function renderPlayerCard(person, rank, position, scoutInfo) {
+            const card = document.getElementById('playerCard');
+            const bio = parseBio(person);
+            const stats = parseStats(person, position);
+            const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${person.id}/headshot/milb/current.png`;
+            const teamLogoUrl = bio.currentTeamId ? `https://www.mlbstatic.com/team-logos/${bio.currentTeamId}.svg` : '';
+
+            let statsHtml = '';
+            if (stats && stats.season) {
+                const isBatter = position !== 'P';
+                if (isBatter) {
+                    statsHtml = `
+                        <div class="stats-section">
+                            <div class="stats-title">${stats.season} Season Stats | Levels: ${stats.levels}</div>
+                            <div class="table-wrapper-card">
+                                <table class="stats-table">
+                                    <thead>
+                                        <tr>
+                                            <th>GP</th><th>PA</th><th>OPS</th><th>ISO</th><th>HR</th>
+                                            <th>SB</th><th>K%</th><th>BB%</th><th>Whiff%</th><th>Swing%</th><th>Air%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>${formatStat(stats.gamesPlayed, 'd')}</td>
+                                            <td>${formatStat(stats.plateAppearances, 'd')}</td>
+                                            <td>${formatStat(stats.ops, '.3f')}</td>
+                                            <td>${formatStat(stats.iso, '.3f')}</td>
+                                            <td>${formatStat(stats.homeRuns, 'd')}</td>
+                                            <td>${formatStat(stats.stolenBases, 'd')}</td>
+                                            <td>${formatStat(stats.strikeoutsPerPA, '.1%')}</td>
+                                            <td>${formatStat(stats.walksPerPA, '.1%')}</td>
+                                            <td>${formatStat(stats.whiffRate, '.1%')}</td>
+                                            <td>${formatStat(stats.swingRate, '.1%')}</td>
+                                            <td>${formatStat(stats.airPercent, '.1%')}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    statsHtml = `
+                        <div class="stats-section">
+                            <div class="stats-title">${stats.season} Season Stats | Levels: ${stats.levels}</div>
+                            <div class="table-wrapper-card">
+                                <table class="stats-table">
+                                    <thead>
+                                        <tr>
+                                            <th>GP</th><th>IP</th><th>ERA</th><th>WHIP</th><th>K%</th>
+                                            <th>BB%</th><th>K-BB%</th><th>Whiff%</th><th>Strike%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>${formatStat(stats.gamesPlayed, 'd')}</td>
+                                            <td>${formatStat(stats.inningsPitched, '.1f')}</td>
+                                            <td>${formatStat(stats.era, '.2f')}</td>
+                                            <td>${formatStat(stats.whip, '.2f')}</td>
+                                            <td>${formatStat(stats.strikeoutPct, '.1%')}</td>
+                                            <td>${formatStat(stats.walkPct, '.1%')}</td>
+                                            <td>${formatStat(stats.kMinusBB, '.1%')}</td>
+                                            <td>${formatStat(stats.whiffRate, '.1%')}</td>
+                                            <td>${formatStat(stats.strikeRate, '.1%')}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            let scoutingHtml = '';
+            if (scoutInfo && Object.keys(scoutInfo).length > 0) {
+                const isBatter = position !== 'P';
+
+                let gradeMap = [];
+                if (isBatter) {
+                    gradeMap = [
+                        { label: 'FV', pv: 'fv', fv: 'fv' },
+                        { label: 'Hit', pv: 'hit_pv', fv: 'hit_fv' },
+                        { label: 'Power', pv: 'power_pv', fv: 'power_fv' },
+                        { label: 'Running', pv: 'speed_pv', fv: 'speed_fv' },
+                        { label: 'Arm', pv: 'defense_pv', fv: 'defense_fv' },
+                        { label: 'Defense', pv: 'defense_pv', fv: 'defense_fv' }
+                    ];
+                } else {
+                    gradeMap = [
+                        { label: 'FV', pv: 'fv', fv: 'fv' },
+                        { label: 'Fastball', pv: 'fastball_pv', fv: 'fastball_fv' },
+                        { label: 'Cutter', pv: 'cutter_pv', fv: 'cutter_fv' },
+                        { label: 'Slider', pv: 'slider_pv', fv: 'slider_fv' },
+                        { label: 'Curveball', pv: 'curveball_pv', fv: 'curveball_fv' },
+                        { label: 'Changeup', pv: 'changeup_pv', fv: 'changeup_fv' },
+                        { label: 'Splitter', pv: 'splitter_pv', fv: 'splitter_fv' },
+                        { label: 'Command', pv: 'command_pv', fv: 'command_fv' }
+                    ];
+                }
+
+                scoutingHtml = `
+                    <div class="scouting-section">
+                        <div class="scouting-title">Scouting Grades</div>
+                        <div class="grades-row">
+                `;
+
+                gradeMap.forEach(grade => {
+                    const pvValue = scoutInfo[grade.pv];
+                    const fvValue = scoutInfo[grade.fv];
+
+                    let displayValue = '—';
+                    if (pvValue && fvValue) {
+                        displayValue = `${Math.round(pvValue)}/${Math.round(fvValue)}`;
+                    } else if (pvValue) {
+                        displayValue = `${Math.round(pvValue)}`;
+                    }
+
+                    scoutingHtml += `
+                        <div class="grade-item">
+                            <div class="grade-item-label">${grade.label}</div>
+                            <div class="grade-item-values">
+                                ${displayValue !== '—' ? `<span class="grade-badge">${displayValue}</span>` : displayValue}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                scoutingHtml += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            const draftHtml = bio.draftsYear ? `
+                <div class="player-details">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber}</div>
+                <div class="player-details">School: ${bio.draftsSchool || 'N/A'}</div>
+            ` : '';
+
+            card.innerHTML = `
+                <button class="modal-close-btn" onclick="closePlayerModal()">&times;</button>
+                <div class="player-info">
+                    <div class="player-headshot">
+                        <img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'">
+                    </div>
+                    <div class="player-bio">
+                        <div class="player-name">${rank}) ${bio.fullName}</div>
+                        <div class="player-details">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div>
+                        <div class="player-details">${bio.height} | ${bio.weight} lbs</div>
+                        <div class="player-details">DOB: ${bio.birthDate}</div>
+                        <div class="player-details">${bio.birthCity}, ${bio.birthCountry}</div>
+                        ${draftHtml}
+                    </div>
+                    <div class="player-logo">
+                        ${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}
+                    </div>
+                </div>
+                ${statsHtml}
+                ${scoutingHtml}
+                <div class="card-footer">
+                    <div>By: Thomas Nestico<br>@TJStats</div>
+                    <div>Updated: ${new Date().toISOString().split('T')[0]}</div>
+                    <div>Data: MLB<br>Images: MLB</div>
+                </div>
+            `;
+        }
+
+        function parseBio(person) {
+            const currentTeam = person.currentTeam || {};
+            return {
+                fullName: person.fullName || 'Unknown',
+                currentAge: person.currentAge || 'N/A',
+                height: person.height || 'N/A',
+                weight: person.weight || 'N/A',
+                birthDate: person.birthDate || 'N/A',
+                birthCity: person.birthCity || 'N/A',
+                birthCountry: person.birthCountry || 'N/A',
+                batSide: person.batSide?.code || 'N/A',
+                pitchHand: person.pitchHand?.code || 'N/A',
+                currentTeam: currentTeam.parentOrgName || currentTeam.name || 'N/A',
+                currentTeamId: currentTeam.parentOrgId || currentTeam.id,
+                draftsYear: person.drafts?.[0]?.year,
+                draftsRound: person.drafts?.[0]?.pickRound,
+                draftsRoundPickNumber: person.drafts?.[0]?.roundPickNumber,
+                draftsSchool: person.drafts?.[0]?.school?.name
+            };
+        }
+
+        function parseStats(person, position) {
+            const stats = person.stats;
+            if (!stats || stats.length === 0) return null;
+
+            const isBatter = position !== 'P';
+            const latestIndex = findSeasonIndex(stats);
+            if (latestIndex === -1) return null;
+
+            const season = stats[0].splits[latestIndex].season;
+            const indices = findAllSeasonIndices(stats, season);
+            let levels = new Set();
+            indices.forEach(i => {
+                levels.add(stats[0].splits[i].sport.abbreviation);
+            });
+            levels = Array.from(levels).sort().join(', ').replace(', MLB', '').replace(', Minors', '');
+
+            if (isBatter) {
+                const ybyIdx = stats.findIndex(s => s.type?.displayName === 'yearByYear');
+                const ybyaIdx = stats.findIndex(s => s.type?.displayName === 'yearByYearAdvanced');
+                if (ybyIdx === -1 || ybyaIdx === -1) return { season, levels };
+
+                const split = stats[ybyIdx].splits.find(s => s.season === season)?.stat || {};
+                const splitAdv = stats[ybyaIdx].splits.find(s => s.season === season)?.stat || {};
+
+                return {
+                    season,
+                    levels,
+                    gamesPlayed: split.gamesPlayed,
+                    plateAppearances: split.plateAppearances,
+                    ops: split.ops,
+                    iso: splitAdv.iso,
+                    homeRuns: split.homeRuns,
+                    stolenBases: split.stolenBases,
+                    strikeoutsPerPA: splitAdv.strikeoutsPerPlateAppearance,
+                    walksPerPA: splitAdv.walksPerPlateAppearance,
+                    whiffRate: splitAdv.swingAndMisses && splitAdv.totalSwings ? splitAdv.swingAndMisses / splitAdv.totalSwings : null,
+                    swingRate: splitAdv.totalSwings && split.numberOfPitches ? splitAdv.totalSwings / split.numberOfPitches : null,
+                    airPercent: calculateAirPercent(splitAdv)
+                };
+            } else {
+                const ybyIdx = stats.findIndex(s => s.type?.displayName === 'yearByYear');
+                const ybyaIdx = stats.findIndex(s => s.type?.displayName === 'yearByYearAdvanced');
+                if (ybyIdx === -1) return { season, levels };
+
+                const split = stats[ybyIdx].splits.find(s => s.season === season)?.stat || {};
+                const splitAdv = stats[ybyaIdx]?.splits.find(s => s.season === season)?.stat || {};
+
+                const kPct = split.strikeOuts && split.battersFaced ? split.strikeOuts / split.battersFaced : null;
+                const bbPct = split.baseOnBalls && split.battersFaced ? split.baseOnBalls / split.battersFaced : null;
+                const kMinusBB = kPct && bbPct ? kPct - bbPct : null;
+
+                return {
+                    season,
+                    levels,
+                    gamesPlayed: split.gamesPlayed,
+                    inningsPitched: split.inningsPitched,
+                    era: split.era,
+                    whip: split.whip,
+                    strikeoutPct: kPct,
+                    walkPct: bbPct,
+                    kMinusBB: kMinusBB,
+                    whiffRate: splitAdv.swingAndMisses && splitAdv.totalSwings ? splitAdv.swingAndMisses / splitAdv.totalSwings : null,
+                    strikeRate: split.strikes && split.numberOfPitches ? split.strikes / split.numberOfPitches : null
+                };
+            }
+        }
+
+        function findSeasonIndex(stats, season = '2025') {
+            try {
+                for (let i = 0; i < stats[0].splits.length; i++) {
+                    if (stats[0].splits[i].season == season) return i;
+                }
+                return -1;
+            } catch (e) {
+                return -1;
+            }
+        }
+
+        function findAllSeasonIndices(stats, season = '2025') {
+            try {
+                return stats[0].splits.map((s, i) => s.season == season ? i : -1).filter(i => i !== -1);
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function calculateAirPercent(splitAdv) {
+            if (!splitAdv.ballsInPlay) return null;
+            const air = (splitAdv.lineHits || 0) + (splitAdv.lineOuts || 0) + (splitAdv.flyHits || 0) + (splitAdv.flyOuts || 0) + (splitAdv.popHits || 0) + (splitAdv.popOuts || 0);
+            return air / splitAdv.ballsInPlay;
+        }
+
+        function formatStat(value, format) {
+            if (value === null || value === undefined) return '—';
+            try {
+                if (format === 'd') return Math.round(value).toString();
+                if (format === '.1f') return parseFloat(value).toFixed(1);
+                if (format === '.2f') return parseFloat(value).toFixed(2);
+                if (format === '.3f') return parseFloat(value).toFixed(3);
+                if (format === '.1%') return (parseFloat(value) * 100).toFixed(1) + '%';
+            } catch (e) { }
+            return '—';
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            filteredProspectsData = allProspectsData.filter(p =>
+                p.name.toLowerCase().includes(query) ||
+                p.team.toLowerCase().includes(query) ||
+                p.franchise.toLowerCase().includes(query) ||
+                p.abbreviation.toLowerCase().includes(query)
+            );
+            renderTable();
+        });
+
+        document.getElementById('playerModal').addEventListener('click', (e) => {
+            if (e.target.id === 'playerModal') closePlayerModal();
+        });
+
+        loadProspectsData();
+    </script>
+</body>
+
+</html>
