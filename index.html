@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,8 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: #f5f5f5;
             padding: 20px;
@@ -174,6 +176,17 @@
             font-size: 16px;
         }
 
+        .fv-badge {
+            display: inline-block;
+            min-width: 40px;
+            color: black;
+            padding: 6px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+        }
+
         .loading {
             text-align: center;
             padding: 40px;
@@ -229,16 +242,6 @@
         .player-card img {
             max-width: 100%;
             height: auto;
-        }
-
-        .player-card .player-headshot img {
-            width: 80px;
-            height: 80px;
-        }
-
-        .player-card .player-logo img {
-            width: 80px;
-            height: 80px;
         }
 
         .modal-close-btn {
@@ -315,10 +318,9 @@
         .stats-title {
             text-align: center;
             font-size: 16px;
-            font-style: italic;
-            margin-bottom: 12px;
+            font-weight: bold;
+            margin-bottom: 16px;
             color: #333;
-            font-weight: 500;
         }
 
         .table-wrapper-card {
@@ -367,7 +369,7 @@
 
         .grades-row {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
             gap: 10px;
             margin-bottom: 20px;
         }
@@ -389,38 +391,7 @@
 
         .grade-item-values {
             font-size: 14px;
-            color: #007bff;
             font-weight: bold;
-        }
-
-        .grade-comment {
-            font-size: 11px;
-            color: #555;
-            margin-top: 6px;
-            font-style: italic;
-            line-height: 1.3;
-        }
-
-        .scout-notes {
-            margin: 24px 0;
-        }
-
-        .scout-section {
-            margin-bottom: 20px;
-        }
-
-        .scout-section-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #222;
-            margin-bottom: 10px;
-        }
-
-        .scout-section-text {
-            font-size: 14px;
-            color: #555;
-            line-height: 1.6;
-            text-align: left;
         }
 
         .grade-badge {
@@ -447,7 +418,7 @@
             gap: 10px;
         }
 
-        .card-footer > div {
+        .card-footer>div {
             flex: 1;
         }
 
@@ -459,6 +430,7 @@
         }
 
         @media (max-width: 768px) {
+
             th:nth-child(7),
             td:nth-child(7),
             th:nth-child(8),
@@ -495,7 +467,7 @@
             }
 
             .grades-row {
-                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
                 gap: 8px;
             }
 
@@ -530,14 +502,16 @@
         <div class="header">
             <h1>TJStats Top 100 Prospects</h1>
             <div class="header-info">
-                <div><strong>By:</strong> Thomas Nestico (<a href="https://twitter.com/TJStats" target="_blank">@TJStats</a>)</div>
+                <div><strong>By:</strong> Thomas Nestico (<a href="https://twitter.com/TJStats"
+                        target="_blank">@TJStats</a>)</div>
                 <div><strong>Data:</strong> MLB</div>
                 <div><strong>Images:</strong> MLB</div>
             </div>
         </div>
 
         <div class="search-container">
-            <input type="text" class="search-input" id="searchInput" placeholder="Search by player name, team, or abbreviation...">
+            <input type="text" class="search-input" id="searchInput"
+                placeholder="Search by player name, team, or abbreviation...">
         </div>
 
         <div class="table-wrapper">
@@ -588,6 +562,66 @@
             'SS': '#FFB000', 'LF': '#D5E472', 'CF': '#222DA1', 'RF': '#39540F',
             'OF': '#222DA1', 'DH': '#3F518A', 'P': '#648FFF', 'IF': '#a12222'
         };
+
+        const fvColors = {
+            65: '#DC267F',
+            60: '#E76BA8',
+            55: '#EF9BC4',
+            50: '#F7CEE2',
+            0: '#ffffff'
+        };
+
+        function getFVBackgroundColor(fv) {
+            const value = parseInt(fv);
+            if (value >= 65) return fvColors[65];
+            if (value >= 60) return fvColors[60];
+            if (value >= 55) return fvColors[55];
+            if (value >= 50) return fvColors[50];
+            return fvColors[0];
+        }
+
+        function formatStat(value, format) {
+            if (value === null || value === undefined) return '—';
+            try {
+                if (format === 'd') return Math.round(value).toString();
+                if (format === '.1f') return parseFloat(value).toFixed(1);
+                if (format === '.2f') return parseFloat(value).toFixed(2);
+                if (format === '.3f') return parseFloat(value).toFixed(3);
+                if (format === '.1%') return (parseFloat(value) * 100).toFixed(1) + '%';
+            } catch (e) { }
+            return '—';
+        }
+
+        function findSeasonIndex(stats, season = '2025') {
+            try {
+                for (let i = 0; i < stats[0].splits.length; i++) {
+                    if (stats[0].splits[i].season == season) return i;
+                }
+                return -1;
+            } catch (e) {
+                return -1;
+            }
+        }
+
+        function findAllSeasonIndices(stats, season = '2025') {
+            try {
+                return stats[0].splits.map((s, i) => s.season == season ? i : -1).filter(i => i !== -1);
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function calculateAirPercent(splitAdv) {
+            if (!splitAdv || !splitAdv.ballsInPlay) return null;
+            try {
+                const air = (splitAdv.lineHits || 0) + (splitAdv.lineOuts || 0) +
+                    (splitAdv.flyHits || 0) + (splitAdv.flyOuts || 0) +
+                    (splitAdv.popHits || 0) + (splitAdv.popOuts || 0);
+                return splitAdv.ballsInPlay > 0 ? air / splitAdv.ballsInPlay : null;
+            } catch (e) {
+                return null;
+            }
+        }
 
         async function loadProspectsData() {
             try {
@@ -679,13 +713,13 @@
         }
 
         function showError(msg) {
-            document.getElementById('tableBody').innerHTML = `<tr><td colspan="9" class="error-msg">${msg}</td></tr>`;
+            document.getElementById('tableBody').innerHTML = `<tr><td colspan="10" class="error-msg">${msg}</td></tr>`;
         }
 
         function renderTable() {
             const tbody = document.getElementById('tableBody');
             if (filteredProspectsData.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
                 return;
             }
 
@@ -701,6 +735,7 @@
                         <img src="${headshotUrl}" alt="${prospect.name}" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
                     </td>
                     <td class="name-cell">${prospect.name}</td>
+                    <td>${scoutData[prospect.player_id]?.fv ? `<span class="fv-badge" style="background-color: ${getFVBackgroundColor(scoutData[prospect.player_id].fv)};">${Math.round(scoutData[prospect.player_id].fv)}</span>` : '—'}</td>
                     <td>
                         <span class="position-badge" style="background-color: ${posColor};">
                             ${prospect.position}
@@ -713,7 +748,6 @@
                     <td>${prospect.height}</td>
                     <td>${prospect.weight}</td>
                     <td>${prospect.batThrow}</td>
-                    <td>${scoutData[prospect.player_id]?.fv ? Math.round(scoutData[prospect.player_id].fv) : '—'}</td>
                 </tr>
                 `;
             }).join('');
@@ -768,7 +802,6 @@
                 let gradeMap = isBatter ? [
                     { label: 'FV', pv: 'fv', fv: 'fv' },
                     { label: 'Hit', pv: 'hit_pv', fv: 'hit_fv' },
-                    { label: 'Decisions', pv: 'decisions_pv', fv: 'decisions_fv' },
                     { label: 'Power', pv: 'power_pv', fv: 'power_fv' },
                     { label: 'Speed', pv: 'speed_pv', fv: 'speed_fv' },
                     { label: 'Defense', pv: 'defense_pv', fv: 'defense_fv' }
@@ -783,7 +816,6 @@
                     { label: 'Command', pv: 'command_pv', fv: 'command_fv' }
                 ];
 
-                // Filter grades to only show those with data
                 const filteredGrades = gradeMap.filter(grade => {
                     const pvValue = scoutInfo[grade.pv];
                     const fvValue = scoutInfo[grade.fv];
@@ -797,11 +829,9 @@
                         const fvValue = scoutInfo[grade.fv];
                         let displayValue = '—';
 
-                        // FV is just a single value, not a range
                         if (grade.label === 'FV') {
                             if (fvValue) displayValue = `${Math.round(fvValue)}`;
                         } else {
-                            // Other grades show PV/FV format
                             if (pvValue && fvValue) displayValue = `${Math.round(pvValue)}/${Math.round(fvValue)}`;
                             else if (pvValue) displayValue = `${Math.round(pvValue)}`;
                             else if (fvValue) displayValue = `${Math.round(fvValue)}`;
@@ -906,43 +936,7 @@
             }
         }
 
-        function findSeasonIndex(stats, season = '2025') {
-            try {
-                for (let i = 0; i < stats[0].splits.length; i++) {
-                    if (stats[0].splits[i].season == season) return i;
-                }
-                return -1;
-            } catch (e) {
-                return -1;
-            }
-        }
-
-        function findAllSeasonIndices(stats, season = '2025') {
-            try {
-                return stats[0].splits.map((s, i) => s.season == season ? i : -1).filter(i => i !== -1);
-            } catch (e) {
-                return [];
-            }
-        }
-
-        function calculateAirPercent(splitAdv) {
-            if (!splitAdv.ballsInPlay) return null;
-            const air = (splitAdv.lineHits || 0) + (splitAdv.lineOuts || 0) + (splitAdv.flyHits || 0) + (splitAdv.flyOuts || 0) + (splitAdv.popHits || 0) + (splitAdv.popOuts || 0);
-            return air / splitAdv.ballsInPlay;
-        }
-
-        function formatStat(value, format) {
-            if (value === null || value === undefined) return '—';
-            try {
-                if (format === 'd') return Math.round(value).toString();
-                if (format === '.1f') return parseFloat(value).toFixed(1);
-                if (format === '.2f') return parseFloat(value).toFixed(2);
-                if (format === '.3f') return parseFloat(value).toFixed(3);
-                if (format === '.1%') return (parseFloat(value) * 100).toFixed(1) + '%';
-            } catch (e) { }
-            return '—';
-        }
-
+        // Event Listeners
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
             filteredProspectsData = allProspectsData.filter(p =>
@@ -958,6 +952,7 @@
             if (e.target.id === 'playerModal') closePlayerModal();
         });
 
+        // Initialize
         loadProspectsData();
     </script>
 </body>
