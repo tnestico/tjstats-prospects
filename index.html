@@ -430,11 +430,33 @@
         }
 
         @media (max-width: 768px) {
-
-            th:nth-child(7),
-            td:nth-child(7),
-            th:nth-child(8),
-            td:nth-child(8) {
+            table {
+                font-size: clamp(10px, 2.5vw, 20px);
+            }
+            
+            table img.headshot {
+                width: 40px;
+                height: 40px;
+            }
+            
+            table img.logo {
+                width: 40px;
+                height: 40px;
+            }
+            
+            th, td {
+                padding: 6px;
+            }
+            
+            td span {
+                font-size: clamp(10px, 2.2vw, 18px) !important;
+                padding: 2px 6px !important;
+                min-width: 35px !important;
+                border-radius: 10px !important;
+            }
+            
+            td:nth-child(9), th:nth-child(9),
+            td:nth-child(10), th:nth-child(10) {
                 display: none;
             }
 
@@ -492,6 +514,113 @@
             .stats-table td {
                 padding: 8px 5px;
                 font-size: 11px;
+            }
+        }
+
+        /* Phones */
+        @media (max-width: 480px) {
+            table {
+                font-size: clamp(9px, 3vw, 16px);
+                table-layout: fixed;
+                width: 100% !important;
+            }
+
+            th, td {
+                padding: 4px;
+                word-break: break-word;
+            }
+
+            th:first-child, td:first-child,
+            th:nth-child(4), td:nth-child(4),
+            th:nth-child(5), td:nth-child(5),
+            th:nth-child(6), td:nth-child(6) {
+                white-space: nowrap;
+            }
+
+            td:nth-child(3), th:nth-child(3) {
+                white-space: normal !important;
+                word-break: normal !important;
+                overflow-wrap: break-word !important;
+            }
+
+            th:nth-child(1), td:nth-child(1) {
+                width: 50px !important;
+                min-width: 50px !important;
+                max-width: 50px !important;
+            }
+
+            th:nth-child(5), td:nth-child(5) {
+                width: 80px !important;
+                min-width: 80px !important;
+                max-width: 80px !important;
+            }
+
+            table img.headshot {
+                width: 30px;
+                height: 30px;
+            }
+
+            table img.logo {
+                width: 30px;
+                height: 30px;
+            }
+
+            td span {
+                font-size: clamp(9px, 2.5vw, 14px) !important;
+                padding: 2px 4px !important;
+                border-radius: 8px !important;
+            }
+
+            td:nth-child(2), th:nth-child(2),
+            td:nth-child(7), th:nth-child(7),
+            td:nth-child(8), th:nth-child(8),
+            td:nth-child(9), th:nth-child(9),
+            td:nth-child(10), th:nth-child(10),
+            td:nth-child(11), th:nth-child(11) {
+                display: none;
+            }
+
+            .player-card {
+                max-width: 95vw;
+                padding: 15px;
+            }
+
+            .player-info {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding-bottom: 12px;
+                margin-bottom: 12px;
+            }
+
+            .player-headshot img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .player-name {
+                font-size: 18px;
+            }
+
+            .player-details {
+                font-size: 12px;
+            }
+
+            .player-logo img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .stats-title {
+                font-size: 14px;
+            }
+
+            .stats-table {
+                font-size: 10px;
+            }
+
+            .stats-table th,
+            .stats-table td {
+                padding: 4px 2px;
             }
         }
     </style>
