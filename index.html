@@ -367,7 +367,7 @@
 
         .grades-row {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
             gap: 10px;
             margin-bottom: 20px;
         }
@@ -764,9 +764,8 @@
             if (scoutInfo && Object.keys(scoutInfo).length > 0) {
                 const isBatter = position !== 'P';
                 let gradeMap = isBatter ? [
-                    { label: 'FV', fv: 'fv' },
+                    { label: 'FV', pv: 'fv', fv: 'fv' },
                     { label: 'Hit', pv: 'hit_pv', fv: 'hit_fv' },
-                    { label: ' Decisions', pv: 'decisions_pv', fv: 'decisions_fv' },
                     { label: 'Power', pv: 'power_pv', fv: 'power_fv' },
                     { label: 'Speed', pv: 'speed_pv', fv: 'speed_fv' },
                     { label: 'Defense', pv: 'defense_pv', fv: 'defense_fv' }
@@ -781,16 +780,26 @@
                     { label: 'Command', pv: 'command_pv', fv: 'command_fv' }
                 ];
 
-                scoutingHtml = `<div class="scouting-section"><div class="scouting-title">Scouting Grades</div><div class="grades-row">`;
-                gradeMap.forEach(grade => {
+                // Filter grades to only show those with data
+                const filteredGrades = gradeMap.filter(grade => {
                     const pvValue = scoutInfo[grade.pv];
                     const fvValue = scoutInfo[grade.fv];
-                    let displayValue = '—';
-                    if (pvValue && fvValue) displayValue = `${Math.round(pvValue)}/${Math.round(fvValue)}`;
-                    else if (pvValue) displayValue = `${Math.round(pvValue)}`;
-                    scoutingHtml += `<div class="grade-item"><div class="grade-item-label">${grade.label}</div><div class="grade-item-values">${displayValue !== '—' ? `<span class="grade-badge">${displayValue}</span>` : displayValue}</div></div>`;
+                    return pvValue || fvValue;
                 });
-                scoutingHtml += `</div></div>`;
+
+                if (filteredGrades.length > 0) {
+                    scoutingHtml = `<div class="scouting-section"><div class="scouting-title">Scouting Grades</div><div class="grades-row">`;
+                    filteredGrades.forEach(grade => {
+                        const pvValue = scoutInfo[grade.pv];
+                        const fvValue = scoutInfo[grade.fv];
+                        let displayValue = '—';
+                        if (pvValue && fvValue) displayValue = `${Math.round(pvValue)}/${Math.round(fvValue)}`;
+                        else if (pvValue) displayValue = `${Math.round(pvValue)}`;
+                        else if (fvValue) displayValue = `${Math.round(fvValue)}`;
+                        scoutingHtml += `<div class="grade-item"><div class="grade-item-label">${grade.label}</div><div class="grade-item-values">${displayValue !== '—' ? `<span class="grade-badge">${displayValue}</span>` : displayValue}</div></div>`;
+                    });
+                    scoutingHtml += `</div></div>`;
+                }
             }
 
             const draftHtml = bio.draftsYear ? `<div class="player-details">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber}</div><div class="player-details">School: ${bio.draftsSchool || 'N/A'}</div>` : '';
