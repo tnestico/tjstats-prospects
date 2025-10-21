@@ -532,99 +532,119 @@
             }
 
             .header {
-                margin-bottom: 6px;
-                padding-bottom: 6px;
-                border-bottom: 1px solid #f0f0f0;
+                margin-bottom: 8px;
+                padding-bottom: 8px;
+                border-bottom: 1px solid #e8e8e8;
             }
 
             .header h1 {
-                font-size: 20px;
+                font-size: 18px;
                 margin-bottom: 4px;
+                font-weight: 600;
             }
 
             .header-info {
-                font-size: 11px;
-                gap: 6px;
+                font-size: 12px;
+                gap: 8px;
+                color: #666;
             }
 
             .search-container {
-                margin-bottom: 6px;
+                margin-bottom: 8px;
             }
 
             .search-input {
-                padding: 6px 8px;
+                padding: 8px 10px;
                 font-size: 14px;
-                border: 1px solid #e0e0e0;
-                border-radius: 3px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background-color: #fafafa;
             }
 
             .table-wrapper {
                 max-height: 75vh;
-                border: 1px solid #e0e0e0;
-                border-radius: 3px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background: white;
             }
 
             table {
-                font-size: 11px;
+                font-size: 12px;
                 table-layout: fixed;
                 width: 100% !important;
             }
 
+            thead {
+                background-color: #f5f5f5;
+            }
+
             th, td {
-                padding: 2px 1px;
+                padding: 3px 2px;
             }
 
             th {
-                font-size: 9px;
-                border-bottom: 1px solid #dee2e6;
+                font-size: 10px;
+                border-bottom: 1px solid #e0e0e0;
+                font-weight: 600;
+                color: #555;
             }
 
             td {
-                border-bottom: 1px solid #dee2e6;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            tbody tr:hover {
+                background-color: #fafafa;
             }
 
             .rank-cell {
-                width: 25px !important;
-                min-width: 25px !important;
-                max-width: 25px !important;
-                font-size: 10px;
+                width: 28px !important;
+                min-width: 28px !important;
+                max-width: 28px !important;
+                font-size: 11px;
+                font-weight: 600;
             }
 
             .name-cell {
                 word-break: keep-all;
                 white-space: normal;
                 overflow-wrap: normal;
+                font-size: 13px;
+                font-weight: 500;
             }
 
             .img-cell {
-                width: 28px;
-                height: 28px;
-                padding: 1px;
+                width: 0 !important;
+                height: 0 !important;
+                padding: 0 !important;
+                display: none;
             }
 
             .img-cell img {
-                width: 28px;
-                height: 28px;
+                display: none;
             }
 
             .position-badge {
                 font-size: 9px;
-                padding: 1px 3px;
+                padding: 2px 4px;
                 min-width: 32px;
-                border-radius: 8px;
+                border-radius: 6px;
+                font-weight: 600;
             }
 
             .fv-badge {
                 font-size: 9px;
-                padding: 1px 3px;
+                padding: 2px 4px;
                 min-width: 28px;
-                border-radius: 8px;
+                border-radius: 6px;
+                font-weight: 600;
+                color: white;
             }
 
             td span {
                 font-size: 9px !important;
-                padding: 1px 2px !important;
-                border-radius: 5px !important;
+                padding: 2px 4px !important;
+                border-radius: 6px !important;
             }
 
             /* Hide less important columns */
@@ -637,129 +657,174 @@
                 display: none;
             }
 
+            .logo-cell {
+                display: none;
+            }
+
+            .team-logo-cell {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                gap: 0;
+            }
+
+            .team-logo-cell img {
+                width: 20px !important;
+                height: 20px !important;
+            }
+
             .player-card {
                 max-width: 99vw;
                 width: 99vw;
-                padding: 8px;
+                padding: 10px;
                 margin: 0;
-                border-radius: 0;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                border-radius: 4px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                background: white;
             }
 
             .player-info {
                 grid-template-columns: 1fr;
-                gap: 4px;
-                padding-bottom: 6px;
-                margin-bottom: 6px;
+                gap: 6px;
+                padding-bottom: 8px;
+                margin-bottom: 8px;
                 border-bottom: 1px solid #eee;
             }
 
+            .player-headshot {
+                display: none;
+            }
+
             .player-headshot img {
-                width: 60px;
-                height: 60px;
-                border-radius: 4px;
+                display: none;
             }
 
             .player-name {
-                font-size: 15px;
-                margin-bottom: 3px;
+                font-size: 16px;
+                margin-bottom: 4px;
+                font-weight: 600;
             }
 
             .player-details {
-                font-size: 10px;
-                margin: 1px 0;
+                font-size: 11px;
+                margin: 2px 0;
+                color: #666;
                 line-height: 1.3;
             }
 
             .player-logo {
-                display: none;
+                text-align: center;
+                margin-top: 4px;
+            }
+
+            .player-logo img {
+                width: 50px !important;
+                height: 50px !important;
+                object-fit: contain;
             }
 
             .stats-section {
-                margin: 8px 0;
+                margin: 10px 0;
             }
 
             .stats-title {
-                font-size: 11px;
+                font-size: 12px;
                 margin-bottom: 6px;
+                font-weight: 600;
+                color: #333;
             }
 
             .table-wrapper-card {
                 border: 1px solid #e0e0e0;
-                border-radius: 2px;
+                border-radius: 3px;
+                background: white;
             }
 
             .stats-table {
-                font-size: 8px;
+                font-size: 9px;
                 min-width: 100%;
             }
 
             .stats-table th {
-                padding: 2px 1px;
+                padding: 3px 2px;
                 font-size: 8px;
                 border-bottom: 1px solid #ddd;
+                background-color: #f8f8f8;
             }
 
             .stats-table td {
-                padding: 2px 1px;
+                padding: 3px 2px;
                 font-size: 8px;
-                border-bottom: 1px solid #eee;
+                border-bottom: 1px solid #f0f0f0;
             }
 
             .scouting-section {
-                margin: 8px 0;
+                margin: 10px 0;
             }
 
             .scouting-title {
-                font-size: 11px;
-                margin-bottom: 6px;
+                font-size: 12px;
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: #333;
             }
 
             .grades-row {
-                grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
-                gap: 4px;
-                margin-bottom: 8px;
+                grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+                gap: 6px;
+                margin-bottom: 10px;
             }
 
             .grade-item {
-                padding: 4px;
-                border-radius: 2px;
-                border: 1px solid #ddd;
+                padding: 6px;
+                border-radius: 4px;
+                border: 1px solid #e0e0e0;
+                background-color: #f9f9f9;
+                text-align: center;
             }
 
             .grade-item-label {
                 font-size: 9px;
                 margin-bottom: 3px;
+                font-weight: 600;
+                color: #555;
             }
 
             .grade-item-values {
                 font-size: 11px;
+                font-weight: 600;
             }
 
             .grade-badge {
                 font-size: 9px;
-                padding: 2px 4px;
+                padding: 3px 5px;
                 min-width: 36px;
-                border-radius: 3px;
+                border-radius: 4px;
+                color: white;
+                font-weight: 600;
             }
 
             .card-footer {
                 flex-direction: column;
-                gap: 2px;
-                padding-top: 6px;
-                margin-top: 6px;
-                border-top: 1px solid #eee;
-                font-size: 9px;
+                gap: 4px;
+                padding-top: 8px;
+                margin-top: 8px;
+                border-top: 1px solid #e8e8e8;
+                font-size: 10px;
+                color: #888;
+                text-align: center;
             }
 
             .modal-overlay {
                 padding: 0;
+                background-color: rgba(0, 0, 0, 0.5);
             }
 
             .modal-close-btn {
                 font-size: 20px;
-                top: 8px;
-                right: 8px;
+                top: 10px;
+                right: 10px;
+                color: #666;
             }
         }
     </style>
