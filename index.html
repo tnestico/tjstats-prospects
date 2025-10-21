@@ -367,7 +367,7 @@
 
         .grades-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            grid-template-columns: repeat(6, 1fr);
             gap: 10px;
             margin-bottom: 20px;
         }
@@ -793,9 +793,17 @@
                         const pvValue = scoutInfo[grade.pv];
                         const fvValue = scoutInfo[grade.fv];
                         let displayValue = '—';
-                        if (pvValue && fvValue) displayValue = `${Math.round(pvValue)}/${Math.round(fvValue)}`;
-                        else if (pvValue) displayValue = `${Math.round(pvValue)}`;
-                        else if (fvValue) displayValue = `${Math.round(fvValue)}`;
+
+                        // FV is just a single value, not a range
+                        if (grade.label === 'FV') {
+                            if (fvValue) displayValue = `${Math.round(fvValue)}`;
+                        } else {
+                            // Other grades show PV/FV format
+                            if (pvValue && fvValue) displayValue = `${Math.round(pvValue)}/${Math.round(fvValue)}`;
+                            else if (pvValue) displayValue = `${Math.round(pvValue)}`;
+                            else if (fvValue) displayValue = `${Math.round(fvValue)}`;
+                        }
+
                         scoutingHtml += `<div class="grade-item"><div class="grade-item-label">${grade.label}</div><div class="grade-item-values">${displayValue !== '—' ? `<span class="grade-badge">${displayValue}</span>` : displayValue}</div></div>`;
                     });
                     scoutingHtml += `</div></div>`;
