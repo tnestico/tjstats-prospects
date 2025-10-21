@@ -520,60 +520,102 @@
         /* Phones */
         @media (max-width: 480px) {
             html, body {
-                padding: 5px;
+                padding: 2px;
+                margin: 0;
             }
 
             .container {
-                padding: 8px;
+                padding: 4px;
+                margin: 0;
+                border-radius: 4px;
+            }
+
+            .header {
+                margin-bottom: 8px;
+                padding-bottom: 8px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+                margin-bottom: 6px;
+            }
+
+            .header-info {
+                font-size: 12px;
+                gap: 8px;
+            }
+
+            .search-container {
+                margin-bottom: 8px;
+            }
+
+            .search-input {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+
+            .table-wrapper {
+                max-height: 75vh;
+                border-radius: 4px;
             }
 
             table {
-                font-size: clamp(9px, 3vw, 16px);
+                font-size: 11px;
                 table-layout: fixed;
                 width: 100% !important;
             }
 
             th, td {
-                padding: 4px;
+                padding: 3px 2px;
             }
 
-            th:nth-child(3), td:nth-child(3) {
+            th {
+                font-size: 10px;
+            }
+
+            .rank-cell {
+                width: 25px !important;
+                min-width: 25px !important;
+                max-width: 25px !important;
+                font-size: 11px;
+            }
+
+            .name-cell {
                 word-break: keep-all;
                 white-space: normal;
                 overflow-wrap: normal;
             }
 
-            th:first-child, td:first-child,
-            th:nth-child(4), td:nth-child(4),
-            th:nth-child(5), td:nth-child(5),
-            th:nth-child(6), td:nth-child(6) {
-                white-space: nowrap;
+            .img-cell {
+                width: 30px;
+                height: 30px;
+                padding: 2px;
             }
 
-            th:nth-child(1), td:nth-child(1) {
-                width: 40px !important;
-                min-width: 40px !important;
-                max-width: 40px !important;
-            }
-
-            th:nth-child(5), td:nth-child(5) {
-                width: 60px !important;
-                min-width: 60px !important;
-                max-width: 60px !important;
-            }
-
-            table img.headshot {
+            .img-cell img {
                 width: 30px;
                 height: 30px;
             }
 
-            td span {
-                font-size: clamp(9px, 2.5vw, 14px) !important;
-                padding: 2px 4px !important;
-                border-radius: 8px !important;
+            .position-badge {
+                font-size: 10px;
+                padding: 2px 4px;
+                min-width: 35px;
             }
 
-            td:nth-child(2), th:nth-child(2),
+            .fv-badge {
+                font-size: 10px;
+                padding: 2px 4px;
+                min-width: 30px;
+            }
+
+            td span {
+                font-size: 10px !important;
+                padding: 2px 3px !important;
+                border-radius: 6px !important;
+            }
+
+            /* Hide less important columns */
             td:nth-child(6), th:nth-child(6),
             td:nth-child(7), th:nth-child(7),
             td:nth-child(8), th:nth-child(8),
@@ -584,45 +626,108 @@
             }
 
             .player-card {
-                max-width: 95vw;
-                padding: 15px;
+                max-width: 98vw;
+                padding: 12px;
+                margin: 2px;
             }
 
             .player-info {
                 grid-template-columns: 1fr;
-                gap: 8px;
-                padding-bottom: 12px;
-                margin-bottom: 12px;
+                gap: 6px;
+                padding-bottom: 8px;
+                margin-bottom: 8px;
             }
 
             .player-headshot img {
-                width: 80px;
-                height: 80px;
+                width: 70px;
+                height: 70px;
             }
 
             .player-name {
-                font-size: 18px;
+                font-size: 16px;
+                margin-bottom: 4px;
             }
 
             .player-details {
-                font-size: 12px;
+                font-size: 11px;
+                margin: 2px 0;
             }
 
             .player-logo {
                 display: none;
             }
 
+            .stats-section {
+                margin: 12px 0;
+            }
+
             .stats-title {
-                font-size: 14px;
+                font-size: 12px;
+                margin-bottom: 8px;
             }
 
             .stats-table {
-                font-size: 10px;
+                font-size: 9px;
+                min-width: 100%;
             }
 
             .stats-table th,
             .stats-table td {
-                padding: 4px 2px;
+                padding: 3px 2px;
+                font-size: 9px;
+            }
+
+            .scouting-section {
+                margin: 12px 0;
+            }
+
+            .scouting-title {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            .grades-row {
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+                gap: 6px;
+                margin-bottom: 12px;
+            }
+
+            .grade-item {
+                padding: 6px;
+                border-radius: 4px;
+            }
+
+            .grade-item-label {
+                font-size: 10px;
+                margin-bottom: 4px;
+            }
+
+            .grade-item-values {
+                font-size: 12px;
+            }
+
+            .grade-badge {
+                font-size: 10px;
+                padding: 3px 6px;
+                min-width: 40px;
+            }
+
+            .card-footer {
+                flex-direction: column;
+                gap: 4px;
+                padding-top: 8px;
+                margin-top: 8px;
+                font-size: 10px;
+            }
+
+            .modal-overlay {
+                padding: 10px;
+            }
+
+            .modal-close-btn {
+                font-size: 24px;
+                top: 10px;
+                right: 10px;
             }
         }
     </style>
