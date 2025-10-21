@@ -276,12 +276,12 @@
         }
 
         .player-headshot img {
-            width: 120px;
+            width: 80px;
             height: 120px;
             border-radius: 8px;
             object-fit: cover;
+            display: block;
         }
-
         .player-bio {
             text-align: center;
             width: 100%;
@@ -521,13 +521,13 @@
                         <th>Rank</th>
                         <th></th>
                         <th style="text-align: left;">Name</th>
+                        <th>FV</th>
                         <th>Position</th>
                         <th>Team</th>
                         <th>Age</th>
                         <th>Height</th>
                         <th>Weight</th>
                         <th>B/T</th>
-                        <th>FV</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -803,6 +803,7 @@
                     { label: 'FV', pv: 'fv', fv: 'fv' },
                     { label: 'Hit', pv: 'hit_pv', fv: 'hit_fv' },
                     { label: 'Power', pv: 'power_pv', fv: 'power_fv' },
+                    { label: 'Decisions', pv: 'decisions_pv', fv: 'decisions_fv' },                
                     { label: 'Speed', pv: 'speed_pv', fv: 'speed_fv' },
                     { label: 'Defense', pv: 'defense_pv', fv: 'defense_fv' }
                 ] : [
