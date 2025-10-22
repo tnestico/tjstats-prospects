@@ -92,23 +92,27 @@
             z-index: 10;
         }
 
-        #prospectsTable th {
-            padding: 12px 8px;
-            text-align: center;
-            font-weight: 600;
-            border-bottom: 2px solid #dee2e6;
-            color: #333;
-            white-space: nowrap;
-            font-size: 18px;
-        }
-
         #prospectsTable td {
             padding: 12px 8px;
-            border-bottom: 1px solid #dee2e6;
+            border: 1px solid #dee2e6;
             text-align: center;
             font-size: 18px;
             cursor: pointer;
             transition: background-color 0.2s;
+            height: 68px;
+            vertical-align: middle;
+        }
+
+        #prospectsTable th {
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #dee2e6;
+            color: #333;
+            white-space: nowrap;
+            font-size: 18px;
+            height: 68px;
+            vertical-align: middle;
         }
 
         #prospectsTable tbody tr:hover {
@@ -129,68 +133,54 @@
             height: 69.5px !important;
             min-width: 68px !important;
             max-width: 68px !important;
+            padding: 0 !important;
+            border-right: 1px solid #dee2e6 !important;
         }
 
         .img-cell {
-            max-width: 68px !important;
-            height: 60px !important;
+            width: 68px;
+            min-width: 68px;
+            max-width: 68px;
+            padding: 0;
+            /* border-right: 1px solid #dee2e6; */
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            border: none !important;
-            background: transparent !important;
-            margin: 0 auto;
         }
 
         .img-cell img {
-            max-width: 68px !important;
-            height: 60px !important;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            object-fit: block;
-            width: 68px;
-            height: 68px;
-            border: none !important;
-            background: transparent !important;
-            margin: 0 auto;
+            object-fit: cover;
+            display: block;
+            /* border: 1px solid #dee2e6; */
         }
 
         .team-logo-cell {
-            display: flex;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 0;
             width: 68px !important;
             min-width: 68px !important;
             max-width: 68px !important;
-            height: 69.5px !important;
-            padding-left: 0px !important;
-            border: none !important;
+            padding: 0 !important;
+            height: 68px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
         }
 
         .logo-cell {
-            width: 60px !important;
-            height: 60px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            flex-shrink: 0 !important;
-            border: none !important;
-            background: transparent !important;
-            margin: 0 auto !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
         }
 
         .logo-cell img {
-            max-width: 58px !important;
-            max-height: 58px !important;
-            object-fit: contain !important;
-            border-radius: 0 !important;
-            display: block !important;
-            margin: 0 auto !important;
-        }
-
-        #prospectsTable td:nth-child(4){
-            border-right: 1px solid #dee2e6 !important;
+            max-width: 50px;
+            max-height: 50px;
+            object-fit: contain;
         }
 
         .name-cell {
@@ -330,7 +320,30 @@
             display: block;
         }
 
-        .player-bio {
+        .player-bio {.team-logo-cell {
+    width: 68px !important;
+    min-width: 68px !important;
+    max-width: 68px !important;
+    padding: 0 !important;
+    height: 68px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.logo-cell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.logo-cell img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+}
             text-align: center;
             width: 100%;
         }
@@ -489,7 +502,7 @@
             color: #666;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             #prospectsTable {
                 font-size: clamp(10px, 2.5vw, 20px);
             }
@@ -714,7 +727,7 @@
         }
 
             /* Phones */
-            @media (max-width: 480px) {
+            @media (max-width: 720px) {
 
                 html,
                 body {
@@ -1356,7 +1369,6 @@
         }
 
     // Replace the renderTable() function with this updated version
-
     function renderTable() {
         const tbody = document.getElementById('tableBody');
         if (filteredProspectsData.length === 0) {
@@ -1374,29 +1386,25 @@
             const fvBadgeHtml = scoutData[prospect.player_id]?.fv ? `<span class="fv-badge" style="background-color: ${fvBgColor}; color: black;">${fvValue}</span>` : '—';
 
             return `
-                <tr style="height: 68px; cursor: pointer; border-bottom: 1px solid #dee2e6;" onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='white';">
-                    <td class="rank-cell" style="width: 50px; padding: 0; border-right: 1px solid #dee2e6; font-weight: 600; vertical-align: middle; text-align: center;">${prospect.rank}</td>
-                    <td class="img-cell" style="width: 68px; min-width: 68px; max-width: 68px; padding: 0; border-right: 1px solid #dee2e6; display: flex; align-items: center; justify-content: center; vertical-align: middle;">
-                        <img src="${headshotUrl}" alt="${prospect.name}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; display: block;" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
-                    </td>
-                    <td class="name-cell" style="width: 200px; padding: 10px; border-right: 1px solid #dee2e6; font-weight: 500; text-align: left; vertical-align: middle; word-break: break-word;">${prospect.name}</td>
-                    <td class="team-logo-cell" style="width: 68px; min-width: 68px; max-width: 68px; padding: 0; border-right: 1px solid #dee2e6; display: flex; align-items: center; justify-content: center; vertical-align: middle;">
-                        ${teamLogoUrl ? `<div class="logo-cell" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;"><img src="${teamLogoUrl}" alt="team logo" style="max-width: 58px; max-height: 58px; object-fit: contain; display: block;" onerror="this.style.display='none'"></div>` : ''}
-                    </td>
-                    <td style="width: 100px; padding: 8px; border-right: 1px solid #dee2e6; text-align: center; vertical-align: middle;">
-                        <span class="position-badge" style="background-color: ${posColor}; display: inline-block; min-width: 48px; color: white; padding: 5px 8px; border-radius: 12px; font-weight: bold; font-size: 14px; white-space: nowrap;">
-                            ${prospect.position}
-                        </span>
-                    </td>
-                    <td style="width: 80px; padding: 8px; border-right: 1px solid #dee2e6; text-align: center; vertical-align: middle;">
-                        ${fvBadgeHtml}
-                    </td>
-                    <td style="width: 60px; padding: 8px; border-right: 1px solid #dee2e6; text-align: center; vertical-align: middle;">${prospect.age}</td>
-                    <td style="width: 80px; padding: 8px; border-right: 1px solid #dee2e6; text-align: center; vertical-align: middle;">${prospect.height}</td>
-                    <td style="width: 80px; padding: 8px; border-right: 1px solid #dee2e6; text-align: center; vertical-align: middle;">${prospect.weight}</td>
-                    <td style="width: 70px; padding: 8px; text-align: center; vertical-align: middle;">${prospect.batThrow}</td>
-                </tr>
-                `;
+            <tr onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')">
+                <td class="rank-cell">${prospect.rank}</td>
+                <td class="img-cell">
+                    <img src="${headshotUrl}" alt="${prospect.name}" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
+                </td>
+                <td class="name-cell">${prospect.name}</td>
+                <td class="team-logo-cell">
+                    ${teamLogoUrl ? `<div class="logo-cell"><img src="${teamLogoUrl}" alt="team logo" onerror="this.style.display='none'"></div>` : ''}
+                </td>
+                <td class="position-cell">
+                    <span class="position-badge" style="background-color: ${posColor};">${prospect.position}</span>
+                </td>
+                <td class="fv-cell">${fvBadgeHtml}</td>
+                <td>${prospect.age}</td>
+                <td>${prospect.height}</td>
+                <td>${prospect.weight}</td>
+                <td>${prospect.batThrow}</td>
+            </tr>
+        `;
         }).join('');
     }
         function openPlayerModal(playerId, rank, name, position) {
