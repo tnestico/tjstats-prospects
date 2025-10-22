@@ -115,48 +115,82 @@
             background-color: #f5f5f5;
         }
 
+        #prospectsTable td:nth-child(2),
+        #prospectsTable th:nth-child(2) {
+            width: 68px !important;
+            height: 69.5px !important;
+            min-width: 68px !important;
+            max-width: 68px !important;
+        }
+
+        #prospectsTable td:nth-child(4),
+        #prospectsTable th:nth-child(4) {
+            width: 68px !important;
+            height: 69.5px !important;
+            min-width: 68px !important;
+            max-width: 68px !important;
+        }
+
         .img-cell {
-            width: 68px;
-            height: 68px;
+            max-width: 68px !important;
+            height: 60px !important;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            border: none !important;
+            background: transparent !important;
+            margin: 0 auto;
         }
 
         .img-cell img {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 68px !important;
+            height: 60px !important;
             border-radius: 50%;
             object-fit: block;
             width: 68px;
             height: 68px;
+            border: none !important;
+            background: transparent !important;
+            margin: 0 auto;
         }
 
         .team-logo-cell {
             display: flex;
             align-items: center !important;
             justify-content: center !important;
-            gap: 8px;
-            width: 60px !important;
-            min-width: 60px !important;
-            max-width: 60px !important;
+            gap: 0;
+            width: 68px !important;
+            min-width: 68px !important;
+            max-width: 68px !important;
+            height: 69.5px !important;
+            padding-left: 0px !important;
+            border: none !important;
         }
 
         .logo-cell {
-            width: 68px;
-            height: 68px;
-            display: flex;
+            width: 60px !important;
+            height: 60px !important;
+            display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            flex-shrink: 0;
+            flex-shrink: 0 !important;
+            border: none !important;
+            background: transparent !important;
+            margin: 0 auto !important;
         }
 
         .logo-cell img {
-            max-width: 68px;
-            max-height: 68px;
-            object-fit: block;
-            border-radius: 0;
+            max-width: 58px !important;
+            max-height: 58px !important;
+            object-fit: contain !important;
+            border-radius: 0 !important;
+            display: block !important;
+            margin: 0 auto !important;
+        }
+
+        #prospectsTable td:nth-child(4){
+            border-right: 1px solid #dee2e6 !important;
         }
 
         .name-cell {
@@ -475,6 +509,11 @@
                 padding: 6px;
             }
 
+            #prospectsTable td:nth-child(3),
+            #prospectsTable th:nth-child(3) {
+                white-space: nowrap;
+            }
+
             #prospectsTable td span {
                 font-size: clamp(10px, 2.2vw, 18px) !important;
                 padding: 2px 6px !important;
@@ -489,61 +528,189 @@
                 display: none;
             }
 
-            .player-card {
-                max-width: 95vw;
-            }
+                .player-card {
+                max-width: 70vw;
+                width: 70vw;
+                padding: 10px;
+                margin: 0;
+                border-radius: 4px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                background: white;
+                position: relative;
+                }
 
-            .player-info {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
+                .player-info {
+                display: block !important;
+                padding-bottom: 8px;
+                margin-bottom: 8px;
+                border-bottom: 1px solid #eee;
+                }
 
-            .player-headshot img {
-                width: 100px;
-                height: 100px;
-            }
+                .player-headshot {
+                display: flex !important;
+                position: absolute;
+                top: 20px;
+                right: 120px;
+                }
 
-            .player-name {
-                font-size: 20px;
-            }
+                .player-headshot img {
+                width: 48px !important;
+                height: 72px !important;
+                border-radius: 4px;
+                object-fit: cover;
+                flex-shrink: 0;
+                }
 
-            .player-logo img {
-                width: 70px;
-                height: 70px;
-            }
+                .player-name {
+                font-size: 16px;
+                margin-bottom: 4px;
+                font-weight: 600;
+                text-align: left;
+                }
 
-            .card-footer {
-                flex-direction: column;
+                .player-bio {
+                text-align: left;
+                flex: 1;
+                }
+
+                .player-details {
+                font-size: 11px;
+                margin: 2px 0;
+                color: #666;
+                line-height: 1.3;
+                text-align: left;
+                }
+
+                .player-logo {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                }
+
+                .player-logo img {
+                width: 72px !important;
+                height: 72px !important;
+                object-fit: contain;
+                }
+
+                .stats-section {
+                margin: 10px 0;
+                text-align: center;
+                }
+
+                .stats-title {
+                font-size: 12px;
+                margin-bottom: 6px;
+                font-weight: 600;
+                color: #333;
+                text-align: center;
+                }
+
+                .table-wrapper-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 3px;
+                background: white;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                }
+
+                .stats-table {
+                font-size: 9px;
+                min-width: 100%;
+                margin: 0 auto;
+                }
+
+                .stats-table th {
+                padding: 3px 2px;
+                font-size: 8px;
+                border-bottom: 1px solid #ddd;
+                background-color: #f8f8f8;
+                }
+
+                .stats-table td {
+                padding: 3px 2px;
+                font-size: 8px;
+                border-bottom: 1px solid #f0f0f0;
+                }
+
+                .scouting-section {
+                margin: 10px 0;
+                padding: 0 8px;
+                }
+
+                .scouting-title {
+                font-size: 12px;
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: #333;
+                }
+
+                .grades-row {
+                grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+                gap: 6px;
+                margin-bottom: 10px;
+                }
+
+                .grade-item {
+                padding: 6px;
+                border-radius: 4px;
+                border: 1px solid #e0e0e0;
+                background-color: #f9f9f9;
+                }
+
+                .grade-item-label {
+                font-size: 9px;
+                margin-bottom: 3px;
+                font-weight: 600;
+                color: #555;
+                }
+
+                .grade-item-values {
+                font-size: 11px;
+                font-weight: 600;
+                }
+
+                .grade-badge {
+                font-size: 9px;
+                padding: 3px 5px;
+                min-width: 36px;
+                border-radius: 4px;
+                color: white;
+                font-weight: 600;
+                }
+
+                .card-footer {
+                display: flex !important;
+                flex-direction: row !important;
                 gap: 8px;
-            }
-
-            .grades-row {
-                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-                gap: 8px;
-            }
-
-            .grade-item {
                 padding: 8px;
-            }
+                margin-top: 8px;
+                border-top: 1px solid #e8e8e8;
+                font-size: 10px;
+                color: #888;
+                text-align: center;
+                justify-content: space-around;
+                }
 
-            .grade-item-label {
-                font-size: 11px;
-            }
+                .card-footer > div {
+                flex: 1;
+                }
 
-            .grade-item-values {
-                font-size: 13px;
-            }
+                .modal-overlay {
+                padding: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                }
 
-            .stats-table {
-                min-width: 450px;
-                font-size: 11px;
-            }
-
-            .stats-table th,
-            .stats-table td {
-                padding: 8px 5px;
-                font-size: 11px;
-            }
+                .modal-close-btn {
+                font-size: 20px;
+                top: 10px;
+                right: 10px;
+                color: #666;
+                }
         }
 
             /* Phones */
@@ -1190,10 +1357,6 @@
 
     // Replace the renderTable() function with this updated version
 
-    // Replace the renderTable() function with this updated version
-
-    // Replace the renderTable() function with this updated version
-
     function renderTable() {
         const tbody = document.getElementById('tableBody');
         if (filteredProspectsData.length === 0) {
@@ -1213,11 +1376,11 @@
             return `
                 <tr style="height: 68px; cursor: pointer; border-bottom: 1px solid #dee2e6;" onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')" onmouseover="this.style.backgroundColor='#f5f5f5';" onmouseout="this.style.backgroundColor='white';">
                     <td class="rank-cell" style="width: 50px; padding: 0; border-right: 1px solid #dee2e6; font-weight: 600; vertical-align: middle; text-align: center;">${prospect.rank}</td>
-                    <td class="img-cell" style="width: 68px; padding: 0; border-right: 1px solid #dee2e6; display: flex; align-items: center; justify-content: center; vertical-align: middle;">
+                    <td class="img-cell" style="width: 68px; min-width: 68px; max-width: 68px; padding: 0; border-right: 1px solid #dee2e6; display: flex; align-items: center; justify-content: center; vertical-align: middle;">
                         <img src="${headshotUrl}" alt="${prospect.name}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; display: block;" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
                     </td>
                     <td class="name-cell" style="width: 200px; padding: 10px; border-right: 1px solid #dee2e6; font-weight: 500; text-align: left; vertical-align: middle; word-break: break-word;">${prospect.name}</td>
-                    <td class="team-logo-cell" style="width: 68px; padding: 0; border-right: 1px solid #dee2e6; display: flex; align-items: center; justify-content: center; vertical-align: middle;">
+                    <td class="team-logo-cell" style="width: 68px; min-width: 68px; max-width: 68px; padding: 0; border-right: 1px solid #dee2e6; display: flex; align-items: center; justify-content: center; vertical-align: middle;">
                         ${teamLogoUrl ? `<div class="logo-cell" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;"><img src="${teamLogoUrl}" alt="team logo" style="max-width: 58px; max-height: 58px; object-fit: contain; display: block;" onerror="this.style.display='none'"></div>` : ''}
                     </td>
                     <td style="width: 100px; padding: 8px; border-right: 1px solid #dee2e6; text-align: center; vertical-align: middle;">
