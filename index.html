@@ -745,15 +745,25 @@
                 }
 
                 .player-info {
-                grid-template-columns: 1fr;
-                gap: 6px;
+                grid-template-columns: 1fr auto auto;
+                gap: 12px;
                 padding-bottom: 8px;
                 margin-bottom: 8px;
                 border-bottom: 1px solid #eee;
+                align-items: flex-start;
                 }
 
                 .player-headshot {
-                display: none !important;
+                display: flex !important;
+                order: 2;
+                }
+
+                .player-headshot img {
+                width: 80px !important;
+                height: 120px !important;
+                border-radius: 4px;
+                object-fit: cover;
+                flex-shrink: 0;
                 }
 
                 .player-name {
@@ -765,6 +775,8 @@
 
                 .player-bio {
                 text-align: left;
+                order: 1;
+                flex: 1;
                 }
 
                 .player-details {
@@ -777,12 +789,15 @@
 
                 .player-logo {
                 text-align: center;
-                margin-top: 4px;
+                order: 3;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
                 }
 
                 .player-logo img {
-                width: 50px !important;
-                height: 50px !important;
+                width: 70px !important;
+                height: 70px !important;
                 object-fit: contain;
                 }
 
