@@ -82,8 +82,7 @@
         #prospectsTable {
             width: 100%;
             border-collapse: collapse;
-            font-size: 16px;
-            table-layout: fixed;
+            font-size: 14px;
         }
 
         #prospectsTable thead {
@@ -94,7 +93,7 @@
         }
 
         #prospectsTable th {
-            padding: 12px 6px;
+            padding: 12px 8px;
             text-align: center;
             font-weight: 600;
             border-bottom: 2px solid #dee2e6;
@@ -104,15 +103,13 @@
         }
 
         #prospectsTable td {
-            padding: 6px;
+            padding: 8px;
             border-bottom: 1px solid #dee2e6;
             text-align: center;
             font-size: 14px;
             cursor: pointer;
             transition: background-color 0.2s;
-            height: 48px;
             vertical-align: middle;
-            overflow: hidden;
         }
 
         #prospectsTable tbody tr:hover {
@@ -120,8 +117,8 @@
         }
 
         .img-cell {
-            width: 50px;
-            padding: 0 !important;
+            width: 80px;
+            padding: 4px !important;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -129,17 +126,16 @@
         }
 
         .img-cell img {
-            width: 36px;
-            height: 36px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            flex-shrink: 0;
         }
 
         .team-logo-cell {
-            width: 50px;
-            padding: 0 !important;
+            width: 70px;
+            padding: 8px !important;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -147,8 +143,8 @@
         }
 
         .logo-cell {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -156,8 +152,8 @@
         }
 
         .logo-cell img {
-            max-width: 35px;
-            max-height: 35px;
+            max-width: 45px;
+            max-height: 45px;
             object-fit: contain;
             display: block;
             border-radius: 0;
@@ -167,22 +163,20 @@
             text-align: left !important;
             font-weight: 500;
             font-size: 14px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
         .rank-cell {
             font-weight: 600;
             font-size: 16px;
-            width: 45px;
+            width: 50px !important;
+            min-width: 50px !important;
         }
 
         .position-badge {
             display: inline-block;
-            min-width: 42px;
+            min-width: 48px;
             color: white;
-            padding: 4px 6px;
+            padding: 6px 8px;
             border-radius: 12px;
             font-weight: bold;
             font-size: 12px;
@@ -191,9 +185,9 @@
 
         .fv-badge {
             display: inline-block;
-            min-width: 36px;
+            min-width: 42px;
             color: white;
-            padding: 4px 6px;
+            padding: 6px 8px;
             border-radius: 12px;
             font-weight: bold;
             font-size: 12px;
@@ -457,30 +451,11 @@
         }
 
         @media (max-width: 768px) {
-            #prospectsTable {
-                font-size: clamp(10px, 2.5vw, 20px);
-            }
-
-            #prospectsTable img.headshot {
-                width: 40px;
-                height: 40px;
-            }
-
-            #prospectsTable img.logo {
-                width: 40px;
-                height: 40px;
-            }
 
             #prospectsTable th,
             #prospectsTable td {
-                padding: 6px;
-            }
-
-            #prospectsTable td span {
-                font-size: clamp(10px, 2.2vw, 18px) !important;
-                padding: 2px 6px !important;
-                min-width: 35px !important;
-                border-radius: 10px !important;
+                padding: 8px 6px;
+                font-size: 13px;
             }
 
             #prospectsTable td:nth-child(9),
@@ -547,216 +522,158 @@
             }
         }
 
-            /* Phones */
-            @media (max-width: 480px) {
+        /* Phones */
+        @media (max-width: 480px) {
 
-                html,
-                body {
+            html,
+            body {
                 padding: 0;
                 margin: 0;
-                }
+            }
 
-                .container {
+            .container {
                 padding: 2px;
                 margin: 0;
                 border-radius: 0;
                 box-shadow: none;
-                }
+            }
 
-                .header {
-                margin-bottom: 20px;
-                padding-bottom: 16px;
+            .header {
+                margin-bottom: 12px;
+                padding-bottom: 12px;
                 border-bottom: 1px solid #e8e8e8;
-                margin-top: 16px;
-                margin-left: 8px;
-                margin-right: 8px;
-                padding-left: 8px;
-                padding-right: 8px;
-                }
+            }
 
-                .header h1 {
+            .header h1 {
                 font-size: 18px;
                 margin-bottom: 4px;
                 font-weight: 600;
-                }
+            }
 
-                .header-info {
+            .header-info {
                 font-size: 12px;
                 gap: 8px;
                 color: #666;
-                }
+            }
 
-                .search-container {
+            .search-container {
                 margin-bottom: 8px;
-                padding-left: 8px;
-                padding-right: 8px;
-                }
+                padding: 0 4px;
+            }
 
-                .search-input {
+            .search-input {
                 padding: 8px 10px;
                 font-size: 14px;
                 border: 1px solid #ddd;
                 border-radius: 4px;
                 background-color: #fafafa;
-                margin-left: 0;
-                margin-right: 0;
-                }
+            }
 
-                .table-wrapper {
+            .table-wrapper {
                 max-height: 75vh;
                 border: 1px solid #ddd;
                 border-radius: 4px;
                 background: white;
-                margin: 8px;
-                }
+                margin: 4px;
+            }
 
-                #prospectsTable {
+            #prospectsTable {
                 font-size: 12px;
-                table-layout: fixed;
                 width: 100% !important;
-                }
+            }
 
-                #prospectsTable thead {
+            #prospectsTable thead {
                 background-color: #f5f5f5;
-                }
+            }
 
-                #prospectsTable th,
-                #prospectsTable td {
+            #prospectsTable th,
+            #prospectsTable td {
                 padding: 6px 4px;
-                }
+                font-size: 11px;
+            }
 
-                #prospectsTable th {
-                font-size: 10px;
+            #prospectsTable th {
                 border-bottom: 1px solid #e0e0e0;
                 font-weight: 600;
                 color: #555;
-                }
+            }
 
-                #prospectsTable td {
+            #prospectsTable td {
                 border-bottom: 1px solid #f0f0f0;
-                }
+            }
 
-                #prospectsTable tbody tr:hover {
+            #prospectsTable tbody tr:hover {
                 background-color: #fafafa;
-                }
+            }
 
-                .rank-cell {
-                width: 70px !important;
-                min-width: 70px !important;
-                max-width: 70px !important;
+            .rank-cell {
+                width: 30px !important;
+                min-width: 30px !important;
+                max-width: 30px !important;
                 font-size: 11px;
                 font-weight: 600;
-                }
+            }
 
-                .name-cell {
+            .name-cell {
                 word-break: keep-all;
                 white-space: normal;
                 overflow-wrap: normal;
-                font-size: 13px;
+                font-size: 12px;
                 font-weight: 600;
                 text-align: left !important;
-                padding-left: 6px;
-                flex-grow: 1;
-                width: 120px !important;
-                min-width: 120px !important;
-                max-width: 120px !important;
-                }
+                padding-left: 4px;
+            }
 
-                .img-cell {
+            .img-cell {
                 width: 0 !important;
                 height: 0 !important;
                 padding: 0 !important;
                 display: none !important;
                 border: none !important;
-                }
+            }
 
-                .position-badge {
+            .position-badge {
                 font-size: 10px;
-                padding: 3px 6px;
-                min-width: 32px;
+                padding: 3px 5px;
+                min-width: 30px;
                 border-radius: 6px;
                 font-weight: 600;
-                }
+            }
 
-                .fv-badge {
-                font-size: 9px;
-                padding: 2px 4px;
-                min-width: 28px;
+            .fv-badge {
+                font-size: 10px;
+                padding: 3px 5px;
+                min-width: 30px;
                 border-radius: 6px;
                 font-weight: 600;
                 color: white;
-                width: 35px !important;
-                min-width: 35px !important;
-                max-width: 35px !important;
-                }
+            }
 
-                #prospectsTable td span {
-                font-size: 10px !important;
-                padding: 3px 5px !important;
-                border-radius: 6px !important;
-                }
-
-                /* Hide columns 2, 7-11 (keep 4 for team logos) */
-                #prospectsTable td:nth-child(2),
-                #prospectsTable th:nth-child(2),
-                #prospectsTable td:nth-child(7),
-                #prospectsTable th:nth-child(7),
-                #prospectsTable td:nth-child(8),
-                #prospectsTable th:nth-child(8),
-                #prospectsTable td:nth-child(9),
-                #prospectsTable th:nth-child(9),
-                #prospectsTable td:nth-child(10),
-                #prospectsTable th:nth-child(10),
-                #prospectsTable td:nth-child(11),
-                #prospectsTable th:nth-child(11) {
+            #prospectsTable td:nth-child(2),
+            #prospectsTable th:nth-child(2),
+            #prospectsTable td:nth-child(7),
+            #prospectsTable th:nth-child(7),
+            #prospectsTable td:nth-child(8),
+            #prospectsTable th:nth-child(8),
+            #prospectsTable td:nth-child(9),
+            #prospectsTable th:nth-child(9),
+            #prospectsTable td:nth-child(10),
+            #prospectsTable th:nth-child(10),
+            #prospectsTable td:nth-child(11),
+            #prospectsTable th:nth-child(11) {
                 display: none !important;
-                }
+            }
 
-
-
-
-                #prospectsTable td:nth-child(1),
-                #prospectsTable th:nth-child(1) {
+            #prospectsTable td:nth-child(4),
+            #prospectsTable th:nth-child(4) {
                 display: table-cell !important;
                 padding: 4px 2px !important;
-                width: 60px !important;
-                min-width: 60px !important;
-                max-width: 60px !important;
-                }
+                width: 40px !important;
+                min-width: 40px !important;
+                max-width: 40px !important;
+            }
 
-                #prospectsTable td:nth-child(3),
-                #prospectsTable th:nth-child(3) {
-                display: table-cell !important;
-                padding: 4px 2px !important;
-                width: 130px !important;
-                min-width: 130px !important;
-                max-width: 130px !important;
-                }
-
-                #prospectsTable td:nth-child(4),
-                #prospectsTable th:nth-child(4) {
-                display: table-cell !important;
-                padding: 4px 2px !important;
-                width: 42px !important;
-                min-width: 42px !important;
-                max-width: 42px !important;
-                }
-
-                #prospectsTable td:nth-child(5),
-                #prospectsTable th:nth-child(5) {
-                width: 70px !important;
-                min-width: 70px !important;
-                max-width: 70px !important;
-                }
-
-                #prospectsTable td:nth-child(6),
-                #prospectsTable th:nth-child(6) {
-                width: 60px !important;
-                min-width: 60px !important;
-                max-width: 60px !important;
-                }
-
-                .team-logo-cell {
+            .team-logo-cell {
                 width: 40px !important;
                 min-width: 40px !important;
                 max-width: 40px !important;
@@ -764,26 +681,26 @@
                 align-items: center !important;
                 justify-content: center !important;
                 gap: 0 !important;
-                }
+            }
 
-                .logo-cell {
+            .logo-cell {
                 width: 36px !important;
                 height: 36px !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
                 flex-shrink: 0 !important;
-                }
+            }
 
-                .logo-cell img {
+            .logo-cell img {
                 max-width: 36px !important;
                 max-height: 36px !important;
                 object-fit: contain !important;
                 border-radius: 0 !important;
                 display: block !important;
-                }
+            }
 
-                .player-card {
+            .player-card {
                 max-width: 99vw;
                 width: 99vw;
                 padding: 10px;
@@ -791,182 +708,149 @@
                 border-radius: 4px;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
                 background: white;
-                position: relative;
-                }
+            }
 
-                .player-info {
-                display: block !important;
+            .player-info {
+                grid-template-columns: 1fr;
+                gap: 6px;
                 padding-bottom: 8px;
                 margin-bottom: 8px;
                 border-bottom: 1px solid #eee;
-                }
+            }
 
-                .player-headshot {
-                display: flex !important;
-                position: absolute;
-                top: 20px;
-                right: 120px;
-                }
+            .player-headshot {
+                display: none;
+            }
 
-                .player-headshot img {
-                width: 48px !important;
-                height: 72px !important;
-                border-radius: 4px;
-                object-fit: cover;
-                flex-shrink: 0;
-                }
-
-                .player-name {
+            .player-name {
                 font-size: 16px;
                 margin-bottom: 4px;
                 font-weight: 600;
-                text-align: left;
-                }
+            }
 
-                .player-bio {
-                text-align: left;
-                flex: 1;
-                }
-
-                .player-details {
+            .player-details {
                 font-size: 11px;
                 margin: 2px 0;
                 color: #666;
                 line-height: 1.3;
-                text-align: left;
-                }
+            }
 
-                .player-logo {
-                position: absolute;
-                top: 20px;
-                right: 30px;
-                display: flex !important;
-                align-items: center;
-                justify-content: center;
-                }
-
-                .player-logo img {
-                width: 72px !important;
-                height: 72px !important;
-                object-fit: contain;
-                }
-
-                .stats-section {
-                margin: 10px 0;
+            .player-logo {
                 text-align: center;
-                }
+                margin-top: 4px;
+            }
 
-                .stats-title {
+            .player-logo img {
+                width: 50px !important;
+                height: 50px !important;
+                object-fit: contain;
+            }
+
+            .stats-section {
+                margin: 10px 0;
+            }
+
+            .stats-title {
                 font-size: 12px;
                 margin-bottom: 6px;
                 font-weight: 600;
                 color: #333;
-                text-align: center;
-                }
+            }
 
-                .table-wrapper-card {
+            .table-wrapper-card {
                 border: 1px solid #e0e0e0;
                 border-radius: 3px;
                 background: white;
-                margin: 0 auto;
-                display: flex;
-                justify-content: center;
-                }
+                margin: 0 8px;
+            }
 
-                .stats-table {
+            .stats-table {
                 font-size: 9px;
                 min-width: 100%;
-                margin: 0 auto;
-                }
+            }
 
-                .stats-table th {
+            .stats-table th {
                 padding: 3px 2px;
                 font-size: 8px;
                 border-bottom: 1px solid #ddd;
                 background-color: #f8f8f8;
-                }
+            }
 
-                .stats-table td {
+            .stats-table td {
                 padding: 3px 2px;
                 font-size: 8px;
                 border-bottom: 1px solid #f0f0f0;
-                }
+            }
 
-                .scouting-section {
+            .scouting-section {
                 margin: 10px 0;
                 padding: 0 8px;
-                }
+            }
 
-                .scouting-title {
+            .scouting-title {
                 font-size: 12px;
                 margin-bottom: 8px;
                 font-weight: 600;
                 color: #333;
-                }
+            }
 
-                .grades-row {
+            .grades-row {
                 grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
                 gap: 6px;
                 margin-bottom: 10px;
-                }
+            }
 
-                .grade-item {
+            .grade-item {
                 padding: 6px;
                 border-radius: 4px;
                 border: 1px solid #e0e0e0;
                 background-color: #f9f9f9;
-                }
+            }
 
-                .grade-item-label {
+            .grade-item-label {
                 font-size: 9px;
                 margin-bottom: 3px;
                 font-weight: 600;
                 color: #555;
-                }
+            }
 
-                .grade-item-values {
+            .grade-item-values {
                 font-size: 11px;
                 font-weight: 600;
-                }
+            }
 
-                .grade-badge {
+            .grade-badge {
                 font-size: 9px;
                 padding: 3px 5px;
                 min-width: 36px;
                 border-radius: 4px;
                 color: white;
                 font-weight: 600;
-                }
+            }
 
-                .card-footer {
-                display: flex !important;
-                flex-direction: row !important;
-                gap: 8px;
+            .card-footer {
+                flex-direction: column;
+                gap: 4px;
                 padding: 8px;
                 margin-top: 8px;
                 border-top: 1px solid #e8e8e8;
                 font-size: 10px;
                 color: #888;
                 text-align: center;
-                justify-content: space-around;
-                }
+            }
 
-                .card-footer > div {
-                flex: 1;
-                }
-
-                .modal-overlay {
+            .modal-overlay {
                 padding: 0;
                 background-color: rgba(0, 0, 0, 0.5);
-                }
+            }
 
-                .modal-close-btn {
+            .modal-close-btn {
                 font-size: 20px;
                 top: 10px;
                 right: 10px;
                 color: #666;
-                }
             }
+        }
     </style>
 </head>
 
@@ -1030,19 +914,8 @@
         let filteredProspectsData = [];
         let scoutData = {};
 
-        const positionColors = {
-            'C': '#785EF0', '1B': '#DC267F', '2B': '#FE6100', '3B': '#41AC99',
-            'SS': '#FFB000', 'LF': '#D5E472', 'CF': '#222DA1', 'RF': '#39540F',
-            'OF': '#222DA1', 'DH': '#3F518A', 'P': '#648FFF', 'IF': '#a12222'
-        };
-
-        const fvColors = {
-            65: '#DC267F',
-            60: '#E76BA8',
-            55: '#EF9BC4',
-            50: '#F7CEE2',
-            0: '#ffffff'
-        };
+        const positionColors = { 'C': '#785EF0', '1B': '#DC267F', '2B': '#FE6100', '3B': '#41AC99', 'SS': '#FFB000', 'LF': '#D5E472', 'CF': '#222DA1', 'RF': '#39540F', 'OF': '#222DA1', 'DH': '#3F518A', 'P': '#648FFF', 'IF': '#a12222' };
+        const fvColors = { 65: '#DC267F', 60: '#E76BA8', 55: '#EF9BC4', 50: '#F7CEE2', 0: '#ffffff' };
 
         function getFVBackgroundColor(fv) {
             const value = parseInt(fv);
@@ -1087,9 +960,7 @@
         function calculateAirPercent(splitAdv) {
             if (!splitAdv || !splitAdv.ballsInPlay) return null;
             try {
-                const air = (splitAdv.lineHits || 0) + (splitAdv.lineOuts || 0) +
-                    (splitAdv.flyHits || 0) + (splitAdv.flyOuts || 0) +
-                    (splitAdv.popHits || 0) + (splitAdv.popOuts || 0);
+                const air = (splitAdv.lineHits || 0) + (splitAdv.lineOuts || 0) + (splitAdv.flyHits || 0) + (splitAdv.flyOuts || 0) + (splitAdv.popHits || 0) + (splitAdv.popOuts || 0);
                 return splitAdv.ballsInPlay > 0 ? air / splitAdv.ballsInPlay : null;
             } catch (e) {
                 return null;
@@ -1098,40 +969,18 @@
 
         async function loadProspectsData() {
             try {
-                const [rankingsRes, playerDataRes, scoutBattersRes, scoutPitchersRes] = await Promise.all([
-                    fetch(RANKINGS_CSV),
-                    fetch(PLAYER_DATA_CSV),
-                    fetch(SCOUT_BATTERS_CSV),
-                    fetch(SCOUT_PITCHERS_CSV)
-                ]);
-
-                const [rankingsText, playerDataText, scoutBattersText, scoutPitchersText] = await Promise.all([
-                    rankingsRes.text(),
-                    playerDataRes.text(),
-                    scoutBattersRes.text(),
-                    scoutPitchersRes.text()
-                ]);
-
+                const [rankingsRes, playerDataRes, scoutBattersRes, scoutPitchersRes] = await Promise.all([fetch(RANKINGS_CSV), fetch(PLAYER_DATA_CSV), fetch(SCOUT_BATTERS_CSV), fetch(SCOUT_PITCHERS_CSV)]);
+                const [rankingsText, playerDataText, scoutBattersText, scoutPitchersText] = await Promise.all([rankingsRes.text(), playerDataRes.text(), scoutBattersRes.text(), scoutPitchersRes.text()]);
                 Papa.parse(rankingsText, {
-                    header: true,
-                    skipEmptyLines: true,
-                    complete: function (rankingsResults) {
+                    header: true, skipEmptyLines: true, complete: function (rankingsResults) {
                         Papa.parse(playerDataText, {
-                            header: true,
-                            skipEmptyLines: true,
-                            complete: function (playerDataResults) {
+                            header: true, skipEmptyLines: true, complete: function (playerDataResults) {
                                 Papa.parse(scoutBattersText, {
-                                    header: true,
-                                    skipEmptyLines: true,
-                                    complete: function (scoutBattersResults) {
+                                    header: true, skipEmptyLines: true, complete: function (scoutBattersResults) {
                                         Papa.parse(scoutPitchersText, {
-                                            header: true,
-                                            skipEmptyLines: true,
-                                            complete: function (scoutPitchersResults) {
+                                            header: true, skipEmptyLines: true, complete: function (scoutPitchersResults) {
                                                 const allScout = [...scoutBattersResults.data, ...scoutPitchersResults.data];
-                                                allScout.forEach(scout => {
-                                                    scoutData[scout.player_id] = scout;
-                                                });
+                                                allScout.forEach(scout => { scoutData[scout.player_id] = scout; });
                                                 mergeData(rankingsResults.data, playerDataResults.data);
                                             }
                                         });
@@ -1148,39 +997,16 @@
 
         function mergeData(rankingsData, playerDataArray) {
             const playerDataMap = {};
-            playerDataArray.forEach(player => {
-                playerDataMap[player.player_id] = player;
-            });
-
-            allProspectsData = rankingsData
-                .filter(row => {
-                    const rank = parseInt(row.rank);
-                    return row.player_id && row.player_id.toString().trim() && rank <= 100;
-                })
-                .map((row) => {
-                    const playerData = playerDataMap[row.player_id];
-                    if (!playerData) return null;
-                    const batThrow = `${playerData.bat_side || 'N/A'}/${playerData.throw_side || 'N/A'}`;
-                    return {
-                        rank: parseInt(row.rank),
-                        player_id: row.player_id,
-                        name: playerData.name || 'Unknown',
-                        position: playerData.position || 'N/A',
-                        team: playerData.team || 'N/A',
-                        franchise: playerData.franchise || 'N/A',
-                        abbreviation: playerData.abbreviation || 'N/A',
-                        age: playerData.age || 'N/A',
-                        height: playerData.height || 'N/A',
-                        weight: playerData.weight || 'N/A',
-                        batThrow: batThrow,
-                        parent_org_id: playerData.parent_org_id || '',
-                        bat_side: playerData.bat_side || 'N/A',
-                        throw_side: playerData.throw_side || 'N/A'
-                    };
-                })
-                .filter(p => p !== null)
-                .sort((a, b) => a.rank - b.rank);
-
+            playerDataArray.forEach(player => { playerDataMap[player.player_id] = player; });
+            allProspectsData = rankingsData.filter(row => {
+                const rank = parseInt(row.rank);
+                return row.player_id && row.player_id.toString().trim() && rank <= 100;
+            }).map((row) => {
+                const playerData = playerDataMap[row.player_id];
+                if (!playerData) return null;
+                const batThrow = `${playerData.bat_side || 'N/A'}/${playerData.throw_side || 'N/A'}`;
+                return { rank: parseInt(row.rank), player_id: row.player_id, name: playerData.name || 'Unknown', position: playerData.position || 'N/A', team: playerData.team || 'N/A', franchise: playerData.franchise || 'N/A', abbreviation: playerData.abbreviation || 'N/A', age: playerData.age || 'N/A', height: playerData.height || 'N/A', weight: playerData.weight || 'N/A', batThrow: batThrow, parent_org_id: playerData.parent_org_id || '', bat_side: playerData.bat_side || 'N/A', throw_side: playerData.throw_side || 'N/A' };
+            }).filter(p => p !== null).sort((a, b) => a.rank - b.rank);
             filteredProspectsData = [...allProspectsData];
             renderTable();
         }
@@ -1195,34 +1021,11 @@
                 tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
                 return;
             }
-
             tbody.innerHTML = filteredProspectsData.map(prospect => {
                 const posColor = positionColors[prospect.position] || '#e9ecef';
                 const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${prospect.player_id}/headshot/milb/current.png`;
                 const teamLogoUrl = prospect.parent_org_id ? `https://www.mlbstatic.com/team-logos/${prospect.parent_org_id}.svg` : '';
-
-                return `
-                <tr onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')">
-                    <td class="rank-cell">${prospect.rank}</td>
-                    <td class="img-cell">
-                        <img src="${headshotUrl}" alt="${prospect.name}" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
-                    </td>
-                    <td class="name-cell">${prospect.name}</td>
-                    <td class="team-logo-cell">
-                        ${teamLogoUrl ? `<div class="logo-cell"><img src="${teamLogoUrl}" alt="team logo" onerror="this.style.display='none'"></div>` : ''}
-                    </td>
-                    <td>
-                        <span class="position-badge" style="background-color: ${posColor};">
-                            ${prospect.position}
-                        </span>
-                    </td>
-                    <td>${scoutData[prospect.player_id]?.fv ? `<span class="fv-badge" style="background-color: ${getFVBackgroundColor(scoutData[prospect.player_id].fv)};">${Math.round(scoutData[prospect.player_id].fv)}</span>` : '—'}</td>
-                    <td>${prospect.age}</td>
-                    <td>${prospect.height}</td>
-                    <td>${prospect.weight}</td>
-                    <td>${prospect.batThrow}</td>
-                </tr>
-                `;
+                return `<tr onclick="openPlayerModal('${prospect.player_id}', '${prospect.rank}', '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')"><td class="rank-cell">${prospect.rank}</td><td class="img-cell"><img src="${headshotUrl}" alt="${prospect.name}" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'"></td><td class="name-cell">${prospect.name}</td><td class="team-logo-cell">${teamLogoUrl ? `<div class="logo-cell"><img src="${teamLogoUrl}" alt="team logo" onerror="this.style.display='none'"></div>` : ''}</td><td><span class="position-badge" style="background-color: ${posColor};">${prospect.position}</span></td><td>${scoutData[prospect.player_id]?.fv ? `<span class="fv-badge" style="background-color: ${getFVBackgroundColor(scoutData[prospect.player_id].fv)};">${Math.round(scoutData[prospect.player_id].fv)}</span>` : '—'}</td><td>${prospect.age}</td><td>${prospect.height}</td><td>${prospect.weight}</td><td>${prospect.batThrow}</td></tr>`;
             }).join('');
         }
 
@@ -1258,7 +1061,6 @@
             const stats = parseStats(person, position);
             const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${person.id}/headshot/milb/current.png`;
             const teamLogoUrl = bio.currentTeamId ? `https://www.mlbstatic.com/team-logos/${bio.currentTeamId}.svg` : '';
-
             let statsHtml = '';
             if (stats && stats.season) {
                 const isBatter = position !== 'P';
@@ -1268,41 +1070,17 @@
                     statsHtml = `<div class="stats-section"><div class="stats-title">${stats.season} Season Stats | Levels: ${stats.levels}</div><div class="table-wrapper-card"><table class="stats-table"><thead><tr><th>GP</th><th>IP</th><th>ERA</th><th>WHIP</th><th>K%</th><th>BB%</th><th>K-BB%</th><th>Whiff%</th><th>Strike%</th></tr></thead><tbody><tr><td>${formatStat(stats.gamesPlayed, 'd')}</td><td>${formatStat(stats.inningsPitched, '.1f')}</td><td>${formatStat(stats.era, '.2f')}</td><td>${formatStat(stats.whip, '.2f')}</td><td>${formatStat(stats.strikeoutPct, '.1%')}</td><td>${formatStat(stats.walkPct, '.1%')}</td><td>${formatStat(stats.kMinusBB, '.1%')}</td><td>${formatStat(stats.whiffRate, '.1%')}</td><td>${formatStat(stats.strikeRate, '.1%')}</td></tr></tbody></table></div></div>`;
                 }
             }
-
             let scoutingHtml = '';
             if (scoutInfo && Object.keys(scoutInfo).length > 0) {
                 const isBatter = position !== 'P';
-                let gradeMap = isBatter ? [
-                    { label: 'FV', pv: 'fv', fv: 'fv' },
-                    { label: 'Hit', pv: 'hit_pv', fv: 'hit_fv' },
-                    { label: 'Power', pv: 'power_pv', fv: 'power_fv' },
-                    { label: 'Decisions', pv: 'decisions_pv', fv: 'decisions_fv' },
-                    { label: 'Speed', pv: 'speed_pv', fv: 'speed_fv' },
-                    { label: 'Defense', pv: 'defense_pv', fv: 'defense_fv' }
-                ] : [
-                    { label: 'FV', pv: 'fv', fv: 'fv' },
-                    { label: 'Fastball', pv: 'fastball_pv', fv: 'fastball_fv' },
-                    { label: 'Cutter', pv: 'cutter_pv', fv: 'cutter_fv' },
-                    { label: 'Slider', pv: 'slider_pv', fv: 'slider_fv' },
-                    { label: 'Curveball', pv: 'curveball_pv', fv: 'curveball_fv' },
-                    { label: 'Changeup', pv: 'changeup_pv', fv: 'changeup_fv' },
-                    { label: 'Splitter', pv: 'splitter_pv', fv: 'splitter_fv' },
-                    { label: 'Command', pv: 'command_pv', fv: 'command_fv' }
-                ];
-
-                const filteredGrades = gradeMap.filter(grade => {
-                    const pvValue = scoutInfo[grade.pv];
-                    const fvValue = scoutInfo[grade.fv];
-                    return pvValue || fvValue;
-                });
-
+                let gradeMap = isBatter ? [{ label: 'FV', pv: 'fv', fv: 'fv' }, { label: 'Hit', pv: 'hit_pv', fv: 'hit_fv' }, { label: 'Power', pv: 'power_pv', fv: 'power_fv' }, { label: 'Decisions', pv: 'decisions_pv', fv: 'decisions_fv' }, { label: 'Speed', pv: 'speed_pv', fv: 'speed_fv' }, { label: 'Defense', pv: 'defense_pv', fv: 'defense_fv' }] : [{ label: 'FV', pv: 'fv', fv: 'fv' }, { label: 'Fastball', pv: 'fastball_pv', fv: 'fastball_fv' }, { label: 'Cutter', pv: 'cutter_pv', fv: 'cutter_fv' }, { label: 'Slider', pv: 'slider_pv', fv: 'slider_fv' }, { label: 'Curveball', pv: 'curveball_pv', fv: 'curveball_fv' }, { label: 'Changeup', pv: 'changeup_pv', fv: 'changeup_fv' }, { label: 'Splitter', pv: 'splitter_pv', fv: 'splitter_fv' }, { label: 'Command', pv: 'command_pv', fv: 'command_fv' }];
+                const filteredGrades = gradeMap.filter(grade => { const pvValue = scoutInfo[grade.pv]; const fvValue = scoutInfo[grade.fv]; return pvValue || fvValue; });
                 if (filteredGrades.length > 0) {
                     scoutingHtml = `<div class="scouting-section"><div class="scouting-title">Scouting Grades</div><div class="grades-row">`;
                     filteredGrades.forEach(grade => {
                         const pvValue = scoutInfo[grade.pv];
                         const fvValue = scoutInfo[grade.fv];
                         let displayValue = '—';
-
                         if (grade.label === 'FV') {
                             if (fvValue) displayValue = `${Math.round(fvValue)}`;
                         } else {
@@ -1310,115 +1088,54 @@
                             else if (pvValue) displayValue = `${Math.round(pvValue)}`;
                             else if (fvValue) displayValue = `${Math.round(fvValue)}`;
                         }
-
                         scoutingHtml += `<div class="grade-item"><div class="grade-item-label">${grade.label}</div><div class="grade-item-values">${displayValue !== '—' ? `<span class="grade-badge">${displayValue}</span>` : displayValue}</div></div>`;
                     });
                     scoutingHtml += `</div></div>`;
                 }
             }
-
             const draftHtml = bio.draftsYear ? `<div class="player-details">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber}</div><div class="player-details">School: ${bio.draftsSchool || 'N/A'}</div>` : '';
-
             card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name">${rank}) ${bio.fullName}</div><div class="player-details">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details">${bio.height} | ${bio.weight} lbs</div><div class="player-details">DOB: ${bio.birthDate}</div><div class="player-details">${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
         }
 
         function parseBio(person) {
             const currentTeam = person.currentTeam || {};
-            return {
-                fullName: person.fullName || 'Unknown',
-                currentAge: person.currentAge || 'N/A',
-                height: person.height || 'N/A',
-                weight: person.weight || 'N/A',
-                birthDate: person.birthDate || 'N/A',
-                birthCity: person.birthCity || 'N/A',
-                birthCountry: person.birthCountry || 'N/A',
-                batSide: person.batSide?.code || 'N/A',
-                pitchHand: person.pitchHand?.code || 'N/A',
-                currentTeam: currentTeam.parentOrgName || currentTeam.name || 'N/A',
-                currentTeamId: currentTeam.parentOrgId || currentTeam.id,
-                draftsYear: person.drafts?.[0]?.year,
-                draftsRound: person.drafts?.[0]?.pickRound,
-                draftsRoundPickNumber: person.drafts?.[0]?.roundPickNumber,
-                draftsSchool: person.drafts?.[0]?.school?.name
-            };
+            return { fullName: person.fullName || 'Unknown', currentAge: person.currentAge || 'N/A', height: person.height || 'N/A', weight: person.weight || 'N/A', birthDate: person.birthDate || 'N/A', birthCity: person.birthCity || 'N/A', birthCountry: person.birthCountry || 'N/A', batSide: person.batSide?.code || 'N/A', pitchHand: person.pitchHand?.code || 'N/A', currentTeam: currentTeam.parentOrgName || currentTeam.name || 'N/A', currentTeamId: currentTeam.parentOrgId || currentTeam.id, draftsYear: person.drafts?.[0]?.year, draftsRound: person.drafts?.[0]?.pickRound, draftsRoundPickNumber: person.drafts?.[0]?.roundPickNumber, draftsSchool: person.drafts?.[0]?.school?.name };
         }
 
         function parseStats(person, position) {
             const stats = person.stats;
             if (!stats || stats.length === 0) return null;
-
             const isBatter = position !== 'P';
             const latestIndex = findSeasonIndex(stats);
             if (latestIndex === -1) return null;
-
             const season = stats[0].splits[latestIndex].season;
             const indices = findAllSeasonIndices(stats, season);
             let levels = new Set();
-            indices.forEach(i => {
-                levels.add(stats[0].splits[i].sport.abbreviation);
-            });
+            indices.forEach(i => { levels.add(stats[0].splits[i].sport.abbreviation); });
             levels = Array.from(levels).sort().join(', ').replace(', MLB', '').replace(', Minors', '');
-
             if (isBatter) {
                 const ybyIdx = stats.findIndex(s => s.type?.displayName === 'yearByYear');
                 const ybyaIdx = stats.findIndex(s => s.type?.displayName === 'yearByYearAdvanced');
                 if (ybyIdx === -1 || ybyaIdx === -1) return { season, levels };
-
                 const split = stats[ybyIdx].splits.find(s => s.season === season)?.stat || {};
                 const splitAdv = stats[ybyaIdx].splits.find(s => s.season === season)?.stat || {};
-
-                return {
-                    season,
-                    levels,
-                    gamesPlayed: split.gamesPlayed,
-                    plateAppearances: split.plateAppearances,
-                    ops: split.ops,
-                    iso: splitAdv.iso,
-                    homeRuns: split.homeRuns,
-                    stolenBases: split.stolenBases,
-                    strikeoutsPerPA: splitAdv.strikeoutsPerPlateAppearance,
-                    walksPerPA: splitAdv.walksPerPlateAppearance,
-                    whiffRate: splitAdv.swingAndMisses && splitAdv.totalSwings ? splitAdv.swingAndMisses / splitAdv.totalSwings : null,
-                    swingRate: splitAdv.totalSwings && split.numberOfPitches ? splitAdv.totalSwings / split.numberOfPitches : null,
-                    airPercent: calculateAirPercent(splitAdv)
-                };
+                return { season, levels, gamesPlayed: split.gamesPlayed, plateAppearances: split.plateAppearances, ops: split.ops, iso: splitAdv.iso, homeRuns: split.homeRuns, stolenBases: split.stolenBases, strikeoutsPerPA: splitAdv.strikeoutsPerPlateAppearance, walksPerPA: splitAdv.walksPerPlateAppearance, whiffRate: splitAdv.swingAndMisses && splitAdv.totalSwings ? splitAdv.swingAndMisses / splitAdv.totalSwings : null, swingRate: splitAdv.totalSwings && split.numberOfPitches ? splitAdv.totalSwings / split.numberOfPitches : null, airPercent: calculateAirPercent(splitAdv) };
             } else {
                 const ybyIdx = stats.findIndex(s => s.type?.displayName === 'yearByYear');
                 const ybyaIdx = stats.findIndex(s => s.type?.displayName === 'yearByYearAdvanced');
                 if (ybyIdx === -1) return { season, levels };
-
                 const split = stats[ybyIdx].splits.find(s => s.season === season)?.stat || {};
                 const splitAdv = stats[ybyaIdx]?.splits.find(s => s.season === season)?.stat || {};
-
                 const kPct = split.strikeOuts && split.battersFaced ? split.strikeOuts / split.battersFaced : null;
                 const bbPct = split.baseOnBalls && split.battersFaced ? split.baseOnBalls / split.battersFaced : null;
                 const kMinusBB = kPct && bbPct ? kPct - bbPct : null;
-
-                return {
-                    season,
-                    levels,
-                    gamesPlayed: split.gamesPlayed,
-                    inningsPitched: split.inningsPitched,
-                    era: split.era,
-                    whip: split.whip,
-                    strikeoutPct: kPct,
-                    walkPct: bbPct,
-                    kMinusBB: kMinusBB,
-                    whiffRate: splitAdv.swingAndMisses && splitAdv.totalSwings ? splitAdv.swingAndMisses / splitAdv.totalSwings : null,
-                    strikeRate: split.strikes && split.numberOfPitches ? split.strikes / split.numberOfPitches : null
-                };
+                return { season, levels, gamesPlayed: split.gamesPlayed, inningsPitched: split.inningsPitched, era: split.era, whip: split.whip, strikeoutPct: kPct, walkPct: bbPct, kMinusBB: kMinusBB, whiffRate: splitAdv.swingAndMisses && splitAdv.totalSwings ? splitAdv.swingAndMisses / splitAdv.totalSwings : null, strikeRate: split.strikes && split.numberOfPitches ? split.strikes / split.numberOfPitches : null };
             }
         }
 
-        // Event Listeners
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
-            filteredProspectsData = allProspectsData.filter(p =>
-                p.name.toLowerCase().includes(query) ||
-                p.team.toLowerCase().includes(query) ||
-                p.franchise.toLowerCase().includes(query) ||
-                p.abbreviation.toLowerCase().includes(query)
-            );
+            filteredProspectsData = allProspectsData.filter(p => p.name.toLowerCase().includes(query) || p.team.toLowerCase().includes(query) || p.franchise.toLowerCase().includes(query) || p.abbreviation.toLowerCase().includes(query));
             renderTable();
         });
 
@@ -1426,7 +1143,6 @@
             if (e.target.id === 'playerModal') closePlayerModal();
         });
 
-        // Initialize
         loadProspectsData();
     </script>
 </body>
