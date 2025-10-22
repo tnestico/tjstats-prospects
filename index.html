@@ -67,7 +67,7 @@
 
         .search-input:focus {
             outline: none;
-            border-color: #007bff;
+            border-color: #648fff;
         }
 
         .table-wrapper {
@@ -469,7 +469,7 @@
 
         .grade-badge {
             display: inline-block;
-            background-color: #007bff;
+            background-color: #648fff ;
             color: white;
             padding: 6px 10px;
             border-radius: 4px;
@@ -1325,44 +1325,45 @@
             }
         }
 
-        function mergeData(rankingsData, playerDataArray) {
-            const playerDataMap = {};
-            playerDataArray.forEach(player => {
-                playerDataMap[player.player_id] = player;
-            });
+            function mergeData(rankingsData, playerDataArray) {
+                const playerDataMap = {};
+                playerDataArray.forEach(player => {
+                    playerDataMap[player.player_id] = player;
+                });
 
-            allProspectsData = rankingsData
-                .filter(row => {
-                    const rank = parseInt(row.rank);
-                    return row.player_id && row.player_id.toString().trim() && rank <= 100;
-                })
-                .map((row) => {
-                    const playerData = playerDataMap[row.player_id];
-                    if (!playerData) return null;
-                    const batThrow = `${playerData.bat_side || 'N/A'}/${playerData.throw_side || 'N/A'}`;
-                    return {
-                        rank: parseInt(row.rank),
-                        player_id: row.player_id,
-                        name: playerData.name || 'Unknown',
-                        position: playerData.position || 'N/A',
-                        team: playerData.team || 'N/A',
-                        franchise: playerData.franchise || 'N/A',
-                        abbreviation: playerData.abbreviation || 'N/A',
-                        age: playerData.age || 'N/A',
-                        height: playerData.height || 'N/A',
-                        weight: playerData.weight || 'N/A',
-                        batThrow: batThrow,
-                        parent_org_id: playerData.parent_org_id || '',
-                        bat_side: playerData.bat_side || 'N/A',
-                        throw_side: playerData.throw_side || 'N/A'
-                    };
-                })
-                .filter(p => p !== null)
-                .sort((a, b) => a.rank - b.rank);
+                allProspectsData = rankingsData
+                    .filter(row => {
+                        const rank = parseInt(row.rank);
+                        return row.player_id && row.player_id.toString().trim() && rank <= 100;
+                    })
+                    .map((row) => {
+                        const playerData = playerDataMap[row.player_id];
+                        if (!playerData) return null;
+                        const batThrow = `${playerData.bat_side || 'N/A'}/${playerData.throw_side || 'N/A'}`;
+                        return {
+                            rank: parseInt(row.rank),
+                            player_id: row.player_id,
+                            name: playerData.name || 'Unknown',
+                            position: playerData.position || 'N/A',
+                            team: playerData.team || 'N/A',
+                            franchise: playerData.franchise || 'N/A',
+                            abbreviation: playerData.abbreviation || 'N/A',
+                            age: playerData.age || 'N/A',
+                            height: playerData.height || 'N/A',
+                            weight: playerData.weight || 'N/A',
+                            batThrow: batThrow,
+                            parent_org_id: playerData.parent_org_id || '',
+                            bat_side: playerData.bat_side || 'N/A',
+                            throw_side: playerData.throw_side || 'N/A',
+                            report: row.report || ''
+                        };
+                    })
+                    .filter(p => p !== null)
+                    .sort((a, b) => a.rank - b.rank);
 
-            filteredProspectsData = [...allProspectsData];
-            renderTable();
-        }
+                filteredProspectsData = [...allProspectsData];
+                renderTable();
+            }
 
         function showError(msg) {
             document.getElementById('tableBody').innerHTML = `<tr><td colspan="10" class="error-msg">${msg}</td></tr>`;
@@ -1407,38 +1408,44 @@
         `;
         }).join('');
     }
-        function openPlayerModal(playerId, rank, name, position) {
-            const modal = document.getElementById('playerModal');
-            const card = document.getElementById('playerCard');
-            card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="card-loading">Loading player details...</div>`;
-            modal.classList.add('active');
-            loadPlayerDetails(playerId, rank, name, position);
-        }
+    function openPlayerModal(playerId, rank, name, position) {
+        const modal = document.getElementById('playerModal');
+        const card = document.getElementById('playerCard');
+        card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="card-loading">Loading player details...</div>`;
+        modal.classList.add('active');
+
+        // Find the prospect to get the report
+        const prospect = allProspectsData.find(p => p.player_id == playerId);
+        const report = prospect?.report || '';
+
+        loadPlayerDetails(playerId, rank, name, position, report);
+    }
 
         function closePlayerModal() {
             document.getElementById('playerModal').classList.remove('active');
         }
 
-        async function loadPlayerDetails(playerId, rank, name, position) {
-            try {
-                const response = await fetch(`${MLB_API}/${playerId}?hydrate=draft,currentTeam,stats(type=[yearByYear,yearByYearAdvanced],leagueListId=mlb_milb)&appContext=minorLeague`);
-                const data = await response.json();
-                if (!data.people || data.people.length === 0) throw new Error('Player not found');
-                const person = data.people[0];
-                const scoutInfo = scoutData[playerId] || {};
-                renderPlayerCard(person, rank, position, scoutInfo);
-            } catch (error) {
-                const card = document.getElementById('playerCard');
-                card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div style="text-align: center; padding: 40px; color: #d32f2f;">Error loading player details. Please try again.</div>`;
-            }
-        }
-
-        function renderPlayerCard(person, rank, position, scoutInfo) {
+    // Update loadPlayerDetails to accept and pass report
+    async function loadPlayerDetails(playerId, rank, name, position, report = '') {
+        try {
+            const response = await fetch(`${MLB_API}/${playerId}?hydrate=draft,currentTeam,stats(type=[yearByYear,yearByYearAdvanced],leagueListId=mlb_milb)&appContext=minorLeague`);
+            const data = await response.json();
+            if (!data.people || data.people.length === 0) throw new Error('Player not found');
+            const person = data.people[0];
+            const scoutInfo = scoutData[playerId] || {};
+            renderPlayerCard(person, rank, position, scoutInfo, report);
+        } catch (error) {
             const card = document.getElementById('playerCard');
-            const bio = parseBio(person);
-            const stats = parseStats(person, position);
-            const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${person.id}/headshot/milb/current.png`;
-            const teamLogoUrl = bio.currentTeamId ? `https://www.mlbstatic.com/team-logos/${bio.currentTeamId}.svg` : '';
+            card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div style="text-align: center; padding: 40px; color: #d32f2f;">Error loading player details. Please try again.</div>`;
+        }
+    }
+    // Update renderPlayerCard to accept and display report
+    function renderPlayerCard(person, rank, position, scoutInfo, report = '') {
+        const card = document.getElementById('playerCard');
+        const bio = parseBio(person);
+        const stats = parseStats(person, position);
+        const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${person.id}/headshot/milb/current.png`;
+        const teamLogoUrl = bio.currentTeamId ? `https://www.mlbstatic.com/team-logos/${bio.currentTeamId}.svg` : '';
 
             let statsHtml = '';
             if (stats && stats.season) {
@@ -1498,10 +1505,12 @@
                 }
             }
 
-            const draftHtml = bio.draftsYear ? `<div class="player-details">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber}</div><div class="player-details">School: ${bio.draftsSchool || 'N/A'}</div>` : '';
+        const draftHtml = bio.draftsYear ? `<div class="player-details">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber}</div><div class="player-details">School: ${bio.draftsSchool || 'N/A'}</div>` : '';
 
-            card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name">${rank}) ${bio.fullName}</div><div class="player-details">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details">${bio.height} | ${bio.weight} lbs</div><div class="player-details">DOB: ${bio.birthDate}</div><div class="player-details">${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
-        }
+        const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: 13px; color: #555; line-height: 1.6;">${report}</div></div>` : '';
+
+        card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name">${rank}) ${bio.fullName}</div><div class="player-details">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details">${bio.height} | ${bio.weight} lbs</div><div class="player-details">DOB: ${bio.birthDate}</div><div class="player-details">${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}${reportHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
+    }
 
         function parseBio(person) {
             const currentTeam = person.currentTeam || {};
