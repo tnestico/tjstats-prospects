@@ -1201,7 +1201,7 @@
                 const teamLogoUrl = prospect.parent_org_id ? `https://www.mlbstatic.com/team-logos/${prospect.parent_org_id}.svg` : '';
 
                 return `
-                <tr onclick="openPlayerModal('${prospect.player_id}', '${prospect.rank}', '${prospect.name}', '${prospect.position}')">
+                <tr onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')">
                     <td class="rank-cell">${prospect.rank}</td>
                     <td class="img-cell">
                         <img src="${headshotUrl}" alt="${prospect.name}" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
