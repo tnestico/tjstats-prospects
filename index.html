@@ -82,7 +82,8 @@
         #prospectsTable {
             width: 100%;
             border-collapse: collapse;
-            font-size: 18px;
+            font-size: 16px;
+            table-layout: fixed;
         }
 
         #prospectsTable thead {
@@ -93,22 +94,25 @@
         }
 
         #prospectsTable th {
-            padding: 12px 8px;
+            padding: 12px 6px;
             text-align: center;
             font-weight: 600;
             border-bottom: 2px solid #dee2e6;
             color: #333;
             white-space: nowrap;
-            font-size: 18px;
+            font-size: 14px;
         }
 
         #prospectsTable td {
-            padding: 12px 8px;
+            padding: 6px;
             border-bottom: 1px solid #dee2e6;
             text-align: center;
-            font-size: 18px;
+            font-size: 14px;
             cursor: pointer;
             transition: background-color 0.2s;
+            height: 48px;
+            vertical-align: middle;
+            overflow: hidden;
         }
 
         #prospectsTable tbody tr:hover {
@@ -116,8 +120,8 @@
         }
 
         .img-cell {
-            width: 80px;
-            height: 80px;
+            width: 50px;
+            padding: 0 !important;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -125,79 +129,76 @@
         }
 
         .img-cell img {
-            max-width: 90%;
-            max-height: 90%;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             object-fit: cover;
-            width: 75px;
-            height: 75px;
+            display: block;
+            flex-shrink: 0;
         }
 
         .team-logo-cell {
+            width: 50px;
+            padding: 0 !important;
             display: flex;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 8px;
-            width: 60px !important;
-            min-width: 60px !important;
-            max-width: 60px !important;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .logo-cell {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             display: flex;
-            align-items: center !important;
-            justify-content: center !important;
+            align-items: center;
+            justify-content: center;
             flex-shrink: 0;
         }
 
         .logo-cell img {
-            max-width: 50px;
-            max-height: 50px;
-            object-fit: block;
+            max-width: 35px;
+            max-height: 35px;
+            object-fit: contain;
+            display: block;
             border-radius: 0;
         }
 
         .name-cell {
             text-align: left !important;
             font-weight: 500;
-            font-size: 18px;
-            flex-grow: 1;
-            word-break: break-word;
-            overflow-wrap: break-word;
+            font-size: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .rank-cell {
             font-weight: 600;
-            font-size: 20px;
-            width: 45px !important;
-            min-width: 45px !important;
-            max-width: 45px !important;
+            font-size: 16px;
+            width: 45px;
         }
 
         .position-badge {
             display: inline-block;
-            min-width: 50px;
+            min-width: 42px;
             color: white;
-            padding: 6px 10px;
+            padding: 4px 6px;
             border-radius: 12px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 12px;
+            white-space: nowrap;
         }
 
         .fv-badge {
             display: inline-block;
-            min-width: 40px;
-            color: black;
-            padding: 6px 10px;
+            min-width: 36px;
+            color: white;
+            padding: 4px 6px;
             border-radius: 12px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 12px;
             text-align: center;
-            width: 50px !important;
-            min-width: 50px !important;
-            max-width: 50px !important;
+            white-space: nowrap;
         }
 
         .loading {
