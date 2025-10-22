@@ -817,8 +817,13 @@
                 #prospectsTable th {
                     font-size: 10px;
                     border-bottom: 1px solid #e0e0e0;
+                    border-right: 1px solid #ddd;
                     font-weight: 600;
                     color: #555;
+                }
+
+                #prospectsTable th:last-child {
+                    border-right: none;
                 }
 
                 #prospectsTable td {
@@ -860,7 +865,7 @@
                 }
 
                 .position-badge {
-                    font-size: 10px;
+                    font-size: clamp(12px, 2.5vw, 13px) !important;
                     padding: 3px 6px;
                     min-width: 32px;
                     border-radius: 6px;
@@ -868,7 +873,7 @@
                 }
 
                 .fv-badge {
-                    font-size: 9px;
+                    font-size: clamp(12px, 2.5vw, 13px) !important;
                     padding: 2px 4px;
                     min-width: 28px;
                     border-radius: 6px;
