@@ -244,12 +244,12 @@
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 100px;
-            left: 20px;
-            right: 20px;
-            bottom: 100px;
-            width: 100vw;
-            height: 90vh;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.1);
             z-index: 999999;
             justify-content: center;
@@ -263,42 +263,42 @@
             display: flex;
         }
 
-        .player-card {
-            width: 600px;
-            max-width: 90vw;
-            height: fit-content;
-            max-height: none;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            position: static;
-            margin: auto;
-            box-sizing: border-box;
-            display: block;
-            overflow: visible;
-        }
+.player-card {
+    width: 800px;
+    max-width: 90vw;
+    height: fit-content;
+    max-height: none;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    position: relative;  /* Changed from static */
+    margin: auto;
+    box-sizing: border-box;
+    display: block;
+    overflow: visible;
+}
 
-        .player-card img {
-            max-width: 100%;
-            height: auto;
-        }
+.player-card img {
+    max-width: 100%;
+    height: auto;
+}
 
-        .modal-close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            color: #666;
-            z-index: 10;
-        }
+.modal-close-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+    z-index: 10;
+}
 
-        .modal-close-btn:hover {
-            color: #000;
-        }
+.modal-close-btn:hover {
+    color: #000;
+}
 
         .player-info {
             display: grid;
@@ -1136,7 +1136,7 @@
 
                 .grades-row {
                     display: grid;
-                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-columns: repeat(4, 1fr);
                     gap: 8px;
                     margin-bottom: 12px;
                     align-items: center;
@@ -1527,6 +1527,7 @@
             if (scoutInfo && Object.keys(scoutInfo).length > 0) {
                 const isBatter = position !== 'P';
                 let gradeMap = isBatter ? [
+                    { label: 'Rank', pv: 'rank', fv: 'rank', isRank: true },
                     { label: 'FV', pv: 'fv', fv: 'fv' },
                     { label: 'Hit', pv: 'hit_pv', fv: 'hit_fv' },
                     { label: 'Power', pv: 'power_pv', fv: 'power_fv' },
@@ -1534,6 +1535,7 @@
                     { label: 'Speed', pv: 'speed_pv', fv: 'speed_fv' },
                     { label: 'Defense', pv: 'defense_pv', fv: 'defense_fv' }
                 ] : [
+                    { label: 'Rank', pv: 'rank', fv: 'rank', isRank: true },
                     { label: 'FV', pv: 'fv', fv: 'fv' },
                     { label: 'Fastball', pv: 'fastball_pv', fv: 'fastball_fv' },
                     { label: 'Cutter', pv: 'cutter_pv', fv: 'cutter_fv' },
@@ -1545,6 +1547,7 @@
                 ];
 
                 const filteredGrades = gradeMap.filter(grade => {
+                    if (grade.isRank) return true;
                     const pvValue = scoutInfo[grade.pv];
                     const fvValue = scoutInfo[grade.fv];
                     return pvValue || fvValue;
@@ -1553,13 +1556,16 @@
                 if (filteredGrades.length > 0) {
                     scoutingHtml = `<div class="scouting-section"><div class="scouting-title">Scouting Grades</div><div class="grades-row">`;
                     filteredGrades.forEach(grade => {
-                        const pvValue = scoutInfo[grade.pv];
-                        const fvValue = scoutInfo[grade.fv];
                         let displayValue = '—';
 
-                        if (grade.label === 'FV') {
+                        if (grade.isRank) {
+                            displayValue = `${rank}`;
+                        } else if (grade.label === 'FV') {
+                            const fvValue = scoutInfo[grade.fv];
                             if (fvValue) displayValue = `${Math.round(fvValue)}`;
                         } else {
+                            const pvValue = scoutInfo[grade.pv];
+                            const fvValue = scoutInfo[grade.fv];
                             if (pvValue && fvValue) displayValue = `${Math.round(pvValue)}/${Math.round(fvValue)}`;
                             else if (pvValue) displayValue = `${Math.round(pvValue)}`;
                             else if (fvValue) displayValue = `${Math.round(fvValue)}`;
@@ -1575,7 +1581,7 @@
 
         const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: 13px; color: #555; line-height: 1.6;">${report}</div></div>` : '';
 
-        card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name">${rank}) ${bio.fullName}</div><div class="player-details">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details">${bio.height} | ${bio.weight} lbs</div><div class="player-details">DOB: ${bio.birthDate}</div><div class="player-details">${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}${reportHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
+        card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name">${bio.fullName}</div><div class="player-details">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details">${bio.height} | ${bio.weight} lbs</div><div class="player-details">DOB: ${bio.birthDate}</div><div class="player-details">${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}${reportHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
     }
 
         function parseBio(person) {
