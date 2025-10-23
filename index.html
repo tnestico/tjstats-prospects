@@ -1391,45 +1391,64 @@
             }
         }
 
-            function mergeData(rankingsData, playerDataArray) {
-                const playerDataMap = {};
-                playerDataArray.forEach(player => {
-                    playerDataMap[player.player_id] = player;
-                });
+    function cleanText(text) {
+        if (!text) return '';
 
-                allProspectsData = rankingsData
-                    .filter(row => {
-                        const rank = parseInt(row.rank);
-                        return row.player_id && row.player_id.toString().trim() && rank <= 100;
-                    })
-                    .map((row) => {
-                        const playerData = playerDataMap[row.player_id];
-                        if (!playerData) return null;
-                        const batThrow = `${playerData.bat_side || 'N/A'}/${playerData.throw_side || 'N/A'}`;
-                        return {
-                            rank: parseInt(row.rank),
-                            player_id: row.player_id,
-                            name: playerData.name || 'Unknown',
-                            position: playerData.position || 'N/A',
-                            team: playerData.team || 'N/A',
-                            franchise: playerData.franchise || 'N/A',
-                            abbreviation: playerData.abbreviation || 'N/A',
-                            age: playerData.age || 'N/A',
-                            height: playerData.height || 'N/A',
-                            weight: playerData.weight || 'N/A',
-                            batThrow: batThrow,
-                            parent_org_id: playerData.parent_org_id || '',
-                            bat_side: playerData.bat_side || 'N/A',
-                            throw_side: playerData.throw_side || 'N/A',
-                            report: row.report || ''
-                        };
-                    })
-                    .filter(p => p !== null)
-                    .sort((a, b) => a.rank - b.rank);
+        // Replace replacement character and other corrupted encodings
+        text = text.replace(/\ufffd/g, "'");  // Replace replacement char with apostrophe
+        text = text.replace(/â€™/g, "'");    // Common UTF-8 corruption for apostrophe
+        text = text.replace(/â€œ/g, '"');    // Common UTF-8 corruption for left quote
+        text = text.replace(/â€\u009d/g, '"'); // Common UTF-8 corruption for right quote
 
-                filteredProspectsData = [...allProspectsData];
-                renderTable();
-            }
+        // Then normalize smart quotes to straight quotes
+        text = text
+            .replace(/[\u2018\u2019`]/g, "'")
+            .replace(/[\u201C\u201D]/g, '"')
+            .trim();
+
+        return text;
+    }
+
+    // Use this in your data merge:
+    function mergeData(rankingsData, playerDataArray) {
+        const playerDataMap = {};
+        playerDataArray.forEach(player => {
+            playerDataMap[player.player_id] = player;
+        });
+
+        allProspectsData = rankingsData
+            .filter(row => {
+                const rank = parseInt(row.rank);
+                return row.player_id && row.player_id.toString().trim() && rank <= 100;
+            })
+            .map((row) => {
+                const playerData = playerDataMap[row.player_id];
+                if (!playerData) return null;
+                const batThrow = `${playerData.bat_side || 'N/A'}/${playerData.throw_side || 'N/A'}`;
+                return {
+                    rank: parseInt(row.rank),
+                    player_id: row.player_id,
+                    name: cleanText(playerData.name || 'Unknown'),
+                    position: playerData.position || 'N/A',
+                    team: playerData.team || 'N/A',
+                    franchise: playerData.franchise || 'N/A',
+                    abbreviation: playerData.abbreviation || 'N/A',
+                    age: playerData.age || 'N/A',
+                    height: playerData.height || 'N/A',
+                    weight: playerData.weight || 'N/A',
+                    batThrow: batThrow,
+                    parent_org_id: playerData.parent_org_id || '',
+                    bat_side: playerData.bat_side || 'N/A',
+                    throw_side: playerData.throw_side || 'N/A',
+                    report: cleanText(row.report || '')  // Clean the report here
+                };
+            })
+            .filter(p => p !== null)
+            .sort((a, b) => a.rank - b.rank);
+
+        filteredProspectsData = [...allProspectsData];
+        renderTable();
+    }
 
         function showError(msg) {
             document.getElementById('tableBody').innerHTML = `<tr><td colspan="10" class="error-msg">${msg}</td></tr>`;
@@ -1490,6 +1509,30 @@
         function closePlayerModal() {
             document.getElementById('playerModal').classList.remove('active');
         }
+
+
+    function escapeHtml(text) {
+        if (!text) return '';
+
+        // Replace all variants of smart quotes and apostrophes
+        text = text
+            .replace(/[\u2018\u2019`]/g, "'")      // ' ' ` → '
+            .replace(/[\u201C\u201D]/g, '"')      // " " → "
+            .replace(/[\u2013\u2014]/g, '-')      // – — → -
+            .replace(/[\u2026]/g, '...')          // … → ...
+            .trim();                              // Remove leading/trailing whitespace
+
+        // Then escape HTML entities
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+
+        return text.replace(/[&<>"']/g, m => map[m]);
+    }
 
     // Update loadPlayerDetails to accept and pass report
     async function loadPlayerDetails(playerId, rank, name, position, report = '') {
@@ -1579,8 +1622,8 @@
 
         const draftHtml = bio.draftsYear ? `<div class="player-details">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber}</div><div class="player-details">School: ${bio.draftsSchool || 'N/A'}</div>` : '';
 
-        const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: 13px; color: #555; line-height: 1.6;">${report}</div></div>` : '';
-
+        // Then use it:
+        const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: 13px; color: #555; line-height: 1.6;">${escapeHtml(report)}</div></div>` : '';
         card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name">${bio.fullName}</div><div class="player-details">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details">${bio.height} | ${bio.weight} lbs</div><div class="player-details">DOB: ${bio.birthDate}</div><div class="player-details">${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}${reportHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
     }
 
