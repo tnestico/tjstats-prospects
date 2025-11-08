@@ -359,7 +359,7 @@
         }
 
         .player-details {
-            font-size: 14px;
+            font-size: 16px;
             color: #666;
             margin: 3px 0;
             line-height: 1.4;
@@ -402,7 +402,7 @@
         .stats-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 16px;
             table-layout: fixed;
         }
 
@@ -418,7 +418,7 @@
             font-weight: bold;
             border-bottom: 2px solid #ddd;
             border-right: 1px solid #ddd;
-            font-size: 13px;
+            font-size: 16px;
             white-space: nowrap;
             color: #333;
         }
@@ -432,7 +432,7 @@
             text-align: center;
             border-bottom: 1px solid #eee;
             border-right: 1px solid #eee;
-            font-size: 13px;
+            font-size: 16px;
             cursor: default;
         }
 
@@ -473,13 +473,13 @@
 
         .grade-item-label {
             font-weight: 600;
-            font-size: 12px;
+            font-size: 16px;
             margin-bottom: 8px;
             color: #333;
         }
 
         .grade-item-values {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
         }
 
@@ -490,7 +490,7 @@
             padding: 6px 10px;
             border-radius: 4px;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 16px;
             min-width: 45px;
             text-align: center;
         }
@@ -1623,7 +1623,7 @@
         const draftHtml = bio.draftsYear ? `<div class="player-details">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber}</div><div class="player-details">School: ${bio.draftsSchool || 'N/A'}</div>` : '';
 
         // Then use it:
-        const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: 13px; color: #555; line-height: 1.6;">${escapeHtml(report)}</div></div>` : '';
+        const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: 16px; color: #555; line-height: 1.6;">${escapeHtml(report)}</div></div>` : '';
         card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name">${bio.fullName}</div><div class="player-details">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details">${bio.height} | ${bio.weight} lbs</div><div class="player-details">DOB: ${bio.birthDate}</div><div class="player-details">${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}${reportHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
     }
 
