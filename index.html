@@ -1548,7 +1548,7 @@
             card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div style="text-align: center; padding: 40px; color: #d32f2f;">Error loading player details. Please try again.</div>`;
         }
     }
-    // Update renderPlayerCard to accept and display report
+// Update renderPlayerCard to accept and display report
     function renderPlayerCard(person, rank, position, scoutInfo, report = '') {
         const card = document.getElementById('playerCard');
         const bio = parseBio(person);
@@ -1620,11 +1620,11 @@
                 }
             }
 
-        const draftHtml = bio.draftsYear ? `<div class="player-details">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber}</div><div class="player-details">School: ${bio.draftsSchool || 'N/A'}</div>` : '';
+        const draftHtml = bio.draftsYear ? `<div class="player-details">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber} | School: ${bio.draftsSchool || 'N/A'}</div>` : '';
 
         // Then use it:
         const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: 16px; color: #555; line-height: 1.6;">${escapeHtml(report)}</div></div>` : '';
-        card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name">${bio.fullName}</div><div class="player-details">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details">${bio.height} | ${bio.weight} lbs</div><div class="player-details">DOB: ${bio.birthDate}</div><div class="player-details">${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}${reportHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
+        card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name">${bio.fullName}</div><div class="player-details" style="font-size: 28px;">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details" style="font-size: 18px;">${bio.height} | ${bio.weight} lbs</div><div class="player-details" style="font-size: 18px;">DOB: ${bio.birthDate} | ${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}${reportHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
     }
 
         function parseBio(person) {
