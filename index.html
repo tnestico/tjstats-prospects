@@ -1620,7 +1620,7 @@
                 }
             }
 
-        const draftHtml = bio.draftsYear ? `<div class="player-details">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber} | School: ${bio.draftsSchool || 'N/A'}</div>` : '';
+        const draftHtml = bio.draftsYear ? `<div class="player-details" style="font-size: 22px;">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber} | School: ${bio.draftsSchool || 'N/A'}</div>` : '';
 
         // Then use it:
         const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: 16px; color: #555; line-height: 1.6;">${escapeHtml(report)}</div></div>` : '';
