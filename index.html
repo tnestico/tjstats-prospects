@@ -145,7 +145,6 @@
             min-width: 68px;
             max-width: 68px;
             padding: 0;
-            /* border-right: 1px solid #dee2e6; */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -158,7 +157,6 @@
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            /* border: 1px solid #dee2e6; */
         }
 
         .team-logo-cell {
@@ -263,42 +261,42 @@
             display: flex;
         }
 
-.player-card {
-    width: 1000px;
-    max-width: 90vw;
-    height: fit-content;
-    max-height: none;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    padding: 30px;
-    position: relative;  /* Changed from static */
-    margin: auto;
-    box-sizing: border-box;
-    display: block;
-    overflow: visible;
-}
+        .player-card {
+            width: 1000px;
+            max-width: 90vw;
+            height: fit-content;
+            max-height: none;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            position: relative;
+            margin: auto;
+            box-sizing: border-box;
+            display: block;
+            overflow: visible;
+        }
 
-.player-card img {
-    max-width: 100%;
-    height: auto;
-}
+        .player-card img {
+            max-width: 100%;
+            height: auto;
+        }
 
-.modal-close-btn {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    background: none;
-    border: none;
-    font-size: 28px;
-    cursor: pointer;
-    color: #666;
-    z-index: 10;
-}
+        .modal-close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+            z-index: 10;
+        }
 
-.modal-close-btn:hover {
-    color: #000;
-}
+        .modal-close-btn:hover {
+            color: #000;
+        }
 
         .player-info {
             display: grid;
@@ -323,30 +321,7 @@
             display: block;
         }
 
-        .player-bio {.team-logo-cell {
-    width: 68px !important;
-    min-width: 68px !important;
-    max-width: 68px !important;
-    padding: 0 !important;
-    height: 68px;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}
-
-.logo-cell {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-}
-
-.logo-cell img {
-    max-width: 50px;
-    max-height: 50px;
-    object-fit: contain;
-}
+        .player-bio {
             text-align: center;
             width: 100%;
         }
@@ -485,7 +460,7 @@
 
         .grade-badge {
             display: inline-block;
-            background-color: #648fff ;
+            background-color: #648fff;
             color: white;
             padding: 6px 10px;
             border-radius: 4px;
@@ -557,35 +532,34 @@
                 display: none;
             }
 
-                .team-logo-cell {
-                    width: 40px !important;
-                    min-width: 40px !important;
-                    max-width: 40px !important;
-                    display: flex !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    gap: 0 !important;
-                }
+            .team-logo-cell {
+                width: 40px !important;
+                min-width: 40px !important;
+                max-width: 40px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 0 !important;
+            }
 
-                .logo-cell {
-                    width: 36px !important;
-                    height: 36px !important;
-                    display: flex !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    flex-shrink: 0 !important;
-                }
+            .logo-cell {
+                width: 36px !important;
+                height: 36px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                flex-shrink: 0 !important;
+            }
 
-                .logo-cell img {
-                    max-width: 36px !important;
-                    max-height: 36px !important;
-                    object-fit: contain !important;
-                    border-radius: 0 !important;
-                    display: block !important;
-                }
+            .logo-cell img {
+                max-width: 36px !important;
+                max-height: 36px !important;
+                object-fit: contain !important;
+                border-radius: 0 !important;
+                display: block !important;
+            }
 
-
-                .player-card {
+            .player-card {
                 max-width: 70vw;
                 width: 70vw;
                 padding: 10px;
@@ -594,153 +568,153 @@
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
                 background: white;
                 position: relative;
-                }
+            }
 
-                .player-info {
+            .player-info {
                 display: block !important;
                 padding-bottom: 8px;
                 margin-bottom: 8px;
                 border-bottom: 1px solid #eee;
-                }
+            }
 
-                .player-headshot {
+            .player-headshot {
                 display: flex !important;
                 position: absolute;
                 top: 20px;
                 right: 120px;
-                }
+            }
 
-                .player-headshot img {
+            .player-headshot img {
                 width: 48px !important;
                 height: 72px !important;
                 border-radius: 4px;
                 object-fit: cover;
                 flex-shrink: 0;
-                }
+            }
 
-                .player-name {
+            .player-name {
                 font-size: 20px;
                 margin-bottom: 4px;
                 font-weight: 600;
                 text-align: left;
-                }
+            }
 
-                .player-bio {
+            .player-bio {
                 text-align: left;
                 flex: 1;
-                }
+            }
 
-                .player-details {
+            .player-details {
                 font-size: 16px;
                 margin: 2px 0;
                 color: #666;
                 line-height: 1.3;
                 text-align: left;
-                }
+            }
 
-                .player-logo {
+            .player-logo {
                 position: absolute;
                 top: 20px;
                 right: 30px;
                 display: flex !important;
                 align-items: center;
                 justify-content: center;
-                }
+            }
 
-                .player-logo img {
+            .player-logo img {
                 width: 72px !important;
                 height: 72px !important;
                 object-fit: contain;
-                }
+            }
 
-                .stats-section {
+            .stats-section {
                 margin: 10px 0;
                 text-align: center;
-                }
+            }
 
-                .stats-title {
+            .stats-title {
                 font-size: 16px;
                 margin-bottom: 6px;
                 font-weight: 600;
                 color: #333;
                 text-align: center;
-                }
+            }
 
-                .table-wrapper-card {
+            .table-wrapper-card {
                 border: 1px solid #e0e0e0;
                 border-radius: 3px;
                 background: white;
                 margin: 0 auto;
                 display: flex;
                 justify-content: center;
-                }
+            }
 
-                .stats-table {
+            .stats-table {
                 font-size: 12px;
                 min-width: 100%;
                 margin: 0 auto;
-                }
+            }
 
-                .stats-table th {
+            .stats-table th {
                 padding: 3px 2px;
                 font-size: 12px;
                 border-bottom: 1px solid #ddd;
                 background-color: #f8f8f8;
-                }
+            }
 
-                .stats-table td {
+            .stats-table td {
                 padding: 3px 2px;
                 font-size: 12px;
                 border-bottom: 1px solid #f0f0f0;
-                }
+            }
 
-                .scouting-section {
+            .scouting-section {
                 margin: 10px 0;
                 padding: 0 8px;
-                }
+            }
 
-                .scouting-title {
+            .scouting-title {
                 font-size: 16px;
                 margin-bottom: 8px;
                 font-weight: 600;
                 color: #333;
-                }
+            }
 
-                .grades-row {
+            .grades-row {
                 grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
                 gap: 6px;
                 margin-bottom: 10px;
-                }
+            }
 
-                .grade-item {
+            .grade-item {
                 padding: 6px;
                 border-radius: 4px;
                 border: 1px solid #e0e0e0;
                 background-color: #f9f9f9;
-                }
+            }
 
-                .grade-item-label {
+            .grade-item-label {
                 font-size: 12px;
                 margin-bottom: 3px;
                 font-weight: 600;
                 color: #555;
-                }
+            }
 
-                .grade-item-values {
+            .grade-item-values {
                 font-size: 12px;
                 font-weight: 600;
-                }
+            }
 
-                .grade-badge {
+            .grade-badge {
                 font-size: 12px;
                 padding: 3px 5px;
                 min-width: 36px;
                 border-radius: 4px;
                 color: white;
                 font-weight: 600;
-                }
+            }
 
-                .card-footer {
+            .card-footer {
                 display: flex !important;
                 flex-direction: row !important;
                 gap: 8px;
@@ -751,467 +725,465 @@
                 color: #888;
                 text-align: center;
                 justify-content: space-around;
-                }
+            }
 
-                .card-footer > div {
+            .card-footer > div {
                 flex: 1;
-                }
+            }
 
-                .modal-overlay {
+            .modal-overlay {
                 padding: 0;
                 background-color: rgba(0, 0, 0, 0.5);
-                }
+            }
 
-                .modal-close-btn {
+            .modal-close-btn {
                 font-size: 20px;
                 top: 10px;
                 right: 10px;
                 color: #666;
-                }
+            }
         }
 
-            /* Phones */
-            @media (max-width: 720px) {
-                html,
-                body {
-                    padding: 0;
-                    margin: 0;
-                }
-
-                .container {
-                    padding: 2px;
-                    margin: 0;
-                    border-radius: 0;
-                    box-shadow: none;
-                }
-
-                .header {
-                    margin-bottom: 20px;
-                    padding-bottom: 16px;
-                    border-bottom: 1px solid #e8e8e8;
-                    margin-top: 16px;
-                    margin-left: 8px;
-                    margin-right: 8px;
-                    padding-left: 8px;
-                    padding-right: 8px;
-                }
-
-                .header h1 {
-                    font-size: 18px;
-                    margin-bottom: 4px;
-                    font-weight: 600;
-                }
-
-                .header-info {
-                    font-size: 12px;
-                    gap: 8px;
-                    color: #666;
-                }
-
-                .search-container {
-                    margin-bottom: 8px;
-                    padding-left: 8px;
-                    padding-right: 8px;
-                }
-
-                .search-input {
-                    padding: 8px 10px;
-                    font-size: 14px;
-                    border: 1px solid #ddd;
-                    border-radius: 4px;
-                    background-color: #fafafa;
-                    margin-left: 0;
-                    margin-right: 0;
-                }
-
-                .table-wrapper {
-                    max-height: 75vh;
-                    border: 1px solid #ddd;
-                    border-radius: 4px;
-                    background: white;
-                    margin: 8px;
-                }
-
-                #prospectsTable {
-                    font-size: 12px;
-                    table-layout: fixed;
-                    width: 100% !important;
-                }
-
-                #prospectsTable thead {
-                    background-color: #f5f5f5;
-                }
-
-                #prospectsTable th,
-                #prospectsTable td {
-                    padding: 6px 4px;
-                }
-
-                #prospectsTable th {
-                    font-size: 10px;
-                    border-bottom: 1px solid #e0e0e0;
-                    border-right: 1px solid #ddd;
-                    font-weight: 600;
-                    color: #555;
-                }
-
-                #prospectsTable th:last-child {
-                    border-right: none;
-                }
-
-                #prospectsTable td {
-                    border-bottom: 1px solid #f0f0f0;
-                }
-
-                #prospectsTable tbody tr:hover {
-                    background-color: #fafafa;
-                }
-
-                .rank-cell {
-                    width: 70px !important;
-                    min-width: 70px !important;
-                    max-width: 70px !important;
-                    font-size: 11px;
-                    font-weight: 600;
-                }
-
-                .name-cell {
-                    word-break: keep-all;
-                    white-space: normal;
-                    overflow-wrap: normal;
-                    font-size: 13px;
-                    font-weight: 600;
-                    text-align: left !important;
-                    padding-left: 6px;
-                    flex-grow: 1;
-                    width: 120px !important;
-                    min-width: 120px !important;
-                    max-width: 120px !important;
-                }
-
-                .img-cell {
-                    width: 0 !important;
-                    height: 0 !important;
-                    padding: 0 !important;
-                    display: none !important;
-                    border: none !important;
-                }
-
-                .position-badge {
-                    font-size: clamp(12px, 2.5vw, 13px) !important;
-                    padding: 3px 6px;
-                    min-width: 32px;
-                    border-radius: 6px;
-                    font-weight: 600;
-                }
-
-                .fv-badge {
-                    font-size: clamp(12px, 2.5vw, 13px) !important;
-                    padding: 2px 4px;
-                    min-width: 28px;
-                    border-radius: 6px;
-                    font-weight: 600;
-                    color: white;
-                    width: 35px !important;
-                    min-width: 35px !important;
-                    max-width: 35px !important;
-                }
-
-                #prospectsTable td span {
-                    font-size: 10px !important;
-                    padding: 3px 5px !important;
-                    border-radius: 6px !important;
-                }
-
-                #prospectsTable td:nth-child(2),
-                #prospectsTable th:nth-child(2),
-                #prospectsTable td:nth-child(7),
-                #prospectsTable th:nth-child(7),
-                #prospectsTable td:nth-child(8),
-                #prospectsTable th:nth-child(8),
-                #prospectsTable td:nth-child(9),
-                #prospectsTable th:nth-child(9),
-                #prospectsTable td:nth-child(10),
-                #prospectsTable th:nth-child(10),
-                #prospectsTable td:nth-child(11),
-                #prospectsTable th:nth-child(11) {
-                    display: none !important;
-                }
-
-                #prospectsTable td:nth-child(1),
-                #prospectsTable th:nth-child(1) {
-                    display: table-cell !important;
-                    padding: 4px 2px !important;
-                    width: 60px !important;
-                    min-width: 60px !important;
-                    max-width: 60px !important;
-                    font-size: clamp(12px, 2.5vw, 13px) !important;
-                    border-right: 1px solid #ddd;
-                }
-
-                #prospectsTable td:nth-child(3),
-                #prospectsTable th:nth-child(3) {
-                    display: table-cell !important;
-                    padding: 4px 8px 4px 8px !important;
-                    width: 130px !important;
-                    min-width: 130px !important;
-                    max-width: 130px !important;
-                    word-wrap: break-word !important;
-                    overflow-wrap: break-word !important;
-                    white-space: normal !important;
-                    font-size: clamp(12px, 2.5vw, 13px) !important;
-                    border-right: 1px solid #ddd;
-                }
-
-                #prospectsTable td:nth-child(4),
-                #prospectsTable th:nth-child(4) {
-                    display: table-cell !important;
-                    padding: 4px 2px !important;
-                    width: 42px !important;
-                    min-width: 42px !important;
-                    max-width: 42px !important;
-                    border-right: 1px solid #ddd;
-                }
-
-                #prospectsTable td:nth-child(5),
-                #prospectsTable th:nth-child(5) {
-                    width: 70px !important;
-                    min-width: 70px !important;
-                    max-width: 70px !important;
-                    border-right: 1px solid #ddd;
-                    font-size: clamp(12px, 2.5vw, 13px) !important;
-                }
-
-                #prospectsTable td:nth-child(6),
-                #prospectsTable th:nth-child(6) {
-                    width: 60px !important;
-                    min-width: 60px !important;
-                    max-width: 60px !important;
-                    font-size: clamp(12px, 2.5vw, 13px) !important;
-                }
-
-
-                .team-logo-cell {
-                    width: 40px !important;
-                    min-width: 40px !important;
-                    max-width: 40px !important;
-                    display: flex !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    gap: 0 !important;
-                }
-
-                .logo-cell {
-                    width: 36px !important;
-                    height: 36px !important;
-                    display: flex !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    flex-shrink: 0 !important;
-                }
-
-                .logo-cell img {
-                    max-width: 36px !important;
-                    max-height: 36px !important;
-                    object-fit: contain !important;
-                    border-radius: 0 !important;
-                    display: block !important;
-                }
-
-                
-                .player-card {
-                    max-width: 95vw;
-                    width: 95vw;
-                    max-height: 60vh;
-                    height: auto;
-                    padding: 10px;
-                    margin: 0;
-                    border-radius: 4px;
-                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-                    background: white;
-                    position: relative;
-                    overflow-y: auto;
-                }
-
-                .player-info {
-                    display: block !important;
-                    padding-bottom: 12px;
-                    margin-bottom: 12px;
-                    border-bottom: 2px solid #eee;
-                }
-
-                .player-headshot {
-                    display: none !important;
-                }
-
-                .player-name {
-                    font-size: 18px;
-                    margin-bottom: 8px;
-                    font-weight: 700;
-                    text-align: left;
-                    color: #222;
-                }
-
-                .player-bio {
-                    text-align: left;
-                    flex: 1;
-                }
-
-                .player-details {
-                    font-size: 13px;
-                    margin: 4px 0;
-                    color: #555;
-                    line-height: 1.4;
-                    text-align: left;
-                }
-
-                .player-logo {
-                    position: absolute;
-                    top: 36px;
-                    right: 36px;
-                    display: flex !important;
-                    align-items: center;
-                    justify-content: center;
-                }
-
-                .player-logo img {
-                    width: 60px !important;
-                    height: 60px !important;
-                    object-fit: contain;
-                }
-
-                .stats-section {
-                    margin: 16px 0;
-                    text-align: center;
-                }
-
-                .stats-title {
-                    font-size: 13px;
-                    margin-bottom: 10px;
-                    font-weight: 600;
-                    color: #333;
-                    text-align: center;
-                }
-
-                .table-wrapper-card {
-                    border: 1px solid #e0e0e0;
-                    border-radius: 3px;
-                    background: white;
-                    margin: 0 auto;
-                    overflow-x: auto;
-                }
-
-                .stats-table {
-                    font-size: 9px;
-                    min-width: 100%;
-                    margin: 0 auto;
-                }
-
-                .stats-table th {
-                    padding: 6px 3px;
-                    font-size: 9px;
-                    border-bottom: 2px solid #ddd;
-                    background-color: #f8f8f8;
-                    font-weight: 600;
-                }
-
-                .stats-table td {
-                    padding: 6px 3px;
-                    font-size: 9px;
-                    border-bottom: 1px solid #f0f0f0;
-                }
-
-                .scouting-section {
-                    margin: 16px 0;
-                    padding: 0;
-                }
-
-                .scouting-title {
-                    font-size: 13px;
-                    margin-bottom: 12px;
-                    font-weight: 600;
-                    color: #333;
-                    text-align: center;
-                }
-
-                .grades-row {
-                    display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    gap: 8px;
-                    margin-bottom: 12px;
-                    align-items: center;
-                }
-
-                .grade-item {
-                    padding: 10px;
-                    border-radius: 4px;
-                    border: 1px solid #e0e0e0;
-                    background-color: #f9f9f9;
-                    text-align: center;
-                }
-
-                .grade-item-label {
-                    font-size: 11px;
-                    margin-bottom: 6px;
-                    font-weight: 600;
-                    color: #555;
-                }
-
-                .grade-item-values {
-                    font-size: 13px;
-                    font-weight: 600;
-                }
-
-                .grade-badge {
-                    font-size: 12px;
-                    padding: 4px 8px;
-                    min-width: 40px;
-                    border-radius: 4px;
-                    color: white;
-                    font-weight: 600;
-                }
-
-                .card-footer {
-                    display: flex !important;
-                    flex-direction: row !important;
-                    gap: 10px;
-                    padding: 12px 0;
-                    margin-top: 16px;
-                    border-top: 2px solid #e8e8e8;
-                    font-size: 9px;
-                    color: #888;
-                    text-align: center;
-                    justify-content: space-around;
-                }
-
-                .card-footer > div {
-                    flex: 1;
-                }
-
-                .modal-overlay {
-                    padding: 8px;
-                    background-color: rgba(0, 0, 0, 0.6);
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                }
-
-                .modal-close-btn {
-                    font-size: 24px;
-                    top: 12px;
-                    right: 12px;
-                    color: #333;
-                    background: rgba(255, 255, 255, 0.8);
-                    border-radius: 50%;
-                    width: 32px;
-                    height: 32px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 100;
-                }
+        /* Phones */
+        @media (max-width: 720px) {
+            html,
+            body {
+                padding: 0;
+                margin: 0;
             }
+
+            .container {
+                padding: 2px;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .header {
+                margin-bottom: 20px;
+                padding-bottom: 16px;
+                border-bottom: 1px solid #e8e8e8;
+                margin-top: 16px;
+                margin-left: 8px;
+                margin-right: 8px;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+                margin-bottom: 4px;
+                font-weight: 600;
+            }
+
+            .header-info {
+                font-size: 12px;
+                gap: 8px;
+                color: #666;
+            }
+
+            .search-container {
+                margin-bottom: 8px;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+
+            .search-input {
+                padding: 8px 10px;
+                font-size: 14px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background-color: #fafafa;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .table-wrapper {
+                max-height: 75vh;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background: white;
+                margin: 8px;
+            }
+
+            #prospectsTable {
+                font-size: 12px;
+                table-layout: fixed;
+                width: 100% !important;
+            }
+
+            #prospectsTable thead {
+                background-color: #f5f5f5;
+            }
+
+            #prospectsTable th,
+            #prospectsTable td {
+                padding: 6px 4px;
+            }
+
+            #prospectsTable th {
+                font-size: 10px;
+                border-bottom: 1px solid #e0e0e0;
+                border-right: 1px solid #ddd;
+                font-weight: 600;
+                color: #555;
+            }
+
+            #prospectsTable th:last-child {
+                border-right: none;
+            }
+
+            #prospectsTable td {
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            #prospectsTable tbody tr:hover {
+                background-color: #fafafa;
+            }
+
+            .rank-cell {
+                width: 70px !important;
+                min-width: 70px !important;
+                max-width: 70px !important;
+                font-size: 11px;
+                font-weight: 600;
+            }
+
+            .name-cell {
+                word-break: keep-all;
+                white-space: normal;
+                overflow-wrap: normal;
+                font-size: 13px;
+                font-weight: 600;
+                text-align: left !important;
+                padding-left: 6px;
+                flex-grow: 1;
+                width: 120px !important;
+                min-width: 120px !important;
+                max-width: 120px !important;
+            }
+
+            .img-cell {
+                width: 0 !important;
+                height: 0 !important;
+                padding: 0 !important;
+                display: none !important;
+                border: none !important;
+            }
+
+            .position-badge {
+                font-size: clamp(12px, 2.5vw, 13px) !important;
+                padding: 3px 6px;
+                min-width: 32px;
+                border-radius: 6px;
+                font-weight: 600;
+            }
+
+            .fv-badge {
+                font-size: clamp(12px, 2.5vw, 13px) !important;
+                padding: 2px 4px;
+                min-width: 28px;
+                border-radius: 6px;
+                font-weight: 600;
+                color: white;
+                width: 35px !important;
+                min-width: 35px !important;
+                max-width: 35px !important;
+            }
+
+            #prospectsTable td span {
+                font-size: 10px !important;
+                padding: 3px 5px !important;
+                border-radius: 6px !important;
+            }
+
+            #prospectsTable td:nth-child(2),
+            #prospectsTable th:nth-child(2),
+            #prospectsTable td:nth-child(7),
+            #prospectsTable th:nth-child(7),
+            #prospectsTable td:nth-child(8),
+            #prospectsTable th:nth-child(8),
+            #prospectsTable td:nth-child(9),
+            #prospectsTable th:nth-child(9),
+            #prospectsTable td:nth-child(10),
+            #prospectsTable th:nth-child(10),
+            #prospectsTable td:nth-child(11),
+            #prospectsTable th:nth-child(11) {
+                display: none !important;
+            }
+
+            #prospectsTable td:nth-child(1),
+            #prospectsTable th:nth-child(1) {
+                display: table-cell !important;
+                padding: 4px 2px !important;
+                width: 60px !important;
+                min-width: 60px !important;
+                max-width: 60px !important;
+                font-size: clamp(12px, 2.5vw, 13px) !important;
+                border-right: 1px solid #ddd;
+            }
+
+            #prospectsTable td:nth-child(3),
+            #prospectsTable th:nth-child(3) {
+                display: table-cell !important;
+                padding: 4px 8px 4px 8px !important;
+                width: 130px !important;
+                min-width: 130px !important;
+                max-width: 130px !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                white-space: normal !important;
+                font-size: clamp(12px, 2.5vw, 13px) !important;
+                border-right: 1px solid #ddd;
+            }
+
+            #prospectsTable td:nth-child(4),
+            #prospectsTable th:nth-child(4) {
+                display: table-cell !important;
+                padding: 4px 2px !important;
+                width: 42px !important;
+                min-width: 42px !important;
+                max-width: 42px !important;
+                border-right: 1px solid #ddd;
+            }
+
+            #prospectsTable td:nth-child(5),
+            #prospectsTable th:nth-child(5) {
+                width: 70px !important;
+                min-width: 70px !important;
+                max-width: 70px !important;
+                border-right: 1px solid #ddd;
+                font-size: clamp(12px, 2.5vw, 13px) !important;
+            }
+
+            #prospectsTable td:nth-child(6),
+            #prospectsTable th:nth-child(6) {
+                width: 60px !important;
+                min-width: 60px !important;
+                max-width: 60px !important;
+                font-size: clamp(12px, 2.5vw, 13px) !important;
+            }
+
+            .team-logo-cell {
+                width: 40px !important;
+                min-width: 40px !important;
+                max-width: 40px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 0 !important;
+            }
+
+            .logo-cell {
+                width: 36px !important;
+                height: 36px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                flex-shrink: 0 !important;
+            }
+
+            .logo-cell img {
+                max-width: 36px !important;
+                max-height: 36px !important;
+                object-fit: contain !important;
+                border-radius: 0 !important;
+                display: block !important;
+            }
+
+            .player-card {
+                max-width: 95vw;
+                width: 95vw;
+                max-height: 60vh;
+                height: auto;
+                padding: 10px;
+                margin: 0;
+                border-radius: 4px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                background: white;
+                position: relative;
+                overflow-y: auto;
+            }
+
+            .player-info {
+                display: block !important;
+                padding-bottom: 12px;
+                margin-bottom: 12px;
+                border-bottom: 2px solid #eee;
+            }
+
+            .player-headshot {
+                display: none !important;
+            }
+
+            .player-name {
+                font-size: clamp(16px, 5vw, 18px);
+                margin-bottom: 8px;
+                font-weight: 700;
+                text-align: left;
+                color: #222;
+            }
+
+            .player-bio {
+                text-align: left;
+                flex: 1;
+            }
+
+            .player-details {
+                font-size: clamp(11px, 3vw, 13px);
+                margin: 4px 0;
+                color: #555;
+                line-height: 1.4;
+                text-align: left;
+            }
+
+            .player-logo {
+                position: absolute;
+                top: 36px;
+                right: 36px;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .player-logo img {
+                width: 60px !important;
+                height: 60px !important;
+                object-fit: contain;
+            }
+
+            .stats-section {
+                margin: 16px 0;
+                text-align: center;
+            }
+
+            .stats-title {
+                font-size: clamp(11px, 3vw, 13px);
+                margin-bottom: 10px;
+                font-weight: 600;
+                color: #333;
+                text-align: center;
+            }
+
+            .table-wrapper-card {
+                border: 1px solid #e0e0e0;
+                border-radius: 3px;
+                background: white;
+                margin: 0 auto;
+                overflow-x: auto;
+            }
+
+            .stats-table {
+                font-size: 9px;
+                min-width: 100%;
+                margin: 0 auto;
+            }
+
+            .stats-table th {
+                padding: 6px 3px;
+                font-size: 9px;
+                border-bottom: 2px solid #ddd;
+                background-color: #f8f8f8;
+                font-weight: 600;
+            }
+
+            .stats-table td {
+                padding: 6px 3px;
+                font-size: 9px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .scouting-section {
+                margin: 16px 0;
+                padding: 0;
+            }
+
+            .scouting-title {
+                font-size: clamp(11px, 3vw, 13px);
+                margin-bottom: 12px;
+                font-weight: 600;
+                color: #333;
+                text-align: center;
+            }
+
+            .grades-row {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                margin-bottom: 12px;
+                align-items: center;
+            }
+
+            .grade-item {
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #e0e0e0;
+                background-color: #f9f9f9;
+                text-align: center;
+            }
+
+            .grade-item-label {
+                font-size: clamp(9px, 2.5vw, 11px);
+                margin-bottom: 6px;
+                font-weight: 600;
+                color: #555;
+            }
+
+            .grade-item-values {
+                font-size: clamp(11px, 3vw, 13px);
+                font-weight: 600;
+            }
+
+            .grade-badge {
+                font-size: clamp(10px, 2.5vw, 12px);
+                padding: 4px 8px;
+                min-width: 40px;
+                border-radius: 4px;
+                color: white;
+                font-weight: 600;
+            }
+
+            .card-footer {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 10px;
+                padding: 12px 0;
+                margin-top: 16px;
+                border-top: 2px solid #e8e8e8;
+                font-size: clamp(8px, 2vw, 9px);
+                color: #888;
+                text-align: center;
+                justify-content: space-around;
+            }
+
+            .card-footer > div {
+                flex: 1;
+            }
+
+            .modal-overlay {
+                padding: 8px;
+                background-color: rgba(0, 0, 0, 0.6);
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+
+            .modal-close-btn {
+                font-size: 24px;
+                top: 12px;
+                right: 12px;
+                color: #333;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 100;
+            }
+        }
     </style>
 </head>
 
@@ -1391,170 +1363,158 @@
             }
         }
 
-    function cleanText(text) {
-        if (!text) return '';
+        function cleanText(text) {
+            if (!text) return '';
+            text = text.replace(/\ufffd/g, "'");
+            text = text.replace(/â€™/g, "'");
+            text = text.replace(/â€œ/g, '"');
+            text = text.replace(/â€\u009d/g, '"');
+            text = text
+                .replace(/[\u2018\u2019`]/g, "'")
+                .replace(/[\u201C\u201D]/g, '"')
+                .trim();
+            return text;
+        }
 
-        // Replace replacement character and other corrupted encodings
-        text = text.replace(/\ufffd/g, "'");  // Replace replacement char with apostrophe
-        text = text.replace(/â€™/g, "'");    // Common UTF-8 corruption for apostrophe
-        text = text.replace(/â€œ/g, '"');    // Common UTF-8 corruption for left quote
-        text = text.replace(/â€\u009d/g, '"'); // Common UTF-8 corruption for right quote
+        function mergeData(rankingsData, playerDataArray) {
+            const playerDataMap = {};
+            playerDataArray.forEach(player => {
+                playerDataMap[player.player_id] = player;
+            });
 
-        // Then normalize smart quotes to straight quotes
-        text = text
-            .replace(/[\u2018\u2019`]/g, "'")
-            .replace(/[\u201C\u201D]/g, '"')
-            .trim();
+            allProspectsData = rankingsData
+                .filter(row => {
+                    const rank = parseInt(row.rank);
+                    return row.player_id && row.player_id.toString().trim() && rank <= 100;
+                })
+                .map((row) => {
+                    const playerData = playerDataMap[row.player_id];
+                    if (!playerData) return null;
+                    const batThrow = `${playerData.bat_side || 'N/A'}/${playerData.throw_side || 'N/A'}`;
+                    return {
+                        rank: parseInt(row.rank),
+                        player_id: row.player_id,
+                        name: cleanText(playerData.name || 'Unknown'),
+                        position: playerData.position || 'N/A',
+                        team: playerData.team || 'N/A',
+                        franchise: playerData.franchise || 'N/A',
+                        abbreviation: playerData.abbreviation || 'N/A',
+                        age: playerData.age || 'N/A',
+                        height: playerData.height || 'N/A',
+                        weight: playerData.weight || 'N/A',
+                        batThrow: batThrow,
+                        parent_org_id: playerData.parent_org_id || '',
+                        bat_side: playerData.bat_side || 'N/A',
+                        throw_side: playerData.throw_side || 'N/A',
+                        report: cleanText(row.report || '')
+                    };
+                })
+                .filter(p => p !== null)
+                .sort((a, b) => a.rank - b.rank);
 
-        return text;
-    }
-
-    // Use this in your data merge:
-    function mergeData(rankingsData, playerDataArray) {
-        const playerDataMap = {};
-        playerDataArray.forEach(player => {
-            playerDataMap[player.player_id] = player;
-        });
-
-        allProspectsData = rankingsData
-            .filter(row => {
-                const rank = parseInt(row.rank);
-                return row.player_id && row.player_id.toString().trim() && rank <= 100;
-            })
-            .map((row) => {
-                const playerData = playerDataMap[row.player_id];
-                if (!playerData) return null;
-                const batThrow = `${playerData.bat_side || 'N/A'}/${playerData.throw_side || 'N/A'}`;
-                return {
-                    rank: parseInt(row.rank),
-                    player_id: row.player_id,
-                    name: cleanText(playerData.name || 'Unknown'),
-                    position: playerData.position || 'N/A',
-                    team: playerData.team || 'N/A',
-                    franchise: playerData.franchise || 'N/A',
-                    abbreviation: playerData.abbreviation || 'N/A',
-                    age: playerData.age || 'N/A',
-                    height: playerData.height || 'N/A',
-                    weight: playerData.weight || 'N/A',
-                    batThrow: batThrow,
-                    parent_org_id: playerData.parent_org_id || '',
-                    bat_side: playerData.bat_side || 'N/A',
-                    throw_side: playerData.throw_side || 'N/A',
-                    report: cleanText(row.report || '')  // Clean the report here
-                };
-            })
-            .filter(p => p !== null)
-            .sort((a, b) => a.rank - b.rank);
-
-        filteredProspectsData = [...allProspectsData];
-        renderTable();
-    }
+            filteredProspectsData = [...allProspectsData];
+            renderTable();
+        }
 
         function showError(msg) {
             document.getElementById('tableBody').innerHTML = `<tr><td colspan="10" class="error-msg">${msg}</td></tr>`;
         }
 
-    // Replace the renderTable() function with this updated version
-    function renderTable() {
-        const tbody = document.getElementById('tableBody');
-        if (filteredProspectsData.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
-            return;
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            if (filteredProspectsData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filteredProspectsData.map(prospect => {
+                const posColor = positionColors[prospect.position] || '#e9ecef';
+                const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${prospect.player_id}/headshot/milb/current.png`;
+                const teamLogoUrl = prospect.parent_org_id ? `https://www.mlbstatic.com/team-logos/${prospect.parent_org_id}.svg` : '';
+
+                const fvValue = scoutData[prospect.player_id]?.fv ? Math.round(scoutData[prospect.player_id].fv) : '—';
+                const fvBgColor = scoutData[prospect.player_id]?.fv ? getFVBackgroundColor(scoutData[prospect.player_id].fv) : '#ffffff';
+                const fvBadgeHtml = scoutData[prospect.player_id]?.fv ? `<span class="fv-badge" style="background-color: ${fvBgColor}; color: black;">${fvValue}</span>` : '—';
+
+                return `
+                <tr onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')">
+                    <td class="rank-cell">${prospect.rank}</td>
+                    <td class="img-cell">
+                        <img src="${headshotUrl}" alt="${prospect.name}" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
+                    </td>
+                    <td class="name-cell">${prospect.name}</td>
+                    <td class="team-logo-cell">
+                        ${teamLogoUrl ? `<div class="logo-cell"><img src="${teamLogoUrl}" alt="team logo" onerror="this.style.display='none'"></div>` : ''}
+                    </td>
+                    <td class="position-cell">
+                        <span class="position-badge" style="background-color: ${posColor};">${prospect.position}</span>
+                    </td>
+                    <td class="fv-cell">${fvBadgeHtml}</td>
+                    <td>${prospect.age}</td>
+                    <td>${prospect.height}</td>
+                    <td>${prospect.weight}</td>
+                    <td>${prospect.batThrow}</td>
+                </tr>
+            `;
+            }).join('');
         }
 
-        tbody.innerHTML = filteredProspectsData.map(prospect => {
-            const posColor = positionColors[prospect.position] || '#e9ecef';
-            const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${prospect.player_id}/headshot/milb/current.png`;
-            const teamLogoUrl = prospect.parent_org_id ? `https://www.mlbstatic.com/team-logos/${prospect.parent_org_id}.svg` : '';
+        function openPlayerModal(playerId, rank, name, position) {
+            const modal = document.getElementById('playerModal');
+            const card = document.getElementById('playerCard');
+            card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="card-loading">Loading player details...</div>`;
+            modal.classList.add('active');
 
-            const fvValue = scoutData[prospect.player_id]?.fv ? Math.round(scoutData[prospect.player_id].fv) : '—';
-            const fvBgColor = scoutData[prospect.player_id]?.fv ? getFVBackgroundColor(scoutData[prospect.player_id].fv) : '#ffffff';
-            const fvBadgeHtml = scoutData[prospect.player_id]?.fv ? `<span class="fv-badge" style="background-color: ${fvBgColor}; color: black;">${fvValue}</span>` : '—';
+            const prospect = allProspectsData.find(p => p.player_id == playerId);
+            const report = prospect?.report || '';
 
-            return `
-            <tr onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')">
-                <td class="rank-cell">${prospect.rank}</td>
-                <td class="img-cell">
-                    <img src="${headshotUrl}" alt="${prospect.name}" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
-                </td>
-                <td class="name-cell">${prospect.name}</td>
-                <td class="team-logo-cell">
-                    ${teamLogoUrl ? `<div class="logo-cell"><img src="${teamLogoUrl}" alt="team logo" onerror="this.style.display='none'"></div>` : ''}
-                </td>
-                <td class="position-cell">
-                    <span class="position-badge" style="background-color: ${posColor};">${prospect.position}</span>
-                </td>
-                <td class="fv-cell">${fvBadgeHtml}</td>
-                <td>${prospect.age}</td>
-                <td>${prospect.height}</td>
-                <td>${prospect.weight}</td>
-                <td>${prospect.batThrow}</td>
-            </tr>
-        `;
-        }).join('');
-    }
-    function openPlayerModal(playerId, rank, name, position) {
-        const modal = document.getElementById('playerModal');
-        const card = document.getElementById('playerCard');
-        card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="card-loading">Loading player details...</div>`;
-        modal.classList.add('active');
-
-        // Find the prospect to get the report
-        const prospect = allProspectsData.find(p => p.player_id == playerId);
-        const report = prospect?.report || '';
-
-        loadPlayerDetails(playerId, rank, name, position, report);
-    }
+            loadPlayerDetails(playerId, rank, name, position, report);
+        }
 
         function closePlayerModal() {
             document.getElementById('playerModal').classList.remove('active');
         }
 
+        function escapeHtml(text) {
+            if (!text) return '';
+            text = text
+                .replace(/[\u2018\u2019`]/g, "'")
+                .replace(/[\u201C\u201D]/g, '"')
+                .replace(/[\u2013\u2014]/g, '-')
+                .replace(/[\u2026]/g, '...')
+                .trim();
 
-    function escapeHtml(text) {
-        if (!text) return '';
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            };
 
-        // Replace all variants of smart quotes and apostrophes
-        text = text
-            .replace(/[\u2018\u2019`]/g, "'")      // ' ' ` → '
-            .replace(/[\u201C\u201D]/g, '"')      // " " → "
-            .replace(/[\u2013\u2014]/g, '-')      // – — → -
-            .replace(/[\u2026]/g, '...')          // … → ...
-            .trim();                              // Remove leading/trailing whitespace
-
-        // Then escape HTML entities
-        const map = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;'
-        };
-
-        return text.replace(/[&<>"']/g, m => map[m]);
-    }
-
-    // Update loadPlayerDetails to accept and pass report
-    async function loadPlayerDetails(playerId, rank, name, position, report = '') {
-        try {
-            const response = await fetch(`${MLB_API}/${playerId}?hydrate=draft,currentTeam,stats(type=[yearByYear,yearByYearAdvanced],leagueListId=mlb_milb)&appContext=minorLeague`);
-            const data = await response.json();
-            if (!data.people || data.people.length === 0) throw new Error('Player not found');
-            const person = data.people[0];
-            const scoutInfo = scoutData[playerId] || {};
-            renderPlayerCard(person, rank, position, scoutInfo, report);
-        } catch (error) {
-            const card = document.getElementById('playerCard');
-            card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div style="text-align: center; padding: 40px; color: #d32f2f;">Error loading player details. Please try again.</div>`;
+            return text.replace(/[&<>"']/g, m => map[m]);
         }
-    }
-// Update renderPlayerCard to accept and display report
-    function renderPlayerCard(person, rank, position, scoutInfo, report = '') {
-        const card = document.getElementById('playerCard');
-        const bio = parseBio(person);
-        const stats = parseStats(person, position);
-        const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${person.id}/headshot/milb/current.png`;
-        const teamLogoUrl = bio.currentTeamId ? `https://www.mlbstatic.com/team-logos/${bio.currentTeamId}.svg` : '';
+
+        async function loadPlayerDetails(playerId, rank, name, position, report = '') {
+            try {
+                const response = await fetch(`${MLB_API}/${playerId}?hydrate=draft,currentTeam,stats(type=[yearByYear,yearByYearAdvanced],leagueListId=mlb_milb)&appContext=minorLeague`);
+                const data = await response.json();
+                if (!data.people || data.people.length === 0) throw new Error('Player not found');
+                const person = data.people[0];
+                const scoutInfo = scoutData[playerId] || {};
+                renderPlayerCard(person, rank, position, scoutInfo, report);
+            } catch (error) {
+                const card = document.getElementById('playerCard');
+                card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div style="text-align: center; padding: 40px; color: #d32f2f;">Error loading player details. Please try again.</div>`;
+            }
+        }
+
+        function renderPlayerCard(person, rank, position, scoutInfo, report = '') {
+            const card = document.getElementById('playerCard');
+            const bio = parseBio(person);
+            const stats = parseStats(person, position);
+            const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${person.id}/headshot/milb/current.png`;
+            const teamLogoUrl = bio.currentTeamId ? `https://www.mlbstatic.com/team-logos/${bio.currentTeamId}.svg` : '';
 
             let statsHtml = '';
             if (stats && stats.season) {
@@ -1620,12 +1580,11 @@
                 }
             }
 
-        const draftHtml = bio.draftsYear ? `<div class="player-details" style="font-size: 22px;">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber} | School: ${bio.draftsSchool || 'N/A'}</div>` : '';
-
-        // Then use it:
-        const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: 16px; color: #555; line-height: 1.6;">${escapeHtml(report)}</div></div>` : '';
-        card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name" style="font-size: 40px;">${bio.fullName}</div><div class="player-details" style="font-size: 22px;">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details" style="font-size: 22px;">${bio.height} | ${bio.weight} lbs</div><div class="player-details" style="font-size: 22px;">DOB: ${bio.birthDate} | ${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}${reportHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
-    }
+            const draftHtml = bio.draftsYear ? `<div class="player-details" style="font-size: clamp(11px, 3vw, 22px);">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber} | School: ${bio.draftsSchool || 'N/A'}</div>` : '';
+            const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: clamp(13px, 3.5vw, 16px); font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: clamp(13px, 3.5vw, 16px); color: #555; line-height: 1.6;">${escapeHtml(report)}</div></div>` : '';
+            
+            card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name" style="font-size: clamp(28px, 7vw, 40px);">${bio.fullName}</div><div class="player-details" style="font-size: clamp(16px, 4vw, 22px);">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details" style="font-size: clamp(16px, 4vw, 22px);">${bio.height} | ${bio.weight} lbs</div><div class="player-details" style="font-size: clamp(16px, 4vw, 22px);">DOB: ${bio.birthDate} | ${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}${reportHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
+        }
 
         function parseBio(person) {
             const currentTeam = person.currentTeam || {};
