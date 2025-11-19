@@ -1519,9 +1519,13 @@
                 const fvValue = scoutData[prospect.player_id]?.fv ? Math.round(scoutData[prospect.player_id].fv) : '—';
                 const fvBgColor = scoutData[prospect.player_id]?.fv ? getFVBackgroundColor(scoutData[prospect.player_id].fv) : '#ffffff';
                 const fvBadgeHtml = scoutData[prospect.player_id]?.fv ? `<span class="fv-badge" style="background-color: ${fvBgColor}; color: black;">${fvValue}</span>` : '—';
+                
+                // Hide rows after 5 if not expanded and not searching
+                const shouldHide = !isSearching && !isExpanded && index >= 5;
+                const hiddenClass = shouldHide ? ' prospect-row-hidden' : '';
 
                 return `
-                <tr class="prospect-row" onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')">
+                <tr class="prospect-row${hiddenClass}" onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')">
                     <td class="rank-cell">${prospect.rank}</td>
                     <td class="img-cell">
                         <img src="${headshotUrl}" alt="${prospect.name}" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
