@@ -31,6 +31,8 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             padding: 15px;
+            max-height: 70vh;
+            overflow-y: auto;
         }
 
         .header {
@@ -229,32 +231,7 @@
             font-size: 18px;
         }
 
-        .expand-button-container {
-            text-align: center;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-top: 1px solid #e0e0e0;
-        }
 
-        .expand-button {
-            padding: 14px 32px;
-            font-size: 18px;
-            font-weight: 600;
-            color: white;
-            background-color: #648fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .expand-button:hover {
-            background-color: #5278e0;
-        }
-
-        .prospect-row-hidden {
-            display: none;
-        }
 
         .error-msg {
             color: #d32f2f;
@@ -1292,9 +1269,6 @@
                     </tr>
                 </tbody>
             </table>
-            <div id="expandButtonContainer" class="expand-button-container" style="display: none;">
-                <button id="expandButton" class="expand-button" onclick="toggleFullList()">Show Full List</button>
-            </div>
         </div>
     </div>
 
@@ -1314,7 +1288,6 @@
 
         let allProspectsData = [];
         let filteredProspectsData = [];
-        let isExpanded = false;
         let scoutData = {};
 
         const positionColors = {
@@ -1492,21 +1465,10 @@
 
         function renderTable() {
             const tbody = document.getElementById('tableBody');
-            const expandButtonContainer = document.getElementById('expandButtonContainer');
-            const searchInput = document.getElementById('searchInput');
-            const isSearching = searchInput.value.trim() !== '';
             
             if (filteredProspectsData.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
-                expandButtonContainer.style.display = 'none';
                 return;
-            }
-
-            // Show button only when not searching and there are more than 5 prospects
-            if (!isSearching && filteredProspectsData.length > 5) {
-                expandButtonContainer.style.display = 'block';
-            } else {
-                expandButtonContainer.style.display = 'none';
             }
 
             tbody.innerHTML = filteredProspectsData.map((prospect, index) => {
@@ -1517,13 +1479,9 @@
                 const fvValue = scoutData[prospect.player_id]?.fv ? Math.round(scoutData[prospect.player_id].fv) : '—';
                 const fvBgColor = scoutData[prospect.player_id]?.fv ? getFVBackgroundColor(scoutData[prospect.player_id].fv) : '#ffffff';
                 const fvBadgeHtml = scoutData[prospect.player_id]?.fv ? `<span class="fv-badge" style="background-color: ${fvBgColor}; color: black;">${fvValue}</span>` : '—';
-                
-                // Hide rows after 5 if not expanded and not searching
-                const shouldHide = !isSearching && !isExpanded && index >= 5;
-                const hiddenClass = shouldHide ? ' prospect-row-hidden' : '';
 
                 return `
-                <tr class="prospect-row${hiddenClass}" onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')">
+                <tr class="prospect-row" onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')">
                     <td class="rank-cell">${prospect.rank}</td>
                     <td class="img-cell">
                         <img src="${headshotUrl}" alt="${prospect.name}" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
@@ -1775,20 +1733,6 @@
         document.getElementById('playerModal').addEventListener('click', (e) => {
             if (e.target.id === 'playerModal') closePlayerModal();
         });
-
-        function toggleFullList() {
-            isExpanded = true;
-            const button = document.getElementById('expandButton');
-            const expandButtonContainer = document.getElementById('expandButtonContainer');
-            const rows = document.querySelectorAll('.prospect-row-hidden');
-            
-            rows.forEach(row => {
-                row.classList.remove('prospect-row-hidden');
-            });
-            
-            // Hide the button after expanding
-            expandButtonContainer.style.display = 'none';
-        }
 
         // Initialize
         loadProspectsData();
