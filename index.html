@@ -20,11 +20,13 @@
             padding: 10px;
             font-size: 18px;
             width: 100%;
+            height: 100%;
             max-width: none !important;
         }
 
         .container {
             max-width: 1400px;
+            max-height: 100vh;
             margin: 0 auto;
             background: white;
             border-radius: 8px;
@@ -73,14 +75,15 @@
             overflow-x: auto;
             border: 1px solid #e0e0e0;
             border-radius: 6px;
-            max-height: none;
-            overflow-y: visible;
         }
 
+        /* Main prospects list table styles */
         #prospectsTable {
             width: 100%;
             border-collapse: collapse;
             font-size: 18px;
+            max-height: 95vh;
+            
         }
 
         #prospectsTable thead {
@@ -227,12 +230,40 @@
             font-size: 18px;
         }
 
+        .expand-button-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .expand-button {
+            padding: 14px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background-color: #648fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .expand-button:hover {
+            background-color: #5278e0;
+        }
+
+        .prospect-row-hidden {
+            display: none;
+        }
+
         .error-msg {
             color: #d32f2f;
             padding: 20px;
             font-size: 18px;
         }
 
+        /* Modal Overlay */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -367,6 +398,7 @@
             overflow-y: auto;
         }
 
+        /* Stats table - isolated styles */
         .stats-table {
             width: 100%;
             border-collapse: collapse;
@@ -484,28 +516,6 @@
             padding: 40px;
             font-size: 18px;
             color: #666;
-        }
-
-        .button-container {
-            text-align: center;
-            margin: 32px 0;
-        }
-
-        .show-full-btn {
-            padding: 12px 32px;
-            font-size: 16px;
-            font-weight: 600;
-            border: 2px solid #648fff;
-            background-color: white;
-            color: #648fff;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .show-full-btn:hover {
-            background-color: #648fff;
-            color: white;
         }
 
         @media (max-width: 1000px) {
@@ -759,6 +769,7 @@
             }
         }
 
+        /* Phones */
         @media (max-width: 720px) {
             html,
             body {
@@ -813,7 +824,6 @@
             }
 
             .table-wrapper {
-                max-height: none;
                 border: 1px solid #ddd;
                 border-radius: 4px;
                 background: white;
@@ -1197,30 +1207,6 @@
                 justify-content: center;
                 z-index: 100;
             }
-
-            .button-container {
-                text-align: center;
-                margin: 16px 8px;
-                padding: 0 8px;
-            }
-
-            .show-full-btn {
-                padding: 10px 24px;
-                font-size: 14px;
-                font-weight: 600;
-                border: 2px solid #648fff;
-                background-color: white;
-                color: #648fff;
-                border-radius: 6px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                width: 100%;
-            }
-
-            .show-full-btn:hover {
-                background-color: #648fff;
-                color: white;
-            }
         }
     </style>
 </head>
@@ -1264,10 +1250,9 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-
-        <div class="button-container">
-            <button class="show-full-btn" id="toggleBtn" onclick="toggleFullList()" style="display: none;">Show Full List</button>
+            <div id="expandButtonContainer" class="expand-button-container" style="display: none;">
+                <button id="expandButton" class="expand-button" onclick="toggleFullList()">Show Full List</button>
+            </div>
         </div>
     </div>
 
@@ -1287,8 +1272,8 @@
 
         let allProspectsData = [];
         let filteredProspectsData = [];
-        let scoutData = {};
         let isExpanded = false;
+        let scoutData = {};
 
         const positionColors = {
             'C': '#785EF0', '1B': '#DC267F', '2B': '#FE6100', '3B': '#41AC99',
@@ -1457,7 +1442,6 @@
 
             filteredProspectsData = [...allProspectsData];
             renderTable();
-            document.getElementById('toggleBtn').style.display = 'block';
         }
 
         function showError(msg) {
@@ -1466,13 +1450,24 @@
 
         function renderTable() {
             const tbody = document.getElementById('tableBody');
+            const expandButtonContainer = document.getElementById('expandButtonContainer');
+            const searchInput = document.getElementById('searchInput');
+            const isSearching = searchInput.value.trim() !== '';
+            
             if (filteredProspectsData.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
+                expandButtonContainer.style.display = 'none';
                 return;
             }
 
-            let html = '';
-            filteredProspectsData.forEach((prospect, index) => {
+            // Show button only when not searching and there are more than 5 prospects
+            if (!isSearching && filteredProspectsData.length > 5) {
+                expandButtonContainer.style.display = 'block';
+            } else {
+                expandButtonContainer.style.display = 'none';
+            }
+
+            tbody.innerHTML = filteredProspectsData.map((prospect, index) => {
                 const posColor = positionColors[prospect.position] || '#e9ecef';
                 const headshotUrl = `https://img.mlbstatic.com/mlb-photos/image/upload/c_fill,g_auto/w_640/v1/people/${prospect.player_id}/headshot/milb/current.png`;
                 const teamLogoUrl = prospect.parent_org_id ? `https://www.mlbstatic.com/team-logos/${prospect.parent_org_id}.svg` : '';
@@ -1480,11 +1475,13 @@
                 const fvValue = scoutData[prospect.player_id]?.fv ? Math.round(scoutData[prospect.player_id].fv) : '—';
                 const fvBgColor = scoutData[prospect.player_id]?.fv ? getFVBackgroundColor(scoutData[prospect.player_id].fv) : '#ffffff';
                 const fvBadgeHtml = scoutData[prospect.player_id]?.fv ? `<span class="fv-badge" style="background-color: ${fvBgColor}; color: black;">${fvValue}</span>` : '—';
+                
+                // Hide rows after 5 if not expanded and not searching
+                const shouldHide = !isSearching && !isExpanded && index >= 5;
+                const hiddenClass = shouldHide ? ' prospect-row-hidden' : '';
 
-                const rowDisplay = (index < 5 || isExpanded) ? 'table-row' : 'none';
-
-                html += `
-                <tr onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')" style="display: ${rowDisplay};">
+                return `
+                <tr class="prospect-row${hiddenClass}" onclick="openPlayerModal(${prospect.player_id}, ${prospect.rank}, '${prospect.name.replace(/'/g, "\\'")}', '${prospect.position}')">
                     <td class="rank-cell">${prospect.rank}</td>
                     <td class="img-cell">
                         <img src="${headshotUrl}" alt="${prospect.name}" onerror="this.src='https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/000000/headshot/67/current'">
@@ -1503,21 +1500,7 @@
                     <td>${prospect.batThrow}</td>
                 </tr>
             `;
-            });
-            tbody.innerHTML = html;
-        }
-
-        function toggleFullList() {
-            isExpanded = !isExpanded;
-            const rows = document.querySelectorAll('#prospectsTable tbody tr');
-            const btn = document.getElementById('toggleBtn');
-
-            rows.forEach((row, index) => {
-                if (index < 5) return;
-                row.style.display = isExpanded ? 'table-row' : 'none';
-            });
-
-            btn.textContent = isExpanded ? 'Show Less' : 'Show Full List';
+            }).join('');
         }
 
         function openPlayerModal(playerId, rank, name, position) {
@@ -1735,6 +1718,7 @@
             }
         }
 
+        // Event Listeners
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
             filteredProspectsData = allProspectsData.filter(p =>
@@ -1743,15 +1727,40 @@
                 p.franchise.toLowerCase().includes(query) ||
                 p.abbreviation.toLowerCase().includes(query)
             );
-            isExpanded = false;
             renderTable();
-            document.getElementById('toggleBtn').textContent = 'Show Full List';
         });
 
         document.getElementById('playerModal').addEventListener('click', (e) => {
             if (e.target.id === 'playerModal') closePlayerModal();
         });
 
+        function toggleFullList() {
+            isExpanded = !isExpanded;
+            const button = document.getElementById('expandButton');
+            const rows = document.querySelectorAll('.prospect-row-hidden');
+            
+            rows.forEach(row => {
+                row.classList.remove('prospect-row-hidden');
+            });
+            
+            if (isExpanded) {
+                button.textContent = 'Show Top 5';
+            } else {
+                // Re-hide rows after 5
+                const allRows = document.querySelectorAll('.prospect-row');
+                allRows.forEach((row, index) => {
+                    if (index >= 5) {
+                        row.classList.add('prospect-row-hidden');
+                    }
+                });
+                button.textContent = 'Show Full List';
+                
+                // Scroll back to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Initialize
         loadProspectsData();
     </script>
 </body>
