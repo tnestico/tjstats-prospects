@@ -26,7 +26,6 @@
 
         .container {
             max-width: 1400px;
-            max-height: 100vh;
             margin: 0 auto;
             background: white;
             border-radius: 8px;
@@ -519,8 +518,54 @@
         }
 
         @media (max-width: 1000px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .header-info {
+                font-size: 14px;
+            }
+
+            .search-input {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+
             #prospectsTable {
-                font-size: clamp(10px, 2.5vw, 20px);
+                font-size: clamp(10px, 2.5vw, 14px);
+            }
+
+            #prospectsTable th {
+                font-size: 14px;
+                padding: 8px 6px;
+            }
+
+            #prospectsTable td {
+                font-size: 14px;
+                padding: 8px 6px;
+            }
+
+            .rank-cell {
+                font-size: 14px;
+            }
+
+            .name-cell {
+                font-size: 14px;
+            }
+
+            .position-badge {
+                font-size: 13px;
+                padding: 4px 8px;
+            }
+
+            .fv-badge {
+                font-size: 13px;
+                padding: 4px 8px;
+            }
+
+            .expand-button {
+                font-size: 14px;
+                padding: 10px 24px;
             }
 
             #prospectsTable img.headshot {
@@ -531,11 +576,6 @@
             #prospectsTable img.logo {
                 width: 40px;
                 height: 40px;
-            }
-
-            #prospectsTable th,
-            #prospectsTable td {
-                padding: 6px;
             }
 
             #prospectsTable td:nth-child(3),
