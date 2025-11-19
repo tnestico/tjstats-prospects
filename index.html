@@ -142,10 +142,8 @@
             min-width: 68px;
             max-width: 68px;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+            text-align: center;
+            vertical-align: middle;
         }
 
         .img-cell img {
@@ -153,7 +151,8 @@
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            display: block;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         .team-logo-cell {
@@ -168,9 +167,9 @@
         }
 
         .logo-cell {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
             width: 50px;
             height: 50px;
         }
@@ -178,7 +177,11 @@
         .logo-cell img {
             max-width: 50px;
             max-height: 50px;
+            width: auto;
+            height: auto;
             object-fit: contain;
+            display: block;
+            margin: 0 auto;
         }
 
         .name-cell {
@@ -601,27 +604,27 @@
                 width: 40px !important;
                 min-width: 40px !important;
                 max-width: 40px !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                gap: 0 !important;
+                text-align: center !important;
+                vertical-align: middle !important;
+                padding: 0 !important;
             }
 
             .logo-cell {
+                display: inline-block !important;
+                vertical-align: middle !important;
+                line-height: 1 !important;
                 width: 36px !important;
                 height: 36px !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                flex-shrink: 0 !important;
             }
 
             .logo-cell img {
                 max-width: 36px !important;
                 max-height: 36px !important;
+                width: auto !important;
+                height: auto !important;
                 object-fit: contain !important;
-                border-radius: 0 !important;
                 display: block !important;
+                margin: 0 auto !important;
             }
 
             .player-card {
@@ -1035,27 +1038,27 @@
                 width: 40px !important;
                 min-width: 40px !important;
                 max-width: 40px !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                gap: 0 !important;
+                text-align: center !important;
+                vertical-align: middle !important;
+                padding: 0 !important;
             }
 
             .logo-cell {
+                display: inline-block !important;
+                vertical-align: middle !important;
+                line-height: 1 !important;
                 width: 36px !important;
                 height: 36px !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                flex-shrink: 0 !important;
             }
 
             .logo-cell img {
                 max-width: 36px !important;
                 max-height: 36px !important;
+                width: auto !important;
+                height: auto !important;
                 object-fit: contain !important;
-                border-radius: 0 !important;
                 display: block !important;
+                margin: 0 auto !important;
             }
 
             .player-card {
