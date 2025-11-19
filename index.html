@@ -627,12 +627,14 @@
             .player-card {
                 max-width: 70vw;
                 width: 70vw;
+                max-height: 70vh;
                 padding: 10px;
                 margin: 0;
                 border-radius: 4px;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
                 background: white;
                 position: relative;
+                overflow-y: auto;
             }
 
             .player-info {
@@ -1775,29 +1777,17 @@
         });
 
         function toggleFullList() {
-            isExpanded = !isExpanded;
+            isExpanded = true;
             const button = document.getElementById('expandButton');
+            const expandButtonContainer = document.getElementById('expandButtonContainer');
             const rows = document.querySelectorAll('.prospect-row-hidden');
             
             rows.forEach(row => {
                 row.classList.remove('prospect-row-hidden');
             });
             
-            if (isExpanded) {
-                button.textContent = 'Show Top 5';
-            } else {
-                // Re-hide rows after 5
-                const allRows = document.querySelectorAll('.prospect-row');
-                allRows.forEach((row, index) => {
-                    if (index >= 5) {
-                        row.classList.add('prospect-row-hidden');
-                    }
-                });
-                button.textContent = 'Show Full List';
-                
-                // Scroll back to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            // Hide the button after expanding
+            expandButtonContainer.style.display = 'none';
         }
 
         // Initialize
