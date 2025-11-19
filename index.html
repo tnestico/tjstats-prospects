@@ -231,7 +231,32 @@
             font-size: 18px;
         }
 
+        .expand-button-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
 
+        .expand-button {
+            padding: 14px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background-color: #648fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .expand-button:hover {
+            background-color: #5278e0;
+        }
+
+        .prospect-row-hidden {
+            display: none;
+        }
 
         .error-msg {
             color: #d32f2f;
@@ -1269,6 +1294,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div id="expandButtonContainer" class="expand-button-container" style="display: none;">
+                <button id="expandButton" class="expand-button" onclick="toggleFullList()">Show Full List</button>
+            </div>
         </div>
     </div>
 
@@ -1288,6 +1316,7 @@
 
         let allProspectsData = [];
         let filteredProspectsData = [];
+        let isExpanded = false;
         let scoutData = {};
 
         const positionColors = {
@@ -1465,10 +1494,21 @@
 
         function renderTable() {
             const tbody = document.getElementById('tableBody');
+            const expandButtonContainer = document.getElementById('expandButtonContainer');
+            const searchInput = document.getElementById('searchInput');
+            const isSearching = searchInput.value.trim() !== '';
             
             if (filteredProspectsData.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
+                if (expandButtonContainer) expandButtonContainer.style.display = 'none';
                 return;
+            }
+
+            // Show button only when not searching and there are more than 5 prospects and not expanded
+            if (!isSearching && filteredProspectsData.length > 5 && !isExpanded) {
+                if (expandButtonContainer) expandButtonContainer.style.display = 'block';
+            } else {
+                if (expandButtonContainer) expandButtonContainer.style.display = 'none';
             }
 
             tbody.innerHTML = filteredProspectsData.map((prospect, index) => {
@@ -1733,6 +1773,28 @@
         document.getElementById('playerModal').addEventListener('click', (e) => {
             if (e.target.id === 'playerModal') closePlayerModal();
         });
+
+        function toggleFullList() {
+            isExpanded = !isExpanded;
+            const button = document.getElementById('expandButton');
+            
+            if (isExpanded) {
+                button.textContent = 'Show Top 5';
+                const rows = document.querySelectorAll('.prospect-row-hidden');
+                rows.forEach(row => {
+                    row.classList.remove('prospect-row-hidden');
+                });
+            } else {
+                button.textContent = 'Show Full List';
+                const allRows = document.querySelectorAll('.prospect-row');
+                allRows.forEach((row, index) => {
+                    if (index >= 5) {
+                        row.classList.add('prospect-row-hidden');
+                    }
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
 
         // Initialize
         loadProspectsData();
