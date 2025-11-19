@@ -30,9 +30,8 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 15px;
             max-height: 70vh;
-            overflow-y: auto;
+            padding: 15px;
         }
 
         .header {
@@ -1500,15 +1499,15 @@
             
             if (filteredProspectsData.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
-                if (expandButtonContainer) expandButtonContainer.style.display = 'none';
+                expandButtonContainer.style.display = 'none';
                 return;
             }
 
-            // Show button only when not searching and there are more than 5 prospects and not expanded
-            if (!isSearching && filteredProspectsData.length > 5 && !isExpanded) {
-                if (expandButtonContainer) expandButtonContainer.style.display = 'block';
+            // Show button only when not searching and there are more than 5 prospects
+            if (!isSearching && filteredProspectsData.length > 5) {
+                expandButtonContainer.style.display = 'block';
             } else {
-                if (expandButtonContainer) expandButtonContainer.style.display = 'none';
+                expandButtonContainer.style.display = 'none';
             }
 
             tbody.innerHTML = filteredProspectsData.map((prospect, index) => {
@@ -1779,25 +1778,17 @@
         });
 
         function toggleFullList() {
-            isExpanded = !isExpanded;
+            isExpanded = true;
             const button = document.getElementById('expandButton');
+            const expandButtonContainer = document.getElementById('expandButtonContainer');
+            const rows = document.querySelectorAll('.prospect-row-hidden');
             
-            if (isExpanded) {
-                button.textContent = 'Show Top 5';
-                const rows = document.querySelectorAll('.prospect-row-hidden');
-                rows.forEach(row => {
-                    row.classList.remove('prospect-row-hidden');
-                });
-            } else {
-                button.textContent = 'Show Full List';
-                const allRows = document.querySelectorAll('.prospect-row');
-                allRows.forEach((row, index) => {
-                    if (index >= 5) {
-                        row.classList.add('prospect-row-hidden');
-                    }
-                });
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            rows.forEach(row => {
+                row.classList.remove('prospect-row-hidden');
+            });
+            
+            // Hide the button after expanding
+            expandButtonContainer.style.display = 'none';
         }
 
         // Initialize
