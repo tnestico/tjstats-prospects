@@ -30,7 +30,6 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            max-height: 70vh;
             padding: 15px;
         }
 
@@ -83,7 +82,7 @@
             border-collapse: collapse;
             font-size: 18px;
             max-height: 95vh;
-            
+
         }
 
         #prospectsTable thead {
@@ -290,7 +289,7 @@
             width: 1000px;
             max-width: 90vw;
             height: fit-content;
-            max-height: none;
+            max-height: 70vh;
             background: white;
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -795,7 +794,7 @@
                 justify-content: space-around;
             }
 
-            .card-footer > div {
+            .card-footer>div {
                 flex: 1;
             }
 
@@ -814,6 +813,7 @@
 
         /* Phones */
         @media (max-width: 720px) {
+
             html,
             body {
                 padding: 0;
@@ -1223,7 +1223,7 @@
                 justify-content: space-around;
             }
 
-            .card-footer > div {
+            .card-footer>div {
                 flex: 1;
             }
 
@@ -1496,7 +1496,7 @@
             const expandButtonContainer = document.getElementById('expandButtonContainer');
             const searchInput = document.getElementById('searchInput');
             const isSearching = searchInput.value.trim() !== '';
-            
+
             if (filteredProspectsData.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: #666;">No prospects found.</td></tr>';
                 expandButtonContainer.style.display = 'none';
@@ -1518,7 +1518,7 @@
                 const fvValue = scoutData[prospect.player_id]?.fv ? Math.round(scoutData[prospect.player_id].fv) : '—';
                 const fvBgColor = scoutData[prospect.player_id]?.fv ? getFVBackgroundColor(scoutData[prospect.player_id].fv) : '#ffffff';
                 const fvBadgeHtml = scoutData[prospect.player_id]?.fv ? `<span class="fv-badge" style="background-color: ${fvBgColor}; color: black;">${fvValue}</span>` : '—';
-                
+
                 // Hide rows after 5 if not expanded and not searching
                 const shouldHide = !isSearching && !isExpanded && index >= 5;
                 const hiddenClass = shouldHide ? ' prospect-row-hidden' : '';
@@ -1669,7 +1669,7 @@
 
             const draftHtml = bio.draftsYear ? `<div class="player-details" style="font-size: clamp(11px, 3vw, 22px);">Drafted: ${bio.draftsYear}, Rd. ${bio.draftsRound}, Pick ${bio.draftsRoundPickNumber} | School: ${bio.draftsSchool || 'N/A'}</div>` : '';
             const reportHtml = report ? `<div style="margin: 24px 0; padding: 16px; background-color: #f9f9f9; border-left: 4px solid #648fff; border-radius: 4px;"><div style="font-size: clamp(13px, 3.5vw, 16px); font-weight: 600; margin-bottom: 12px; color: #333;">Report</div><div style="font-size: clamp(16px, 4vw, 22px); color: #555; line-height: 1.6;">${escapeHtml(report)}</div></div>` : '';
-            
+
             card.innerHTML = `<button class="modal-close-btn" onclick="closePlayerModal()">&times;</button><div class="player-info"><div class="player-headshot"><img src="${headshotUrl}" alt="${bio.fullName}" onerror="this.style.display='none'"></div><div class="player-bio"><div class="player-name" style="font-size: clamp(24px, 6vw, 40px);">${bio.fullName}</div><div class="player-details" style="font-size: clamp(16px, 4vw, 22px);">${position} | Age ${bio.currentAge} | B/T: ${bio.batSide}/${bio.pitchHand}</div><div class="player-details" style="font-size: clamp(16px, 4vw, 22px);">${bio.height} | ${bio.weight} lbs</div><div class="player-details" style="font-size: clamp(16px, 4vw, 22px);">DOB: ${bio.birthDate} | ${bio.birthCity}, ${bio.birthCountry}</div>${draftHtml}</div><div class="player-logo">${teamLogoUrl ? `<img src="${teamLogoUrl}" alt="${bio.currentTeam}">` : ''}</div></div>${statsHtml}${scoutingHtml}${reportHtml}<div class="card-footer"><div>By: Thomas Nestico<br>@TJStats</div><div>Updated: ${new Date().toISOString().split('T')[0]}</div><div>Data: MLB<br>Images: MLB</div></div>`;
         }
 
@@ -1782,11 +1782,11 @@
             const button = document.getElementById('expandButton');
             const expandButtonContainer = document.getElementById('expandButtonContainer');
             const rows = document.querySelectorAll('.prospect-row-hidden');
-            
+
             rows.forEach(row => {
                 row.classList.remove('prospect-row-hidden');
             });
-            
+
             // Hide the button after expanding
             expandButtonContainer.style.display = 'none';
         }
